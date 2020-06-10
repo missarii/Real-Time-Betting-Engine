@@ -1,0 +1,31 @@
+# Maven Target Build Folder
+target/
+*.pom.sha1
+*.jar
+*.war
+*.ear
+
+# IDE & Project Files
+.idea/
+*.iml
+.classpath
+.project
+.settings/
+.factorypath
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# Log files
+*.log
+logs/
+
+# OS metadata
+.DS_Store
+Thumbs.db
+
+# Docker volumes / runtime local files
+docker/volumes/
+docker-compose.override.yml
