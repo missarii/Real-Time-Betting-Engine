@@ -1,0 +1,10 @@
+server:
+  port: 8080
+  servlet:
+    session:
+      timeout: 30m
+      cookie:
+        name: BETTING_SESSION
+
+spring:
+  application:
