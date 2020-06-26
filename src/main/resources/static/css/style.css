@@ -1,0 +1,28 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap');
+
+/* --- CUSTOM VARIABLES --- */
+:root {
+    --bg-dark: hsl(222, 47%, 9%);
+    --bg-card: hsla(223, 47%, 14%, 0.7);
+    --bg-card-hover: hsla(223, 47%, 18%, 0.85);
+    --border-color: hsla(222, 32%, 22%, 0.5);
+    
+    --primary: hsl(210, 100%, 59%); /* Electric Blue */
+    --primary-glow: hsla(210, 100%, 59%, 0.3);
+    
+    --success: hsl(142, 70%, 45%); /* Neon Green */
+    --success-glow: hsla(142, 70%, 45%, 0.25);
+    
+    --danger: hsl(346, 84%, 55%); /* Neon Rose */
+    --danger-glow: hsla(346, 84%, 55%, 0.25);
+    
+    --warning: hsl(45, 93%, 47%); /* Vibrant Amber */
+    --warning-glow: hsla(45, 93%, 47%, 0.25);
+
+    --text-main: hsl(210, 40%, 98%);
+    --text-muted: hsl(215, 20%, 65%);
+    --text-dark: hsl(222, 47%, 5%);
+    
+    --glass-blur: blur(16px);
+}
+
