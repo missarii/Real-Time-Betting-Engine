@@ -8,3 +8,12 @@ server:
 
 spring:
   application:
+    name: betting-engine
+
+  # Database Configuration
+  datasource:
+    url: jdbc:postgresql://localhost:5432/betting_db
+    username: betting_user
+    password: betting_password
+    driver-class-name: org.postgresql.Driver
+
