@@ -8,3 +8,13 @@
         <artifactId>spring-boot-starter-parent</artifactId>
         <version>3.2.5</version>
         <relativePath/> <!-- lookup parent from repository -->
+    </parent>
+    <groupId>com.betting</groupId>
+    <artifactId>betting-engine</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <name>betting-engine</name>
+    <description>Real-Time Betting Engine with Spring Boot, Thymeleaf, Kafka, and Redis</description>
+
+    <properties>
+        <java.version>17</java.version>
+        <lombok.version>1.18.46</lombok.version>
