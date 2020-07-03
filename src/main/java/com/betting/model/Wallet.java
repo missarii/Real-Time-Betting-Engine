@@ -6,3 +6,10 @@ import java.math.BigDecimal;
 import java.util.UUID;
 
 @Entity
+@Table(name = "wallets")
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
+public class Wallet {
