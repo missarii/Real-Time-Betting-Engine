@@ -6,3 +6,10 @@ import com.betting.model.Wallet;
 import com.betting.model.Transaction;
 import com.betting.repository.UserRepository;
 import com.betting.repository.WalletRepository;
+import com.betting.repository.TransactionRepository;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.math.BigDecimal;
+import java.util.UUID;
