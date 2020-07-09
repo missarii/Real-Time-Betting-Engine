@@ -7,3 +7,12 @@ import lombok.Setter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.stereotype.Service;
+
+import java.io.Serializable;
+import java.math.BigDecimal;
+import java.util.UUID;
+import java.util.concurrent.TimeUnit;
+
+@Service
+public class OddsCacheService {
