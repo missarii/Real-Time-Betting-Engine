@@ -26,3 +26,32 @@
     --glass-blur: blur(16px);
 }
 
+/* --- RESET & BASIC STYLES --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Outfit', sans-serif;
+    transition: background-color 0.25s ease, border-color 0.25s ease, transform 0.20s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+body {
+    background-color: var(--bg-dark);
+    background-image: 
+        radial-gradient(at 10% 20%, hsla(210, 100%, 59%, 0.08) 0px, transparent 50%),
+        radial-gradient(at 90% 80%, hsla(346, 84%, 55%, 0.06) 0px, transparent 50%);
+    background-attachment: fixed;
+    color: var(--text-main);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+/* --- LAYOUT COMPONENTS --- */
+header {
+    background: hsla(223, 47%, 12%, 0.6);
