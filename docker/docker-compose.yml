@@ -6,3 +6,11 @@ services:
     container_name: betting-postgres
     ports:
       - "5432:5432"
+    environment:
+      POSTGRES_DB: betting_db
+      POSTGRES_USER: betting_user
+      POSTGRES_PASSWORD: betting_password
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U betting_user -d betting_db"]
