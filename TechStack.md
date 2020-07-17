@@ -25,3 +25,30 @@ The system architecture follows modern production engineering principles commonl
 ## Backend
 - Java 25
 - Spring Boot 3.2.5
+- Spring MVC
+- Spring Security
+- Spring Data JPA
+- Hibernate ORM
+
+## Database
+- PostgreSQL
+
+## Messaging & Streaming
+- Apache Kafka
+
+## Real-Time Communication
+- WebSocket
+
+## Caching
+- Redis
+
+## Build Tool
+- Maven
+
+## Embedded Server
+- Apache Tomcat
+
+## JSON Handling
+- Jackson JSON
+
+---
