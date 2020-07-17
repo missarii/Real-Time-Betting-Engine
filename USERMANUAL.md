@@ -19,3 +19,23 @@
 9. [Admin Control Panel](#9-admin-control-panel)
 10. [Understanding Bet Settlement & Payouts](#10-understanding-bet-settlement--payouts)
 11. [Glossary of Terms](#11-glossary-of-terms)
+
+---
+
+## 1. What is BET-X?
+
+**BET-X** is a production-grade, real-time sports betting engine. It simulates a complete sportsbook experience — from browsing live match odds to placing bets and receiving payouts — all backed by a robust backend with financial safety guarantees.
+
+### What Makes It Special?
+| Feature | What It Means for You |
+|---|---|
+| **Real-Time Odds** | Odds prices update live in your browser — no page reload needed |
+| **Instant Bet Placement** | Bets are processed in milliseconds with full financial validation |
+| **Secure Wallet** | Your balance is protected against concurrent transactions |
+| **Full Settlement Engine** | When a match finishes, winnings are automatically paid to your wallet |
+
+---
+
+## 2. How the Betting Engine Works
+
+Understanding the flow helps you use BET-X confidently.
