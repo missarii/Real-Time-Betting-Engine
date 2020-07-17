@@ -23,3 +23,15 @@ Decoupling transactional execution from heavy risk-audits or bulk settlements is
 - **`bet-placements`**: Fired when a bet slip is validated and recorded. Listened to asynchronously by a consumer to simulate auditing and risk management.
 - **`bet-settlements`**: Emitted upon match completion to trigger background bulk settlements.
 - **`odds-updates`**: Emitted on live odds price changes.
+
+### 4. Reactive Real-Time Blinks (WebSockets)
+- When an admin adjusts a match price, the change publishes an `OddsUpdatedEvent` to Kafka.
+- The `BetConsumer` receives this event in the background and broadcasts the payload to all active browser sessions via `ws://localhost:8080/ws/odds`.
+- The user sportsbooks dynamically update odds values on-screen and perform **green flash animations for price increases** or **red flashes for price decreases**.
+
+---
+
+## 🏗️ System Architecture Flow
+
+```
+[User Web Browser] 
