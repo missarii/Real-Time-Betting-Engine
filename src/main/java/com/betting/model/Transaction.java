@@ -15,3 +15,11 @@ import java.util.UUID;
 @Builder
 public class Transaction {
 
+    @Id
+    private UUID id;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "wallet_id", referencedColumnName = "id", nullable = false)
+    private Wallet wallet;
+
+    @Enumerated(EnumType.STRING)
