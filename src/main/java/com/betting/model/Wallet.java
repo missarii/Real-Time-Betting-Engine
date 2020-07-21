@@ -13,3 +13,10 @@ import java.util.UUID;
 @AllArgsConstructor
 @Builder
 public class Wallet {
+
+    @Id
+    private UUID id;
+
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id", referencedColumnName = "id", nullable = false, unique = true)
+    private User user;
