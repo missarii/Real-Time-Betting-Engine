@@ -8,3 +8,8 @@ import lombok.Setter;
 
 @Getter
 @Setter
+@NoArgsConstructor
+@AllArgsConstructor
+public class AuthRequest {
+    @NotBlank(message = "Username is required")
+    private String username;
