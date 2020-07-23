@@ -9,3 +9,8 @@ import java.util.UUID;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
+public class BetSettledEvent {
+    private UUID betId;
+    private UUID userId;
+    private String username;
