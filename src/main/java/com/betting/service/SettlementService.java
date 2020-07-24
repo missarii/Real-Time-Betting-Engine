@@ -16,3 +16,12 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
+
+@Service
+public class SettlementService {
+
+    private static final Logger logger = LoggerFactory.getLogger(SettlementService.class);
+
+    private final EventRepository eventRepository;
+    private final BetRepository betRepository;
+    private final WalletService walletService;
