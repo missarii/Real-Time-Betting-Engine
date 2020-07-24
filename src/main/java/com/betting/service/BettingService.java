@@ -17,3 +17,13 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
 
+@Service
+public class BettingService {
+
+    private final UserRepository userRepository;
+    private final EventRepository eventRepository;
+    private final OddsRepository oddsRepository;
+    private final BetRepository betRepository;
+    private final WalletService walletService;
+    private final OddsCacheService oddsCacheService;
+    private final BetProducer betProducer;
