@@ -16,3 +16,12 @@ import java.util.concurrent.TimeUnit;
 
 @Service
 public class OddsCacheService {
+
+    private static final Logger logger = LoggerFactory.getLogger(OddsCacheService.class);
+    private static final String CACHE_PREFIX = "odds:";
+    private static final long CACHE_TTL_MINUTES = 60;
+
+    private final RedisTemplate<String, Object> redisTemplate;
+    private final OddsRepository oddsRepository;
+
+    public OddsCacheService(RedisTemplate<String, Object> redisTemplate, OddsRepository oddsRepository) {
