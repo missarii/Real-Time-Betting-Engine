@@ -19,3 +19,13 @@ public class WalletService {
     private final TransactionRepository transactionRepository;
 
     public WalletService(WalletRepository walletRepository, TransactionRepository transactionRepository) {
+        this.walletRepository = walletRepository;
+        this.transactionRepository = transactionRepository;
+    }
+
+    public Wallet getWalletByUsername(String username) {
+        return walletRepository.findByUserUsername(username)
+                .orElseThrow(() -> new IllegalArgumentException("Wallet not found for user: " + username));
+    }
+
+    public List<Transaction> getTransactionHistory(String username) {
