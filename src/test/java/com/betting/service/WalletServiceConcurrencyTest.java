@@ -16,3 +16,13 @@ import java.util.UUID;
 import java.util.concurrent.*;
 import java.util.concurrent.atomic.AtomicInteger;
 
+import static org.junit.jupiter.api.Assertions.*;
+
+@SpringBootTest
+@ActiveProfiles("test")
+public class WalletServiceConcurrencyTest {
+
+    @Autowired
+    private WalletService walletService;
+
+    @Autowired
