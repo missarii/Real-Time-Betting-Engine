@@ -11,3 +11,9 @@ import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Service;
 
 @Service
+public class BetConsumer {
+
+    private static final Logger logger = LoggerFactory.getLogger(BetConsumer.class);
+
+    private final OddsWebSocketHandler webSocketHandler;
+    private final ObjectMapper objectMapper;
