@@ -9,3 +9,8 @@ import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 
 @Service
+public class BetProducer {
+
+    private static final Logger logger = LoggerFactory.getLogger(BetProducer.class);
+
+    private final KafkaTemplate<String, Object> kafkaTemplate;
