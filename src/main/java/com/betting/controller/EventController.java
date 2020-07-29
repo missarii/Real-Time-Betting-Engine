@@ -10,3 +10,9 @@ import java.security.Principal;
 import java.util.List;
 
 /**
+ * Serves the main Sportsbook page - /events
+ * Wallet is injected automatically by GlobalModelAdvice for the navbar.
+ */
+@Controller
+public class EventController {
+
