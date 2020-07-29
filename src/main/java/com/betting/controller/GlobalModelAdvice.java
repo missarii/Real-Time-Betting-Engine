@@ -12,3 +12,10 @@ import java.security.Principal;
 
 /**
  * Automatically injects the authenticated user's wallet into every
+ * Thymeleaf model so that the navbar balance pill works on all pages.
+ */
+@ControllerAdvice
+public class GlobalModelAdvice {
+
+    private static final Logger logger = LoggerFactory.getLogger(GlobalModelAdvice.class);
+
