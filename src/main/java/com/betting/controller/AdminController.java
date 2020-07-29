@@ -19,3 +19,14 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
+
+@Controller
+@RequestMapping("/admin")
+public class AdminController {
+
+    private static final Logger logger = LoggerFactory.getLogger(AdminController.class);
+
+    private final EventRepository eventRepository;
+    private final OddsRepository oddsRepository;
+    private final SettlementService settlementService;
+    private final OddsCacheService oddsCacheService;
