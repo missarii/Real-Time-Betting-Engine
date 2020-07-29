@@ -12,3 +12,10 @@ import java.io.IOException;
 import java.util.Set;
 import java.util.concurrent.CopyOnWriteArraySet;
 
+@Component
+public class OddsWebSocketHandler extends TextWebSocketHandler {
+
+    private static final Logger logger = LoggerFactory.getLogger(OddsWebSocketHandler.class);
+    
+    // Thread-safe set to store active WebSocket sessions
+    private final Set<WebSocketSession> sessions = new CopyOnWriteArraySet<>();
