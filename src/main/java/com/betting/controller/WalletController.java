@@ -16,3 +16,12 @@ import java.util.List;
 
 @Controller
 public class WalletController {
+
+    private final WalletService walletService;
+
+    public WalletController(WalletService walletService) {
+        this.walletService = walletService;
+    }
+
+    @GetMapping("/wallet")
+    public String viewWallet(Principal principal, Model model) {
