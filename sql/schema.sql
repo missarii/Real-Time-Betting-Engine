@@ -15,3 +15,12 @@ CREATE TABLE users (
     role VARCHAR(20) NOT NULL,
     created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
+
+CREATE INDEX idx_users_username ON users(username);
+
+-- Wallets Table (with Optimistic Locking version column)
+CREATE TABLE wallets (
+    id UUID PRIMARY KEY,
+    user_id UUID NOT NULL UNIQUE REFERENCES users(id) ON DELETE CASCADE,
+    balance NUMERIC(15,2) NOT NULL DEFAULT 0.00 CONSTRAINT chk_wallet_balance_positive CHECK (balance >= 0),
+    currency VARCHAR(3) NOT NULL DEFAULT 'USD',
