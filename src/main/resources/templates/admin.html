@@ -17,3 +17,12 @@
                 <a th:href="@{/events}" class="nav-item">Sportsbook</a>
                 <a th:href="@{/bets}" class="nav-item">My Bets</a>
                 <a th:href="@{/wallet}" class="nav-item">Wallet</a>
+                <a sec:authorize="hasRole('ADMIN')" th:href="@{/admin}" class="nav-item active" style="color: var(--warning); border: 1px dashed var(--warning); border-radius: 6px;">Admin Room</a>
+            </div>
+            <div class="nav-user">
+                <span style="font-weight: 600; color: var(--warning); font-size: 0.95rem; border: 1px solid var(--warning); padding: 0.25rem 0.6rem; border-radius: 4px;">🛠️ ADMIN POWER</span>
+                <span style="font-weight: 600; color: #fff; margin-left: 0.5rem;" th:text="${#authentication.name}">Username</span>
+                <a th:href="@{/logout}" class="btn-logout">LOGOUT</a>
+            </div>
+        </div>
+    </header>
