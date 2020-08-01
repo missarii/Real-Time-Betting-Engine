@@ -12,3 +12,10 @@
     <header>
         <div class="nav-container">
             <a th:href="@{/dashboard}" class="logo">🏆 <span>BET-X</span></a>
+            <div class="nav-links">
+                <a th:href="@{/dashboard}" class="nav-item">Dashboard</a>
+                <a th:href="@{/events}" class="nav-item">Sportsbook</a>
+                <a th:href="@{/bets}" class="nav-item active">My Bets</a>
+                <a th:href="@{/wallet}" class="nav-item">Wallet</a>
+                <a sec:authorize="hasRole('ADMIN')" th:href="@{/admin}" class="nav-item" style="color: var(--warning); border: 1px dashed var(--warning); border-radius: 6px;">Admin Room</a>
+            </div>
