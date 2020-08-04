@@ -27,3 +27,18 @@ function initWebSocket() {
             handleLiveOddsUpdate(data);
         } catch (err) {
             console.error("Failed to parse WebSocket message:", err);
+        }
+    };
+
+    ws.onclose = () => {
+        console.log("WebSocket connection closed. Reconnecting in 5 seconds...");
+        setTimeout(initWebSocket, 5000);
+    };
+
+    ws.onerror = (error) => {
+        console.error("WebSocket error observed:", error);
+    };
+}
+
+// --- HANDLE LIVE ODDS UPDATES ---
+function handleLiveOddsUpdate(update) {
