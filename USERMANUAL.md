@@ -39,3 +39,24 @@
 ## 2. How the Betting Engine Works
 
 Understanding the flow helps you use BET-X confidently.
+
+### 2.1 The Betting Flow (Step by Step)
+
+```
+You (Browser) ──► Click an Odds Button
+                        │
+                        ▼
+              Betslip Drawer Opens
+              (Enter your stake amount)
+                        │
+                        ▼
+              Click "PLACE BET"
+                        │
+                        ▼
+       ┌── Server validates your request ──┐
+       │  ✓ Are odds still ACTIVE?         │
+       │  ✓ Do odds match current price?   │
+       │  ✓ Is your balance sufficient?    │
+       └───────────────────────────────────┘
+                        │
+              ┌─────────┴──────────┐
