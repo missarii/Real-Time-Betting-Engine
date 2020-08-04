@@ -52,3 +52,30 @@ The system architecture follows modern production engineering principles commonl
 - Jackson JSON
 
 ---
+
+# System Architecture
+
+```text
+Client UI
+   ↓
+REST API / WebSocket
+   ↓
+Spring Boot Backend
+   ↓
+Kafka Event Streaming
+   ↓
+Consumers & Services
+   ↓
+PostgreSQL + Redis
+```
+
+---
+
+# Main Features
+
+## User Management
+- User registration
+- Authentication
+- Wallet handling
+- User balance tracking
+
