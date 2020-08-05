@@ -8,3 +8,6 @@ import org.springframework.cache.annotation.EnableCaching;
 @EnableCaching
 public class BettingEngineApplication {
     public static void main(String[] args) {
+        SpringApplication.run(BettingEngineApplication.class, args);
+    }
+}
