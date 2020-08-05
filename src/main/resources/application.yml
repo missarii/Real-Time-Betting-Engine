@@ -27,3 +27,12 @@ spring:
         format_sql: true
         jdbc:
           batch_size: 20
+        order_inserts: true
+        order_updates: true
+
+  # Database Seeding Configuration
+  # 'never' prevents re-seeding on every restart (avoids duplicate-key constraint errors)
+  # Hibernate ddl-auto: update handles schema creation on first run
+  sql:
+    init:
+      mode: never
