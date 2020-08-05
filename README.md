@@ -35,3 +35,16 @@ Decoupling transactional execution from heavy risk-audits or bulk settlements is
 
 ```
 [User Web Browser] 
+       │ 
+       ├─► (HTTPS Post) ──► [BettingController] ──► (Lock Wallet Balance + Save Bet) ──► [Publish to Kafka]
+       │
+       └─► (WS Connection) ◄── [OddsWebSocketHandler] ◄── [BetConsumer] ◄── [Kafka odds-updates Topic]
+```
+
+---
+
+## ⚙️ Technology Stack
+- **Core Platform**: Java 17, Spring Boot 3.2.5, Spring MVC
+- **Security & Session**: Spring Security (Form-based session authentication with cookie protection)
+- **Database**: PostgreSQL 15, Spring Data JPA, Hibernate, H2 (for self-contained tests)
+- **Cache**: Redis 7
