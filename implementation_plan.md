@@ -24,3 +24,15 @@ erDiagram
   - `id` (UUID, Primary Key)
   - `username` (VARCHAR(50), Unique, Indexed)
   - `email` (VARCHAR(100), Unique)
+  - `password` (VARCHAR(100))
+  - `role` (VARCHAR(20), e.g., 'USER', 'ADMIN')
+  - `created_at` (TIMESTAMP)
+- **`wallets`**:
+  - `id` (UUID, Primary Key)
+  - `user_id` (UUID, Foreign Key, Unique, Indexed)
+  - `balance` (NUMERIC(15,2), Check >= 0)
+  - `currency` (VARCHAR(3), Default 'USD')
+  - `version` (INT, Optimistic Lock Version)
+- **`transactions`**:
+  - `id` (UUID, Primary Key)
+  - `wallet_id` (UUID, Foreign Key, Indexed)
