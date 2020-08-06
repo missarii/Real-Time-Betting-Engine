@@ -26,3 +26,13 @@ public class Event {
     @Column(name = "away_team", nullable = false, length = 100)
     private String awayTeam;
 
+    @Column(name = "home_score", nullable = false)
+    @Builder.Default
+    private int homeScore = 0;
+
+    @Column(name = "away_score", nullable = false)
+    @Builder.Default
+    private int awayScore = 0;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "status", nullable = false, length = 20)
