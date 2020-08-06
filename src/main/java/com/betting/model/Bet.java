@@ -25,3 +25,12 @@ public class Bet {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "event_id", referencedColumnName = "id", nullable = false)
     private Event event;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "odds_id", referencedColumnName = "id", nullable = false)
+    private Odds odds;
+
+    @Column(name = "selection_name", nullable = false, length = 50)
+    private String selectionName;
+
+    @Column(name = "odds_value", nullable = false, precision = 6, scale = 2)
