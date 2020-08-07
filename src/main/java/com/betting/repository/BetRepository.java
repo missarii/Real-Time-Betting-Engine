@@ -9,3 +9,6 @@ import java.util.UUID;
 @Repository
 public interface BetRepository extends JpaRepository<Bet, UUID> {
     List<Bet> findByUserIdOrderByPlacedAtDesc(UUID userId);
+    List<Bet> findByUserUsernameOrderByPlacedAtDesc(String username);
+    List<Bet> findByEventIdAndStatus(UUID eventId, Bet.BetStatus status);
+}
