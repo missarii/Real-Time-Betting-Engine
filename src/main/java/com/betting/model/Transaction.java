@@ -23,3 +23,12 @@ public class Transaction {
     private Wallet wallet;
 
     @Enumerated(EnumType.STRING)
+    @Column(name = "type", nullable = false, length = 20)
+    private TransactionType type;
+
+    @Column(name = "amount", nullable = false, precision = 15, scale = 2)
+    private BigDecimal amount;
+
+    @Column(name = "reference_id")
+    private UUID referenceId; // e.g., Bet ID
+
