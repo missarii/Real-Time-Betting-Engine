@@ -9,3 +9,6 @@ import java.util.UUID;
 @Repository
 public interface EventRepository extends JpaRepository<Event, UUID> {
     List<Event> findByStatus(Event.EventStatus status);
+    List<Event> findBySport(String sport);
+    List<Event> findByStatusNot(Event.EventStatus status);
+}
