@@ -8,3 +8,6 @@ import java.util.UUID;
 
 @Repository
 public interface TransactionRepository extends JpaRepository<Transaction, UUID> {
+    List<Transaction> findByWalletIdOrderByCreatedAtDesc(UUID walletId);
+    List<Transaction> findByWalletUserUsernameOrderByCreatedAtDesc(String username);
+}
