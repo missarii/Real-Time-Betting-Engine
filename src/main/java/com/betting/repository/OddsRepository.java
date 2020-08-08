@@ -9,3 +9,6 @@ import java.util.UUID;
 
 @Repository
 public interface OddsRepository extends JpaRepository<Odds, UUID> {
+    List<Odds> findByEventId(UUID eventId);
+    Optional<Odds> findByEventIdAndMarketNameAndSelectionName(UUID eventId, String marketName, String selectionName);
+}
