@@ -16,3 +16,10 @@ import java.util.UUID;
 @NoArgsConstructor
 @AllArgsConstructor
 public class BetRequest {
+
+    @NotNull(message = "Event ID is required")
+    private UUID eventId;
+
+    @NotNull(message = "Odds ID is required")
+    private UUID oddsId;
+
