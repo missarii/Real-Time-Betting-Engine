@@ -16,3 +16,8 @@ public class BetPlacedEvent {
     private String username;
     private UUID eventId;
     private UUID oddsId;
+    private String selectionName;
+    private BigDecimal oddsValue;
+    private BigDecimal stake;
+    private LocalDateTime placedAt;
+}
