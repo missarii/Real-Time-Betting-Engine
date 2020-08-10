@@ -14,3 +14,8 @@ public class BetSettledEvent {
     private UUID betId;
     private UUID userId;
     private String username;
+    private UUID eventId;
+    private String status; // WON or LOST
+    private BigDecimal payout;
+    private LocalDateTime settledAt;
+}
