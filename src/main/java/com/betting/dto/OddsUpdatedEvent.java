@@ -13,3 +13,7 @@ public class OddsUpdatedEvent {
     private UUID oddsId;
     private UUID eventId;
     private String marketName;
+    private String selectionName;
+    private BigDecimal oddsValue;
+    private String status; // ACTIVE or SUSPENDED
+}
