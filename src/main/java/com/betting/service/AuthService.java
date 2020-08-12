@@ -21,3 +21,10 @@ public class AuthService {
     private final WalletRepository walletRepository;
     private final TransactionRepository transactionRepository;
     private final PasswordEncoder passwordEncoder;
+
+    public AuthService(UserRepository userRepository,
+                       WalletRepository walletRepository,
+                       TransactionRepository transactionRepository,
+                       PasswordEncoder passwordEncoder) {
+        this.userRepository = userRepository;
+        this.walletRepository = walletRepository;
