@@ -25,3 +25,12 @@ public class OddsCacheService {
     private final OddsRepository oddsRepository;
 
     public OddsCacheService(RedisTemplate<String, Object> redisTemplate, OddsRepository oddsRepository) {
+        this.redisTemplate = redisTemplate;
+        this.oddsRepository = oddsRepository;
+    }
+
+    // Cache-Aside lookup
+    public CachedOdds getOdds(UUID oddsId) {
+        String key = CACHE_PREFIX + oddsId.toString();
+        try {
+            CachedOdds cached = (CachedOdds) redisTemplate.opsForValue().get(key);
