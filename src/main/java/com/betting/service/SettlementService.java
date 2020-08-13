@@ -25,3 +25,12 @@ public class SettlementService {
     private final EventRepository eventRepository;
     private final BetRepository betRepository;
     private final WalletService walletService;
+    private final BetProducer betProducer;
+
+    public SettlementService(EventRepository eventRepository,
+                             BetRepository betRepository,
+                             WalletService walletService,
+                             BetProducer betProducer) {
+        this.eventRepository = eventRepository;
+        this.betRepository = betRepository;
+        this.walletService = walletService;
