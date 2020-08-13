@@ -27,3 +27,12 @@ public class BettingService {
     private final WalletService walletService;
     private final OddsCacheService oddsCacheService;
     private final BetProducer betProducer;
+
+    public BettingService(UserRepository userRepository,
+                          EventRepository eventRepository,
+                          OddsRepository oddsRepository,
+                          BetRepository betRepository,
+                          WalletService walletService,
+                          OddsCacheService oddsCacheService,
+                          BetProducer betProducer) {
+        this.userRepository = userRepository;
