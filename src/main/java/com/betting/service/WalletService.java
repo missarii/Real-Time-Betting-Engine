@@ -29,3 +29,14 @@ public class WalletService {
     }
 
     public List<Transaction> getTransactionHistory(String username) {
+        return transactionRepository.findByWalletUserUsernameOrderByCreatedAtDesc(username);
+    }
+
+    @Transactional
+    public void deposit(String username, BigDecimal amount, String description) {
+        if (amount.compareTo(BigDecimal.ZERO) <= 0) {
+            throw new IllegalArgumentException("Deposit amount must be positive");
+        }
+
+        Wallet wallet = getWalletByUsername(username);
+        wallet.setBalance(wallet.getBalance().add(amount));
