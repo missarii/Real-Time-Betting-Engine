@@ -11,3 +11,7 @@ import org.springframework.web.socket.config.annotation.WebSocketHandlerRegistry
 public class WebSocketConfig implements WebSocketConfigurer {
 
     private final OddsWebSocketHandler oddsWebSocketHandler;
+
+    public WebSocketConfig(OddsWebSocketHandler oddsWebSocketHandler) {
+        this.oddsWebSocketHandler = oddsWebSocketHandler;
+    }
