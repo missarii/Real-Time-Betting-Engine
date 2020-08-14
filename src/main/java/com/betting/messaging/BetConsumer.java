@@ -17,3 +17,10 @@ public class BetConsumer {
 
     private final OddsWebSocketHandler webSocketHandler;
     private final ObjectMapper objectMapper;
+
+    public BetConsumer(OddsWebSocketHandler webSocketHandler, ObjectMapper objectMapper) {
+        this.webSocketHandler = webSocketHandler;
+        this.objectMapper = objectMapper;
+    }
+
+    // Each listener references its typed containerFactory so deserialization is type-safe
