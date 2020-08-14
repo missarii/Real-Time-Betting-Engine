@@ -22,3 +22,11 @@ import java.util.Map;
 public class KafkaConfig {
 
     @Value("${spring.kafka.bootstrap-servers}")
+    private String bootstrapServers;
+
+    // --- Topics ---
+    @Bean
+    public NewTopic betPlacementsTopic() {
+        return TopicBuilder.name("bet-placements").partitions(3).replicas(1).build();
+    }
+
