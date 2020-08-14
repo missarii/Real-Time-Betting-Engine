@@ -26,3 +26,12 @@ public class WalletServiceConcurrencyTest {
     private WalletService walletService;
 
     @Autowired
+    private UserRepository userRepository;
+
+    @Autowired
+    private WalletRepository walletRepository;
+
+    private UUID userId;
+
+    @BeforeEach
+    void setUp() {
