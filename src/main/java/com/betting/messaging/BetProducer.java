@@ -14,3 +14,8 @@ public class BetProducer {
     private static final Logger logger = LoggerFactory.getLogger(BetProducer.class);
 
     private final KafkaTemplate<String, Object> kafkaTemplate;
+
+    public BetProducer(KafkaTemplate<String, Object> kafkaTemplate) {
+        this.kafkaTemplate = kafkaTemplate;
+    }
+
