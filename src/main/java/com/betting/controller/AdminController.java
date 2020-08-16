@@ -30,3 +30,13 @@ public class AdminController {
     private final OddsRepository oddsRepository;
     private final SettlementService settlementService;
     private final OddsCacheService oddsCacheService;
+    private final BetProducer betProducer;
+
+    public AdminController(EventRepository eventRepository,
+                           OddsRepository oddsRepository,
+                           SettlementService settlementService,
+                           OddsCacheService oddsCacheService,
+                           BetProducer betProducer) {
+        this.eventRepository = eventRepository;
+        this.oddsRepository = oddsRepository;
+        this.settlementService = settlementService;
