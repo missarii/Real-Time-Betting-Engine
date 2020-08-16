@@ -19,3 +19,10 @@ public class OddsWebSocketHandler extends TextWebSocketHandler {
     
     // Thread-safe set to store active WebSocket sessions
     private final Set<WebSocketSession> sessions = new CopyOnWriteArraySet<>();
+
+    @Override
+    public void afterConnectionEstablished(WebSocketSession session) {
+        sessions.add(session);
+        logger.info("New WebSocket connection established: session ID = {}", session.getId());
+    }
+
