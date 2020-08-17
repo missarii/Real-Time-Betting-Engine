@@ -19,3 +19,10 @@ import java.util.List;
 @Controller
 public class BettingController {
 
+    private final BettingService bettingService;
+
+    public BettingController(BettingService bettingService) {
+        this.bettingService = bettingService;
+    }
+
+    @GetMapping("/bets")
