@@ -19,3 +19,9 @@ public class GlobalModelAdvice {
 
     private static final Logger logger = LoggerFactory.getLogger(GlobalModelAdvice.class);
 
+    private final WalletService walletService;
+
+    public GlobalModelAdvice(WalletService walletService) {
+        this.walletService = walletService;
+    }
+
