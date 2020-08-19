@@ -24,3 +24,11 @@ CREATE TABLE wallets (
     user_id UUID NOT NULL UNIQUE REFERENCES users(id) ON DELETE CASCADE,
     balance NUMERIC(15,2) NOT NULL DEFAULT 0.00 CONSTRAINT chk_wallet_balance_positive CHECK (balance >= 0),
     currency VARCHAR(3) NOT NULL DEFAULT 'USD',
+    version INT NOT NULL DEFAULT 0
+);
+
+CREATE INDEX idx_wallets_user ON wallets(user_id);
+
+-- Transactions Table
+CREATE TABLE transactions (
+    id UUID PRIMARY KEY,
