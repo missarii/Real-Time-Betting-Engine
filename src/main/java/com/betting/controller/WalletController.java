@@ -25,3 +25,12 @@ public class WalletController {
 
     @GetMapping("/wallet")
     public String viewWallet(Principal principal, Model model) {
+        if (principal == null) {
+            return "redirect:/login";
+        }
+        
+        String username = principal.getName();
+        Wallet wallet = walletService.getWalletByUsername(username);
+        List<Transaction> transactions = walletService.getTransactionHistory(username);
+
+        model.addAttribute("wallet", wallet);
