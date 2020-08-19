@@ -18,3 +18,10 @@ public class UserController {
 
     private final WalletService walletService;
     private final BettingService bettingService;
+    private final EventRepository eventRepository;
+
+    public UserController(WalletService walletService,
+                          BettingService bettingService,
+                          EventRepository eventRepository) {
+        this.walletService = walletService;
+        this.bettingService = bettingService;
