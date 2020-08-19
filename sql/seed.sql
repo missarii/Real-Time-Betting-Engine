@@ -12,3 +12,7 @@ INSERT INTO wallets (id, user_id, balance, currency, version) VALUES
 -- Seed Initial Wallet Transaction for user
 INSERT INTO transactions (id, wallet_id, type, amount, reference_id, description, created_at) VALUES
 ('22222222-2222-2222-2222-222222222224', '22222222-2222-2222-2222-222222222223', 'DEPOSIT', 1000.00, NULL, 'Initial Welcome Deposit', CURRENT_TIMESTAMP);
+
+-- Seed Events
+-- Event 1: Real Madrid vs Barcelona (LIVE, Soccer)
+INSERT INTO events (id, sport, home_team, away_team, home_score, away_score, status, start_time, ended_at) VALUES
