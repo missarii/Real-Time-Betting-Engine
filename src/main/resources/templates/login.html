@@ -16,3 +16,9 @@
             <p style="color: var(--text-muted); font-weight: 500;">Next-Gen Real-Time Sportsbook</p>
         </div>
 
+        <!-- Success Toast after registering -->
+        <div th:if="${param.success}" class="alert alert-success">
+            Account created successfully! Please log in below.
+        </div>
+
+        <!-- Error Toast on invalid credentials -->
