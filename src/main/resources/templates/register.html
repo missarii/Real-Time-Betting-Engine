@@ -14,3 +14,9 @@
                 🏆 <span>BET-X</span>
             </h1>
             <p style="color: var(--text-muted); font-weight: 500;">Join the Premium Concurrency Sportsbook</p>
+        </div>
+
+        <!-- Custom validation failure alert -->
+        <div th:if="${errorMessage}" class="alert alert-error" th:text="${errorMessage}">
+            Registration error.
+        </div>
