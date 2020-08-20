@@ -26,3 +26,13 @@
             </div>
         </div>
     </header>
+
+    <!-- MAIN BODY -->
+    <main class="main-container">
+        <div style="margin-bottom: 2rem;">
+            <h1 style="font-size: 2.25rem; font-weight: 800; color: var(--warning);">Sportsbook Control Panel</h1>
+            <p style="color: var(--text-muted);">Adjust live match variables, fluctuate odds prices in real-time, or distribute payouts instantly.</p>
+        </div>
+
+        <!-- Success Toast alerts -->
+        <div th:if="${param.eventCreated}" class="alert alert-success">
