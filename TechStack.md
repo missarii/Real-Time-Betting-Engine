@@ -79,3 +79,29 @@ PostgreSQL + Redis
 - Wallet handling
 - User balance tracking
 
+## Betting System
+- Place bets
+- Store bet history
+- Bet settlement processing
+- Odds management
+
+## Real-Time Updates
+- Live odds broadcasting
+- WebSocket event streaming
+- Instant client updates
+
+## Kafka Event Processing
+- Bet placement events
+- Odds update events
+- Settlement events
+
+## Security
+- Spring Security filters
+- Protected APIs
+- Authentication handling
+
+---
+
+# Project Structure
+
+```text
