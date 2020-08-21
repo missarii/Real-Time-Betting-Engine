@@ -12,3 +12,7 @@ spring:
       ddl-auto: create-drop
     show-sql: false
   sql:
+    init:
+      mode: never
+
+  # Exclude Redis/Kafka from tests
