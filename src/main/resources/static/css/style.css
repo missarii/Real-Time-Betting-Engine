@@ -84,3 +84,31 @@ header {
 .logo span {
     background: linear-gradient(135deg, var(--primary), var(--success));
     -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.nav-links {
+    display: flex;
+    gap: 1.5rem;
+    align-items: center;
+}
+
+.nav-item {
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--text-muted);
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+}
+
+.nav-item:hover, .nav-item.active {
+    color: #fff;
+    background: hsla(222, 32%, 22%, 0.4);
+}
+
+.nav-user {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding-left: 1.5rem;
+    border-left: 1px solid var(--border-color);
