@@ -60,3 +60,24 @@ You (Browser) ──► Click an Odds Button
        └───────────────────────────────────┘
                         │
               ┌─────────┴──────────┐
+              │ VALID BET          │ INVALID BET
+              ▼                    ▼
+   Stake deducted from wallet   Error message shown
+   Bet ticket saved as PENDING  Nothing is charged
+              │
+              ▼
+   Kafka event published
+   (For auditing & risk management)
+              │
+              ▼
+   Bet appears in "My Bets" page
+```
+
+### 2.2 How Live Odds Updates Work
+
+```
+Admin changes odds price
+        │
+        ▼
+Database updated
+        │
