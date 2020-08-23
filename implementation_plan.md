@@ -36,3 +36,16 @@ erDiagram
 - **`transactions`**:
   - `id` (UUID, Primary Key)
   - `wallet_id` (UUID, Foreign Key, Indexed)
+  - `type` (VARCHAR(20), e.g., 'DEPOSIT', 'WITHDRAW', 'BET_PLACED', 'BET_SETTLED', 'BET_REFUNDED')
+  - `amount` (NUMERIC(15,2))
+  - `reference_id` (UUID, Nullable, e.g., Bet ID or external Payment ID)
+  - `description` (TEXT)
+  - `created_at` (TIMESTAMP)
+- **`events`**:
+  - `id` (UUID, Primary Key)
+  - `sport` (VARCHAR(50), Indexed)
+  - `home_team` (VARCHAR(100))
+  - `away_team` (VARCHAR(100))
+  - `home_score` (INT, Default 0)
+  - `away_score` (INT, Default 0)
+  - `status` (VARCHAR(20), e.g., 'SCHEDULED', 'LIVE', 'SUSPENDED', 'FINISHED', Indexed)
