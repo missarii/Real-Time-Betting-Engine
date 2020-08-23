@@ -48,3 +48,15 @@ Decoupling transactional execution from heavy risk-audits or bulk settlements is
 - **Security & Session**: Spring Security (Form-based session authentication with cookie protection)
 - **Database**: PostgreSQL 15, Spring Data JPA, Hibernate, H2 (for self-contained tests)
 - **Cache**: Redis 7
+- **Messaging**: Apache Kafka 3.7 (decoupled broker KRaft mode)
+- **Frontend**: Thymeleaf (Server-Side Rendering), HTML5, Vanilla CSS3 (Glassmorphism & animations), Vanilla JS (WebSockets & UI updates)
+
+---
+
+## 📁 Repository Structure
+```bash
+betting-engine/
+│
+├── docker/
+│   └── docker-compose.yml       # PostgreSQL, Redis, KRaft Kafka containers
+│
