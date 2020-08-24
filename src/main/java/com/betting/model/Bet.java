@@ -34,3 +34,13 @@ public class Bet {
     private String selectionName;
 
     @Column(name = "odds_value", nullable = false, precision = 6, scale = 2)
+    private BigDecimal oddsValue;
+
+    @Column(name = "stake", nullable = false, precision = 15, scale = 2)
+    private BigDecimal stake;
+
+    @Column(name = "potential_payout", nullable = false, precision = 15, scale = 2)
+    private BigDecimal potentialPayout;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "status", nullable = false, length = 20)
