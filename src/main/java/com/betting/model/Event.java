@@ -36,3 +36,12 @@ public class Event {
 
     @Enumerated(EnumType.STRING)
     @Column(name = "status", nullable = false, length = 20)
+    @Builder.Default
+    private EventStatus status = EventStatus.SCHEDULED;
+
+    @Column(name = "start_time", nullable = false)
+    private LocalDateTime startTime;
+
+    @Column(name = "ended_at")
+    private LocalDateTime endedAt;
+
