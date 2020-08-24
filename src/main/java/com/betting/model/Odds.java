@@ -30,3 +30,11 @@ public class Odds {
     private String selectionName; // e.g., "HOME_WIN", "DRAW", "AWAY_WIN"
 
     @Column(name = "odds_value", nullable = false, precision = 6, scale = 2)
+    private BigDecimal oddsValue;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "status", nullable = false, length = 20)
+    @Builder.Default
+    private OddsStatus status = OddsStatus.ACTIVE;
+
+    @Version
