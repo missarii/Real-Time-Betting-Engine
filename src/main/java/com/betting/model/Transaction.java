@@ -32,3 +32,11 @@ public class Transaction {
     @Column(name = "reference_id")
     private UUID referenceId; // e.g., Bet ID
 
+    @Column(name = "description")
+    private String description;
+
+    @Column(name = "created_at", nullable = false, updatable = false)
+    private LocalDateTime createdAt;
+
+    @PrePersist
+    protected void onCreate() {
