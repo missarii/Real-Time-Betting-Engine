@@ -23,3 +23,9 @@ public class BetRequest {
     @NotNull(message = "Odds ID is required")
     private UUID oddsId;
 
+    @NotBlank(message = "Selection name is required")
+    private String selectionName;
+
+    @NotNull(message = "Odds value is required")
+    @DecimalMin(value = "1.01", message = "Odds value must be greater than 1.00")
+    private BigDecimal oddsValue;
