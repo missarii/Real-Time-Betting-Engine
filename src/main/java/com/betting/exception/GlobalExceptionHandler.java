@@ -18,3 +18,9 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(ObjectOptimisticLockingFailureException.class)
     public ResponseEntity<String> handleOptimisticLockingFailure(ObjectOptimisticLockingFailureException ex) {
         logger.error("Optimistic locking conflict detected: {}", ex.getMessage());
+        return ResponseEntity.status(HttpStatus.CONFLICT)
+                .body("A concurrency conflict occurred. Please refresh and try your operation again.");
+    }
+
+    // 2. Handle Insufficient Balance in wallet
+    @ExceptionHandler(InsufficientBalanceException.class)
