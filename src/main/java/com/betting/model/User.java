@@ -29,3 +29,10 @@ public class User {
 
     @Column(name = "role", nullable = false, length = 20)
     private String role; // USER or ADMIN
+
+    @Column(name = "created_at", nullable = false, updatable = false)
+    private LocalDateTime createdAt;
+
+    @PrePersist
+    protected void onCreate() {
+        if (id == null) {
