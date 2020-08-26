@@ -28,3 +28,11 @@ public class Wallet {
     @Builder.Default
     private String currency = "USD";
 
+    @Version
+    @Column(name = "version")
+    private Integer version;
+
+    @PrePersist
+    protected void onCreate() {
+        if (id == null) {
+            id = UUID.randomUUID();
