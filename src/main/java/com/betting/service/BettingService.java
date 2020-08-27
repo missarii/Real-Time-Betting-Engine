@@ -36,3 +36,13 @@ public class BettingService {
                           OddsCacheService oddsCacheService,
                           BetProducer betProducer) {
         this.userRepository = userRepository;
+        this.eventRepository = eventRepository;
+        this.oddsRepository = oddsRepository;
+        this.betRepository = betRepository;
+        this.walletService = walletService;
+        this.oddsCacheService = oddsCacheService;
+        this.betProducer = betProducer;
+    }
+
+    public List<Bet> getBetHistory(String username) {
+        return betRepository.findByUserUsernameOrderByPlacedAtDesc(username);
