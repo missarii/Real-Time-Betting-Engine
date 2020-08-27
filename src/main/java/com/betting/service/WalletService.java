@@ -40,3 +40,13 @@ public class WalletService {
 
         Wallet wallet = getWalletByUsername(username);
         wallet.setBalance(wallet.getBalance().add(amount));
+        walletRepository.save(wallet);
+
+        Transaction tx = Transaction.builder()
+                .id(UUID.randomUUID())
+                .wallet(wallet)
+                .type(Transaction.TransactionType.DEPOSIT)
+                .amount(amount)
+                .description(description != null ? description : "Deposit funds")
+                .build();
+        transactionRepository.save(tx);
