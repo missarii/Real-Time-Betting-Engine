@@ -34,3 +34,12 @@ public class SettlementService {
         this.eventRepository = eventRepository;
         this.betRepository = betRepository;
         this.walletService = walletService;
+        this.betProducer = betProducer;
+    }
+
+    /**
+     * Settles all pending bets for a specific sports event based on the final result.
+     * Result value must match one of the selection names (e.g. HOME_WIN, DRAW, AWAY_WIN).
+     */
+    @Transactional
+    public void settleEvent(UUID eventId, String finalResult) {
