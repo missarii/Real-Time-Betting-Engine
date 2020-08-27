@@ -28,3 +28,11 @@ public class AuthService {
                        PasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
         this.walletRepository = walletRepository;
+        this.transactionRepository = transactionRepository;
+        this.passwordEncoder = passwordEncoder;
+    }
+
+    @Transactional
+    public User registerUser(RegisterRequest request) {
+        if (userRepository.existsByUsername(request.getUsername())) {
+            throw new IllegalArgumentException("Username already exists");
