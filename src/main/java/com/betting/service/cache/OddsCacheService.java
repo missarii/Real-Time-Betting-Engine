@@ -34,3 +34,12 @@ public class OddsCacheService {
         String key = CACHE_PREFIX + oddsId.toString();
         try {
             CachedOdds cached = (CachedOdds) redisTemplate.opsForValue().get(key);
+            if (cached != null) {
+                logger.debug("Odds cache HIT for key: {}", key);
+                return cached;
+            }
+        } catch (Exception e) {
+            logger.error("Error reading from Redis cache: {}", e.getMessage());
+        }
+
+        // Cache miss -> read from DB
