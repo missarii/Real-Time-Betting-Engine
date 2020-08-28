@@ -35,3 +35,12 @@ public class WalletServiceConcurrencyTest {
 
     @BeforeEach
     void setUp() {
+        walletRepository.deleteAll();
+        userRepository.deleteAll();
+
+        User user = User.builder()
+                .id(UUID.randomUUID())
+                .username("concurrency_user")
+                .email("concurrency@test.com")
+                .password("password")
+                .role("USER")
