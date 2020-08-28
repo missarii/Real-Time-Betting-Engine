@@ -30,3 +30,11 @@ public class KafkaConfig {
         return TopicBuilder.name("bet-placements").partitions(3).replicas(1).build();
     }
 
+    @Bean
+    public NewTopic betSettlementsTopic() {
+        return TopicBuilder.name("bet-settlements").partitions(3).replicas(1).build();
+    }
+
+    @Bean
+    public NewTopic oddsUpdatesTopic() {
+        return TopicBuilder.name("odds-updates").partitions(3).replicas(1).build();
