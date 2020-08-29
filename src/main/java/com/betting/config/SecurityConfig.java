@@ -29,3 +29,10 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+        http
+            // Disable CSRF for simplicity in REST API calls and web socket establishment
+            .csrf(csrf -> csrf.disable())
+            .authorizeHttpRequests(auth -> auth
+                // Allow public access to static assets, auth pages, and WebSocket endpoint
+                .requestMatchers("/login", "/register", "/css/**", "/js/**", "/favicon.ico").permitAll()
+                .requestMatchers("/ws/**").permitAll()
