@@ -26,3 +26,11 @@ public class OddsWebSocketHandler extends TextWebSocketHandler {
         logger.info("New WebSocket connection established: session ID = {}", session.getId());
     }
 
+    @Override
+    public void afterConnectionClosed(WebSocketSession session, CloseStatus status) {
+        sessions.remove(session);
+        logger.info("WebSocket connection closed: session ID = {}, status = {}", session.getId(), status);
+    }
+
+    @Override
+    protected void handleTextMessage(WebSocketSession session, TextMessage message) {
