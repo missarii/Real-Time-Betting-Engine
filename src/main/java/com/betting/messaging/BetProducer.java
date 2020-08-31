@@ -19,3 +19,8 @@ public class BetProducer {
         this.kafkaTemplate = kafkaTemplate;
     }
 
+    public void sendBetPlaced(BetPlacedEvent event) {
+        logger.info("Publishing BET_PLACED event to Kafka for bet: {}", event.getBetId());
+        kafkaTemplate.send("bet-placements", event.getBetId().toString(), event);
+    }
+
