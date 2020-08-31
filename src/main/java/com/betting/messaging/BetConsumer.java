@@ -24,3 +24,9 @@ public class BetConsumer {
     }
 
     // Each listener references its typed containerFactory so deserialization is type-safe
+    @KafkaListener(topics = "odds-updates",
+                   groupId = "betting-engine-group",
+                   containerFactory = "oddsUpdatedContainerFactory")
+    public void consumeOddsUpdated(OddsUpdatedEvent event) {
+        logger.info("Consumed ODDS_UPDATED: oddsId={}, value={}", event.getOddsId(), event.getOddsValue());
+        try {
