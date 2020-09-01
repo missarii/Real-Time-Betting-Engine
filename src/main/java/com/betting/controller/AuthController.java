@@ -27,3 +27,10 @@ public class AuthController {
     @GetMapping("/register")
     public String registerPage(Model model) {
         model.addAttribute("user", new RegisterRequest());
+        return "register";
+    }
+
+    @PostMapping("/register")
+    public String registerUser(@Valid @ModelAttribute("user") RegisterRequest request,
+                               BindingResult bindingResult,
+                               Model model) {
