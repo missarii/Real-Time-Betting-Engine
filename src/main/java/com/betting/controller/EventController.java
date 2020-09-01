@@ -22,3 +22,9 @@ public class EventController {
         this.eventRepository = eventRepository;
     }
 
+    @GetMapping("/events")
+    public String listEvents(Principal principal, Model model) {
+        if (principal == null) return "redirect:/login";
+
+        // All non-finished events (SCHEDULED, LIVE, SUSPENDED)
+        List<Event> activeEvents = eventRepository.findByStatusNot(Event.EventStatus.FINISHED);
