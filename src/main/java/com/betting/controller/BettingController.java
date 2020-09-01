@@ -26,3 +26,9 @@ public class BettingController {
     }
 
     @GetMapping("/bets")
+    public String betHistory(Principal principal, Model model) {
+        if (principal == null) return "redirect:/login";
+
+        List<Bet> bets = bettingService.getBetHistory(principal.getName());
+        model.addAttribute("bets", bets);
+        return "bet";
