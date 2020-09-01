@@ -40,3 +40,14 @@ public class AdminController {
         this.eventRepository = eventRepository;
         this.oddsRepository = oddsRepository;
         this.settlementService = settlementService;
+        this.oddsCacheService = oddsCacheService;
+        this.betProducer = betProducer;
+    }
+
+    @GetMapping
+    public String adminPanel(Model model) {
+        List<Event> events = eventRepository.findAll();
+        model.addAttribute("events", events);
+        return "admin";
+    }
+
