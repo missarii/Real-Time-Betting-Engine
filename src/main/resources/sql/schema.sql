@@ -32,3 +32,12 @@ CREATE INDEX idx_wallets_user ON wallets(user_id);
 -- Transactions Table
 CREATE TABLE transactions (
     id UUID PRIMARY KEY,
+    wallet_id UUID NOT NULL REFERENCES wallets(id) ON DELETE CASCADE,
+    type VARCHAR(20) NOT NULL,
+    amount NUMERIC(15,2) NOT NULL,
+    reference_id UUID,
+    description TEXT,
+    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE INDEX idx_transactions_wallet ON transactions(wallet_id);
