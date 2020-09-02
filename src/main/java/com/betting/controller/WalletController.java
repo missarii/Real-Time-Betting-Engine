@@ -34,3 +34,11 @@ public class WalletController {
         List<Transaction> transactions = walletService.getTransactionHistory(username);
 
         model.addAttribute("wallet", wallet);
+        model.addAttribute("transactions", transactions);
+        return "wallet";
+    }
+
+    @PostMapping("/wallet/deposit")
+    public String handleDeposit(Principal principal,
+                                @RequestParam("amount") BigDecimal amount,
+                                Model model) {
