@@ -25,3 +25,10 @@ public class UserController {
                           EventRepository eventRepository) {
         this.walletService = walletService;
         this.bettingService = bettingService;
+        this.eventRepository = eventRepository;
+    }
+
+    @GetMapping("/")
+    public String index(Principal principal) {
+        return principal != null ? "redirect:/dashboard" : "redirect:/login";
+    }
