@@ -25,3 +25,10 @@ public class GlobalModelAdvice {
         this.walletService = walletService;
     }
 
+    @ModelAttribute("wallet")
+    public Wallet injectWallet(Principal principal) {
+        if (principal == null) {
+            // Return a dummy wallet with zero balance for unauthenticated pages (login/register)
+            Wallet dummy = new Wallet();
+            dummy.setBalance(BigDecimal.ZERO);
+            dummy.setCurrency("USD");
