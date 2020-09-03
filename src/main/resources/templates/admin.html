@@ -36,3 +36,12 @@
 
         <!-- Success Toast alerts -->
         <div th:if="${param.eventCreated}" class="alert alert-success">
+            ⚽ New sports match and 1X2 odds markets seeded and saved to DB & Redis cache successfully!
+        </div>
+        <div th:if="${param.scoreUpdated}" class="alert alert-success">
+            📈 Scoreline status changed and broadcasted successfully!
+        </div>
+        <div th:if="${param.oddsUpdated}" class="alert alert-success">
+            ⚡ Odds fluctuated! DB modified, Redis updated, and Kafka broadcasts successfully triggered WebSocket flashes!
+        </div>
+        <div th:if="${param.settlementSuccess}" class="alert alert-success">
