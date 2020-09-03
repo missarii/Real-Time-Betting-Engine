@@ -16,3 +16,8 @@ INSERT INTO transactions (id, wallet_id, type, amount, reference_id, description
 -- Seed Events
 -- Event 1: Real Madrid vs Barcelona (LIVE, Soccer)
 INSERT INTO events (id, sport, home_team, away_team, home_score, away_score, status, start_time, ended_at) VALUES
+('33333333-3333-3333-3333-333333333333', 'SOCCER', 'Real Madrid', 'Barcelona', 2, 1, 'LIVE', CURRENT_TIMESTAMP - INTERVAL '45 minutes', NULL);
+
+-- Event 2: LA Lakers vs Boston Celtics (SCHEDULED, Basketball)
+INSERT INTO events (id, sport, home_team, away_team, home_score, away_score, status, start_time, ended_at) VALUES
+('44444444-4444-4444-4444-444444444444', 'BASKETBALL', 'LA Lakers', 'Boston Celtics', 0, 0, 'SCHEDULED', CURRENT_TIMESTAMP + INTERVAL '2 hours', NULL);
