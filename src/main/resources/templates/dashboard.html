@@ -35,3 +35,13 @@
             <h1 style="font-size: 2.25rem; font-weight: 800;">Welcome back, <span th:text="${#authentication.name}" style="color: var(--primary);">User</span>!</h1>
             <p style="color: var(--text-muted);">Real-Time live odds feeds are armed. Place bets securely.</p>
         </div>
+
+        <div class="grid-2">
+            <!-- LEFT PANEL -->
+            <div style="display: flex; flex-direction: column; gap: 2rem;">
+                
+                <!-- LIVE MATCHES IN ACTION -->
+                <div class="glass-card">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
+                        <h2 style="font-size: 1.5rem; font-weight: 700;">🔥 Live Matches In Play</h2>
+                        <a th:href="@{/events}" style="color: var(--primary); font-size: 0.95rem; font-weight: 600; text-decoration: underline;">View Full Sportsbook</a>
