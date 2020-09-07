@@ -37,3 +37,13 @@
         </div>
 
         <!-- Notification alerts -->
+        <div th:if="${param.depositSuccess}" class="alert alert-success">
+            💳 Deposit of funds processed successfully! Your balance has been updated.
+        </div>
+        <div th:if="${param.withdrawSuccess}" class="alert alert-success">
+            💸 Withdrawal of funds successfully dispatched to your payment method!
+        </div>
+        <div th:if="${errorMessage}" class="alert alert-error" th:text="${errorMessage}">
+            Finances action failed.
+        </div>
+
