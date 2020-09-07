@@ -20,3 +20,8 @@
         <div th:if="${errorMessage}" class="alert alert-error" th:text="${errorMessage}">
             Registration error.
         </div>
+
+        <form th:action="@{/register}" th:object="${user}" method="POST" style="display: flex; flex-direction: column;">
+            
+            <div class="input-group">
+                <label for="username">Username</label>
