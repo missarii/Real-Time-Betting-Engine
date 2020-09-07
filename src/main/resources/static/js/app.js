@@ -56,3 +56,18 @@ function handleLiveOddsUpdate(update) {
     // 2. Handle price changes & flash animation
     const oddsValEl = btn.querySelector(".odds-val");
     if (oddsValEl) {
+        const oldVal = parseFloat(oddsValEl.textContent);
+        const newVal = parseFloat(update.oddsValue);
+
+        if (oldVal !== newVal) {
+            oddsValEl.textContent = newVal.toFixed(2);
+            
+            // Flash animations
+            if (newVal > oldVal) {
+                btn.classList.add("flash-up");
+                setTimeout(() => btn.classList.remove("flash-up"), 1500);
+            } else {
+                btn.classList.add("flash-down");
+                setTimeout(() => btn.classList.remove("flash-down"), 1500);
+            }
+
