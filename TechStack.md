@@ -105,3 +105,30 @@ PostgreSQL + Redis
 # Project Structure
 
 ```text
+Real-Time-Betting-Engine/
+│
+├── src/
+│   ├── main/
+│   │   ├── java/com/betting/
+│   │   │
+│   │   ├── controller/
+│   │   │   ├── AuthController.java
+│   │   │   ├── BetController.java
+│   │   │   └── OddsController.java
+│   │   │
+│   │   ├── service/
+│   │   │   ├── BetService.java
+│   │   │   ├── WalletService.java
+│   │   │   └── KafkaProducerService.java
+│   │   │
+│   │   ├── repository/
+│   │   │   ├── UserRepository.java
+│   │   │   ├── BetRepository.java
+│   │   │   ├── WalletRepository.java
+│   │   │   ├── EventRepository.java
+│   │   │   └── OddsRepository.java
+│   │   │
+│   │   ├── entity/
+│   │   │   ├── User.java
+│   │   │   ├── Bet.java
+│   │   │   ├── Wallet.java
