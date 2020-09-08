@@ -16,3 +16,7 @@ spring:
       mode: never
 
   # Exclude Redis/Kafka from tests
+  autoconfigure:
+    exclude:
+      - org.springframework.boot.autoconfigure.data.redis.RedisAutoConfiguration
+      - org.springframework.boot.autoconfigure.kafka.KafkaAutoConfiguration
