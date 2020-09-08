@@ -60,3 +60,16 @@ betting-engine/
 ├── docker/
 │   └── docker-compose.yml       # PostgreSQL, Redis, KRaft Kafka containers
 │
+├── sql/
+│   ├── schema.sql               # Production database tables & indexes
+│   └── seed.sql                 # Sample users, wallets, matches, and odds
+│
+├── src/
+│   ├── main/
+│   │   ├── java/com/betting/
+│   │   │   ├── BettingEngineApplication.java
+│   │   │   │
+│   │   │   ├── config/          # Spring Security, Redis, Kafka, WebSockets
+│   │   │   ├── controller/      # MVC & REST Mappings (Auth, Wallet, Betting, Admin)
+│   │   │   ├── dto/             # Validation Requests & Event Payloads
+│   │   │   ├── exception/       # Concurrency and Wallet Business Exception Handlers
