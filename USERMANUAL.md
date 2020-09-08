@@ -81,3 +81,23 @@ Admin changes odds price
         ▼
 Database updated
         │
+        ▼
+Redis cache updated (fast reads)
+        │
+        ▼
+Kafka "odds-updates" event fired
+        │
+        ▼
+Background consumer picks it up
+        │
+        ▼
+WebSocket broadcasts to ALL browsers
+        │
+        ▼
+Your odds button FLASHES:
+  🟢 Green = Price went UP (better odds)
+  🔴 Red   = Price went DOWN (worse odds)
+```
+
+### 2.3 How Bet Settlement Works
+
