@@ -49,3 +49,16 @@ erDiagram
   - `home_score` (INT, Default 0)
   - `away_score` (INT, Default 0)
   - `status` (VARCHAR(20), e.g., 'SCHEDULED', 'LIVE', 'SUSPENDED', 'FINISHED', Indexed)
+  - `start_time` (TIMESTAMP, Indexed)
+  - `ended_at` (TIMESTAMP, Nullable)
+- **`odds`**:
+  - `id` (UUID, Primary Key)
+  - `event_id` (UUID, Foreign Key, Indexed)
+  - `market_name` (VARCHAR(50), e.g., '1X2', 'OVER_UNDER')
+  - `selection_name` (VARCHAR(50), e.g., 'HOME_WIN', 'DRAW', 'AWAY_WIN')
+  - `odds_value` (NUMERIC(6,2), Check > 1.0)
+  - `status` (VARCHAR(20), e.g., 'ACTIVE', 'SUSPENDED')
+  - `version` (INT, Optimistic Lock Version)
+- **`bets`**:
+  - `id` (UUID, Primary Key)
+  - `user_id` (UUID, Foreign Key, Indexed)
