@@ -44,3 +44,12 @@ public class Bet {
 
     @Enumerated(EnumType.STRING)
     @Column(name = "status", nullable = false, length = 20)
+    @Builder.Default
+    private BetStatus status = BetStatus.PENDING;
+
+    @Column(name = "placed_at", nullable = false, updatable = false)
+    private LocalDateTime placedAt;
+
+    @Column(name = "settled_at")
+    private LocalDateTime settledAt;
+
