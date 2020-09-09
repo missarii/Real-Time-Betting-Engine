@@ -38,3 +38,11 @@ public class Odds {
     private OddsStatus status = OddsStatus.ACTIVE;
 
     @Version
+    @Column(name = "version")
+    private Integer version;
+
+    @PrePersist
+    protected void onCreate() {
+        if (id == null) {
+            id = UUID.randomUUID();
+        }
