@@ -45,3 +45,13 @@ public class Event {
     @Column(name = "ended_at")
     private LocalDateTime endedAt;
 
+    @OneToMany(mappedBy = "event", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @Builder.Default
+    private java.util.List<Odds> odds = new java.util.ArrayList<>();
+
+    @PrePersist
+    protected void onCreate() {
+        if (id == null) {
+            id = UUID.randomUUID();
+        }
+    }
