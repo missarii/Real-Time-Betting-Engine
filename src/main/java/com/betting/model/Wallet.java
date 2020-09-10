@@ -36,3 +36,9 @@ public class Wallet {
     protected void onCreate() {
         if (id == null) {
             id = UUID.randomUUID();
+        }
+        if (balance == null) {
+            balance = BigDecimal.ZERO;
+        }
+    }
+}
