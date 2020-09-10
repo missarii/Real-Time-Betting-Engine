@@ -29,3 +29,8 @@ public class BetRequest {
     @NotNull(message = "Odds value is required")
     @DecimalMin(value = "1.01", message = "Odds value must be greater than 1.00")
     private BigDecimal oddsValue;
+
+    @NotNull(message = "Stake amount is required")
+    @DecimalMin(value = "0.10", message = "Stake must be at least 0.10")
+    private BigDecimal stake;
+}
