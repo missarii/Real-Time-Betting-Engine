@@ -36,3 +36,10 @@ public class User {
     @PrePersist
     protected void onCreate() {
         if (id == null) {
+            id = UUID.randomUUID();
+        }
+        if (createdAt == null) {
+            createdAt = LocalDateTime.now();
+        }
+    }
+}
