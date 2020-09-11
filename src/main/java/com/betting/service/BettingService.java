@@ -46,3 +46,13 @@ public class BettingService {
 
     public List<Bet> getBetHistory(String username) {
         return betRepository.findByUserUsernameOrderByPlacedAtDesc(username);
+    }
+
+    @Transactional
+    public Bet placeBet(String username, BetRequest request) {
+        // 1. Load User
+        User user = userRepository.findByUsername(username)
+                .orElseThrow(() -> new IllegalArgumentException("User not found: " + username));
+
+        // 2. Load Event
+        Event event = eventRepository.findById(request.getEventId())
