@@ -24,3 +24,8 @@ public class GlobalExceptionHandler {
 
     // 2. Handle Insufficient Balance in wallet
     @ExceptionHandler(InsufficientBalanceException.class)
+    public ResponseEntity<String> handleInsufficientBalance(InsufficientBalanceException ex) {
+        logger.error("Insufficient balance error: {}", ex.getMessage());
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ex.getMessage());
+    }
+
