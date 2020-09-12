@@ -43,3 +43,11 @@ public class OddsCacheService {
         }
 
         // Cache miss -> read from DB
+        logger.debug("Odds cache MISS for key: {}. Loading from database...", key);
+        Odds odds = oddsRepository.findById(oddsId)
+                .orElseThrow(() -> new IllegalArgumentException("Odds not found for ID: " + oddsId));
+
+        CachedOdds cachedOdds = new CachedOdds(odds);
+        putOdds(oddsId, cachedOdds);
+        return cachedOdds;
+    }
