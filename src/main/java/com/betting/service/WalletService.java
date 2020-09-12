@@ -50,3 +50,13 @@ public class WalletService {
                 .description(description != null ? description : "Deposit funds")
                 .build();
         transactionRepository.save(tx);
+    }
+
+    @Transactional
+    public void withdraw(String username, BigDecimal amount, String description) {
+        if (amount.compareTo(BigDecimal.ZERO) <= 0) {
+            throw new IllegalArgumentException("Withdrawal amount must be positive");
+        }
+
+        Wallet wallet = getWalletByUsername(username);
+
