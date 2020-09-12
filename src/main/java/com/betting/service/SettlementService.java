@@ -43,3 +43,12 @@ public class SettlementService {
      */
     @Transactional
     public void settleEvent(UUID eventId, String finalResult) {
+        logger.info("Starting settlement for Event ID: {}, Winning selection: {}", eventId, finalResult);
+
+        Event event = eventRepository.findById(eventId)
+                .orElseThrow(() -> new IllegalArgumentException("Event not found"));
+
+        if (event.getStatus() == Event.EventStatus.FINISHED) {
+            throw new IllegalStateException("Event has already been settled");
+        }
+
