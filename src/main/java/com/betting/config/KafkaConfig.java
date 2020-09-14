@@ -38,3 +38,12 @@ public class KafkaConfig {
     @Bean
     public NewTopic oddsUpdatesTopic() {
         return TopicBuilder.name("odds-updates").partitions(3).replicas(1).build();
+    }
+
+    // --- Typed Consumer Factories ---
+    private Map<String, Object> baseConsumerProps() {
+        Map<String, Object> props = new HashMap<>();
+        props.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrapServers);
+        props.put(ConsumerConfig.GROUP_ID_CONFIG, "betting-engine-group");
+        props.put(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, "earliest");
+        props.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
