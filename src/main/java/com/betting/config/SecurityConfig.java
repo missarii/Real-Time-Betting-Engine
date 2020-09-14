@@ -36,3 +36,11 @@ public class SecurityConfig {
                 // Allow public access to static assets, auth pages, and WebSocket endpoint
                 .requestMatchers("/login", "/register", "/css/**", "/js/**", "/favicon.ico").permitAll()
                 .requestMatchers("/ws/**").permitAll()
+                .requestMatchers("/api/auth/**").permitAll()
+                // Protect admin paths
+                .requestMatchers("/admin/**", "/api/admin/**").hasRole("ADMIN")
+                // Protect user endpoints
+                .anyRequest().authenticated()
+            )
+            .formLogin(form -> form
+                .loginPage("/login")
