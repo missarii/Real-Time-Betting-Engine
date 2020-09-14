@@ -44,3 +44,12 @@ public class WalletServiceConcurrencyTest {
                 .email("concurrency@test.com")
                 .password("password")
                 .role("USER")
+                .build();
+        userRepository.save(user);
+        userId = user.getId();
+
+        Wallet wallet = Wallet.builder()
+                .id(UUID.randomUUID())
+                .user(user)
+                .balance(new BigDecimal("1000.00"))
+                .currency("USD")
