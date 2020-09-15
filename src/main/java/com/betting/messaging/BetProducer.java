@@ -24,3 +24,9 @@ public class BetProducer {
         kafkaTemplate.send("bet-placements", event.getBetId().toString(), event);
     }
 
+    public void sendBetSettled(BetSettledEvent event) {
+        logger.info("Publishing BET_SETTLED event to Kafka for bet: {}", event.getBetId());
+        kafkaTemplate.send("bet-settlements", event.getBetId().toString(), event);
+    }
+
+    public void sendOddsUpdated(OddsUpdatedEvent event) {
