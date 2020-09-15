@@ -30,3 +30,10 @@ public class BetConsumer {
     public void consumeOddsUpdated(OddsUpdatedEvent event) {
         logger.info("Consumed ODDS_UPDATED: oddsId={}, value={}", event.getOddsId(), event.getOddsValue());
         try {
+            String payload = objectMapper.writeValueAsString(event);
+            webSocketHandler.broadcast(payload);
+        } catch (Exception e) {
+            logger.error("Error broadcasting odds update: {}", e.getMessage());
+        }
+    }
+
