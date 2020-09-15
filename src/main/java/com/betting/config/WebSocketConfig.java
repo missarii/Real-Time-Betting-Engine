@@ -20,3 +20,6 @@ public class WebSocketConfig implements WebSocketConfigurer {
     public void registerWebSocketHandlers(WebSocketHandlerRegistry registry) {
         // Register the handler for path /ws/odds
         registry.addHandler(oddsWebSocketHandler, "/ws/odds")
+                .setAllowedOrigins("*");
+    }
+}
