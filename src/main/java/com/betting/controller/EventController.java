@@ -28,3 +28,8 @@ public class EventController {
 
         // All non-finished events (SCHEDULED, LIVE, SUSPENDED)
         List<Event> activeEvents = eventRepository.findByStatusNot(Event.EventStatus.FINISHED);
+        model.addAttribute("events", activeEvents);
+
+        return "events";
+    }
+}
