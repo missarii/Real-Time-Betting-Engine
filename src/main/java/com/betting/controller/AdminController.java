@@ -51,3 +51,14 @@ public class AdminController {
         return "admin";
     }
 
+    @PostMapping("/events")
+    public String createEvent(@RequestParam("sport") String sport,
+                              @RequestParam("homeTeam") String homeTeam,
+                              @RequestParam("awayTeam") String awayTeam,
+                              @RequestParam("homeOdds") BigDecimal homeOdds,
+                              @RequestParam("drawOdds") BigDecimal drawOdds,
+                              @RequestParam("awayOdds") BigDecimal awayOdds) {
+        
+        logger.info("Creating new sports event: {} vs {}", homeTeam, awayTeam);
+
+        // 1. Create Event
