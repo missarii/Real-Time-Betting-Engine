@@ -34,3 +34,10 @@ public class AuthController {
     public String registerUser(@Valid @ModelAttribute("user") RegisterRequest request,
                                BindingResult bindingResult,
                                Model model) {
+        if (bindingResult.hasErrors()) {
+            return "register";
+        }
+
+        try {
+            authService.registerUser(request);
+            return "redirect:/login?success=true";
