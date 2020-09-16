@@ -34,3 +34,10 @@ public class OddsWebSocketHandler extends TextWebSocketHandler {
 
     @Override
     protected void handleTextMessage(WebSocketSession session, TextMessage message) {
+        // We only broadcast from server to client in this sportsbook setup. 
+        // No client-to-server messaging is processed here, keeping communication efficient.
+        logger.debug("Received message from client {}: {}", session.getId(), message.getPayload());
+    }
+
+    /**
+     * Broadcasts a message to all active WebSocket connections.
