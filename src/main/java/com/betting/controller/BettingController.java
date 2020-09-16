@@ -32,3 +32,10 @@ public class BettingController {
         List<Bet> bets = bettingService.getBetHistory(principal.getName());
         model.addAttribute("bets", bets);
         return "bet";
+    }
+
+    @PostMapping("/api/bets")
+    @ResponseBody
+    public ResponseEntity<?> placeBet(Principal principal,
+                                      @Valid @RequestBody BetRequest request) {
+        if (principal == null) {
