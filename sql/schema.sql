@@ -41,3 +41,11 @@ CREATE TABLE transactions (
 );
 
 CREATE INDEX idx_transactions_wallet ON transactions(wallet_id);
+
+-- Events (Matches) Table
+CREATE TABLE events (
+    id UUID PRIMARY KEY,
+    sport VARCHAR(50) NOT NULL,
+    home_team VARCHAR(100) NOT NULL,
+    away_team VARCHAR(100) NOT NULL,
+    home_score INT NOT NULL DEFAULT 0,
