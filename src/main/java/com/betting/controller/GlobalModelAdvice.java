@@ -32,3 +32,10 @@ public class GlobalModelAdvice {
             Wallet dummy = new Wallet();
             dummy.setBalance(BigDecimal.ZERO);
             dummy.setCurrency("USD");
+            return dummy;
+        }
+        try {
+            return walletService.getWalletByUsername(principal.getName());
+        } catch (Exception e) {
+            logger.warn("Could not load wallet for user {}: {}", principal.getName(), e.getMessage());
+            Wallet dummy = new Wallet();
