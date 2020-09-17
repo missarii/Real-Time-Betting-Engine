@@ -32,3 +32,10 @@ public class UserController {
     public String index(Principal principal) {
         return principal != null ? "redirect:/dashboard" : "redirect:/login";
     }
+
+    @GetMapping("/dashboard")
+    public String userDashboard(Principal principal, Model model) {
+        if (principal == null) return "redirect:/login";
+
+        String username = principal.getName();
+
