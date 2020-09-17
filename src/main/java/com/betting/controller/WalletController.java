@@ -42,3 +42,12 @@ public class WalletController {
     public String handleDeposit(Principal principal,
                                 @RequestParam("amount") BigDecimal amount,
                                 Model model) {
+        if (principal == null) {
+            return "redirect:/login";
+        }
+
+        try {
+            walletService.deposit(principal.getName(), amount, "User web portal deposit");
+            return "redirect:/wallet?depositSuccess=true";
+        } catch (Exception e) {
+            model.addAttribute("errorMessage", e.getMessage());
