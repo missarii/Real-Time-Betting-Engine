@@ -45,3 +45,12 @@
             ⚡ Odds fluctuated! DB modified, Redis updated, and Kafka broadcasts successfully triggered WebSocket flashes!
         </div>
         <div th:if="${param.settlementSuccess}" class="alert alert-success">
+            💰 Payouts distributed successfully! Wallet balances updated, and tickets marked WON/LOST.
+        </div>
+        <div th:if="${param.error}" class="alert alert-error" th:text="${'Action failed: ' + param.error}">
+            Admin action failed.
+        </div>
+
+        <div class="grid-2" style="grid-template-columns: 2fr 1fr; gap: 2rem;">
+            <!-- LEFT PANEL: FIXTURES LIST -->
+            <div style="display: flex; flex-direction: column; gap: 2rem;">
