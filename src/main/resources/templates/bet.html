@@ -34,3 +34,10 @@
         <div style="margin-bottom: 2rem;">
             <h1 style="font-size: 2.25rem; font-weight: 800;">My Betting Statement</h1>
             <p style="color: var(--text-muted);">Review your active bet slips and settled payout transactions history.</p>
+        </div>
+
+        <div class="glass-card">
+            <h2 style="font-size: 1.5rem; font-weight: 700; margin-bottom: 1.5rem;">🎫 My Bet Tickets</h2>
+
+            <div th:if="${#lists.isEmpty(bets)}" class="betslip-empty" style="padding: 4rem 0;">
+                <div style="font-size: 3.5rem; margin-bottom: 1rem;">🎰</div>
