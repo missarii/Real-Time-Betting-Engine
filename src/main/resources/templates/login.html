@@ -29,3 +29,9 @@
         <!-- Logout alert message -->
         <div th:if="${param.logout}" class="alert alert-success" style="background: hsla(210, 100%, 59%, 0.15); border-color: var(--primary); color: var(--primary);">
             You have been securely logged out.
+        </div>
+
+        <form th:action="@{/login}" method="POST" style="display: flex; flex-direction: column;">
+            <div class="input-group">
+                <label for="username">Username</label>
+                <input type="text" id="username" name="username" placeholder="Enter username" required autofocus>
