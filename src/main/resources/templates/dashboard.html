@@ -45,3 +45,12 @@
                     <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
                         <h2 style="font-size: 1.5rem; font-weight: 700;">🔥 Live Matches In Play</h2>
                         <a th:href="@{/events}" style="color: var(--primary); font-size: 0.95rem; font-weight: 600; text-decoration: underline;">View Full Sportsbook</a>
+                    </div>
+
+                    <div th:if="${#lists.isEmpty(liveEvents)}" class="betslip-empty" style="padding: 2rem 0;">
+                        No live matches in play right now. Check back when games kick off!
+                    </div>
+
+                    <div th:each="event : ${liveEvents}" class="glass-card event-card" style="margin-bottom: 1rem; border-left-color: var(--danger);">
+                        <div class="event-header">
+                            <span class="sport-tag" th:text="${event.sport}">Soccer</span>
