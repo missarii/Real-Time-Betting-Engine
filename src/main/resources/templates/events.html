@@ -43,3 +43,12 @@
                 <div class="glass-card">
                     <h2 style="font-size: 1.5rem; font-weight: 700; margin-bottom: 1.5rem;">🌎 Available Markets</h2>
                     
+                    <div th:if="${#lists.isEmpty(events)}" class="betslip-empty" style="padding: 3rem 0;">
+                        No active events available for betting right now. Check back soon!
+                    </div>
+
+                    <!-- Event Block -->
+                    <div th:each="event : ${events}" class="glass-card event-card" style="margin-bottom: 1.5rem;">
+                        <div class="event-header">
+                            <span class="sport-tag" th:text="${event.sport}">Soccer</span>
+                            
