@@ -25,3 +25,8 @@
             
             <div class="input-group">
                 <label for="username">Username</label>
+                <input type="text" id="username" th:field="*{username}" placeholder="Minimum 3 characters" required>
+                <div th:if="${#fields.hasErrors('username')}" th:errors="*{username}" style="color: var(--danger); font-size: 0.85rem; font-weight: 600; margin-top: 0.25rem;"></div>
+            </div>
+
+            <div class="input-group">
