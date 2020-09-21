@@ -132,3 +132,30 @@ Real-Time-Betting-Engine/
 │   │   │   ├── User.java
 │   │   │   ├── Bet.java
 │   │   │   ├── Wallet.java
+│   │   │   ├── Event.java
+│   │   │   └── Odds.java
+│   │   │
+│   │   ├── kafka/
+│   │   │   ├── BetPlacementConsumer.java
+│   │   │   ├── OddsUpdateConsumer.java
+│   │   │   └── SettlementConsumer.java
+│   │   │
+│   │   ├── websocket/
+│   │   │   └── OddsWebSocketHandler.java
+│   │   │
+│   │   ├── security/
+│   │   │   ├── SecurityConfig.java
+│   │   │   └── JwtFilter.java
+│   │   │
+│   │   └── BettingEngineApplication.java
+│   │
+│   └── resources/
+│       ├── application.yml
+│       ├── templates/
+│       └── static/
+│
+├── pom.xml
+├── README.md
+└── docker-compose.yml
+```
+
