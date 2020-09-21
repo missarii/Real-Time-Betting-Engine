@@ -140,3 +140,32 @@ header {
     flex-grow: 1;
 }
 
+/* --- CARDS & GLASSMORPHISM --- */
+.glass-card {
+    background: var(--bg-card);
+    backdrop-filter: var(--glass-blur);
+    border: 1px solid var(--border-color);
+    border-radius: 16px;
+    padding: 2rem;
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+}
+
+.glass-card:hover {
+    background: var(--bg-card-hover);
+    border-color: hsla(222, 32%, 35%, 0.4);
+}
+
+.grid-2 {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 2rem;
+}
+
+.grid-3 {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+}
+
+/* --- SPORTSBOOK & MATCH CARDS --- */
+.event-card {
