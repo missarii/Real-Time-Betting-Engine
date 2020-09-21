@@ -71,3 +71,17 @@ function handleLiveOddsUpdate(update) {
                 setTimeout(() => btn.classList.remove("flash-down"), 1500);
             }
 
+            // Update current betslip active selection if the price changed
+            if (selectedBet && selectedBet.oddsId === update.oddsId) {
+                selectedBet.oddsValue = newVal;
+                const slipOddsValEl = document.getElementById("slip-odds-value");
+                if (slipOddsValEl) slipOddsValEl.textContent = newVal.toFixed(2);
+                updatePayoutCalculation();
+                
+                // Show a quick tooltip alerting user to the price change
+                showNotification("Slip updated: Odds changed to " + newVal.toFixed(2), "info");
+            }
+        }
+    }
+}
+
