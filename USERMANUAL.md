@@ -101,3 +101,24 @@ Your odds button FLASHES:
 
 ### 2.3 How Bet Settlement Works
 
+When a match finishes, an admin enters the final result. The system then:
+
+1. Marks the event as `FINISHED`
+2. Scans ALL pending bets for that event
+3. For each bet:
+   - If your selection matches the winner → Bet marked **WON**, payout credited to wallet
+   - If your selection doesn't match → Bet marked **LOST**, no funds returned
+4. Settlement events published to Kafka for auditing
+
+### 2.4 Financial Safety (Optimistic Locking)
+
+BET-X uses **optimistic locking** to protect your wallet balance:
+- If two actions try to modify your wallet at the exact same millisecond (e.g., placing a bet and receiving a payout simultaneously), the system safely resolves the conflict
+- This prevents double-spending and balance corruption
+
+---
+
+## 3. Getting Started — Registration & Login
+
+### 3.1 Creating an Account
+
