@@ -62,3 +62,16 @@ erDiagram
 - **`bets`**:
   - `id` (UUID, Primary Key)
   - `user_id` (UUID, Foreign Key, Indexed)
+  - `event_id` (UUID, Foreign Key, Indexed)
+  - `odds_id` (UUID, Foreign Key)
+  - `selection_name` (VARCHAR(50))
+  - `odds_value` (NUMERIC(6,2))
+  - `stake` (NUMERIC(15,2))
+  - `potential_payout` (NUMERIC(15,2))
+  - `status` (VARCHAR(20), e.g., 'PENDING', 'WON', 'LOST', 'VOIDED', Indexed)
+  - `placed_at` (TIMESTAMP)
+  - `settled_at` (TIMESTAMP, Nullable)
+
+---
+
+### 2. Kafka Event Flow
