@@ -56,3 +56,12 @@ spring:
       group-id: betting-engine-group
       auto-offset-reset: earliest
       key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+      properties:
+        spring.json.trusted.packages: "com.betting.dto"
+        spring.json.use.type.headers: false
+
+  # Thymeleaf & MVC Configuration
+  thymeleaf:
+    cache: false
+    prefix: classpath:/templates/
