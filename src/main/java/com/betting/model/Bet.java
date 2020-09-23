@@ -53,3 +53,12 @@ public class Bet {
     @Column(name = "settled_at")
     private LocalDateTime settledAt;
 
+    @PrePersist
+    protected void onCreate() {
+        if (id == null) {
+            id = UUID.randomUUID();
+        }
+        if (placedAt == null) {
+            placedAt = LocalDateTime.now();
+        }
+    }
