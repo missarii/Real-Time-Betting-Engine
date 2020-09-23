@@ -73,3 +73,15 @@ betting-engine/
 │   │   │   ├── controller/      # MVC & REST Mappings (Auth, Wallet, Betting, Admin)
 │   │   │   ├── dto/             # Validation Requests & Event Payloads
 │   │   │   ├── exception/       # Concurrency and Wallet Business Exception Handlers
+│   │   │   ├── messaging/       # Kafka Event Producers and Consumers
+│   │   │   ├── model/           # JPA Entities (User, Wallet, Transaction, Event, Odds, Bet)
+│   │   │   ├── repository/      # JPA Data Layers
+│   │   │   ├── service/         # Business & Wallet logic, custom user details, settlements
+│   │   │   └── websocket/       # Session tracking & message broadcasts
+│   │   │
+│   │   └── resources/
+│   │       ├── static/          # style.css and app.js WebSockets handlers
+│   │       ├── templates/       # Thymeleaf MVC View templates
+│   │       └── application.yml  # Database, Cache, and Event broker settings
+│   │
+│   └── test/
