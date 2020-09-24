@@ -46,3 +46,10 @@ public class Odds {
         if (id == null) {
             id = UUID.randomUUID();
         }
+    }
+
+    public enum OddsStatus {
+        ACTIVE,
+        SUSPENDED
+    }
+}
