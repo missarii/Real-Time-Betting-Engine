@@ -49,3 +49,10 @@ public class Transaction {
     }
 
     public enum TransactionType {
+        DEPOSIT,
+        WITHDRAW,
+        BET_PLACED,
+        BET_SETTLED,
+        BET_REFUNDED
+    }
+}
