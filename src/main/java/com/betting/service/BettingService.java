@@ -56,3 +56,12 @@ public class BettingService {
 
         // 2. Load Event
         Event event = eventRepository.findById(request.getEventId())
+                .orElseThrow(() -> new IllegalArgumentException("Event not found"));
+
+        if (event.getStatus() == Event.EventStatus.FINISHED) {
+            throw new IllegalStateException("Cannot place bet on a finished event");
+        }
+
+        // 3. Fetch current live odds from cache
+        OddsCacheService.CachedOdds cachedOdds = oddsCacheService.getOdds(request.getOddsId());
+        
