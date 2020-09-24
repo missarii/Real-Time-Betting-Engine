@@ -44,3 +44,10 @@ public class AuthService {
         // 1. Create and Save User
         User user = User.builder()
                 .id(UUID.randomUUID())
+                .username(request.getUsername())
+                .email(request.getEmail())
+                .password(passwordEncoder.encode(request.getPassword()))
+                .role("USER")
+                .build();
+        User savedUser = userRepository.save(user);
+
