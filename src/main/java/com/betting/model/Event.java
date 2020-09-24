@@ -55,3 +55,11 @@ public class Event {
             id = UUID.randomUUID();
         }
     }
+
+    public enum EventStatus {
+        SCHEDULED,
+        LIVE,
+        SUSPENDED,
+        FINISHED
+    }
+}
