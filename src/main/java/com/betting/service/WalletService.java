@@ -60,3 +60,14 @@ public class WalletService {
 
         Wallet wallet = getWalletByUsername(username);
 
+        if (wallet.getBalance().compareTo(amount) < 0) {
+            throw new InsufficientBalanceException("Insufficient funds for withdrawal");
+        }
+
+        wallet.setBalance(wallet.getBalance().subtract(amount));
+        walletRepository.save(wallet);
+
+        Transaction tx = Transaction.builder()
+                .id(UUID.randomUUID())
+                .wallet(wallet)
+                .type(Transaction.TransactionType.WITHDRAW)
