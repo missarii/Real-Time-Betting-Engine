@@ -52,3 +52,11 @@ public class SettlementService {
             throw new IllegalStateException("Event has already been settled");
         }
 
+        // 1. Update event status to finished
+        event.setStatus(Event.EventStatus.FINISHED);
+        event.setEndedAt(LocalDateTime.now());
+        eventRepository.save(event);
+
+        // 2. Load all pending bets on this event
+        List<Bet> pendingBets = betRepository.findByEventIdAndStatus(eventId, Bet.BetStatus.PENDING);
+        logger.info("Found {} pending bet(s) to process for Event ID: {}", pendingBets.size(), eventId);
