@@ -53,3 +53,12 @@ public class WalletServiceConcurrencyTest {
                 .user(user)
                 .balance(new BigDecimal("1000.00"))
                 .currency("USD")
+                .build();
+        walletRepository.save(wallet);
+    }
+
+    @Test
+    void testConcurrentLocksOnWallet() throws InterruptedException {
+        // Retrieve the baseline wallet
+        Wallet wallet = walletRepository.findByUserId(userId).orElseThrow();
+        int threadCount = 10;
