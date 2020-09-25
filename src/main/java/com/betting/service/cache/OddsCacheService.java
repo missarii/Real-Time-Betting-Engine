@@ -51,3 +51,12 @@ public class OddsCacheService {
         putOdds(oddsId, cachedOdds);
         return cachedOdds;
     }
+
+    // Write-Through / Update cache
+    public void putOdds(UUID oddsId, CachedOdds cachedOdds) {
+        String key = CACHE_PREFIX + oddsId.toString();
+        try {
+            redisTemplate.opsForValue().set(key, cachedOdds, CACHE_TTL_MINUTES, TimeUnit.MINUTES);
+            logger.debug("Odds cache PUT successful for key: {}", key);
+        } catch (Exception e) {
+            logger.error("Error writing to Redis cache: {}", e.getMessage());
