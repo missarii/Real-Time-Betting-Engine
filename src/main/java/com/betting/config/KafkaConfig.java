@@ -47,3 +47,11 @@ public class KafkaConfig {
         props.put(ConsumerConfig.GROUP_ID_CONFIG, "betting-engine-group");
         props.put(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, "earliest");
         props.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
+        return props;
+    }
+
+    @Bean
+    public ConcurrentKafkaListenerContainerFactory<String, OddsUpdatedEvent> oddsUpdatedContainerFactory() {
+        Map<String, Object> props = baseConsumerProps();
+        JsonDeserializer<OddsUpdatedEvent> deser = new JsonDeserializer<>(OddsUpdatedEvent.class, false);
+        ConsumerFactory<String, OddsUpdatedEvent> cf =
