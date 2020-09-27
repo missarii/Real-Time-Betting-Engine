@@ -37,3 +37,9 @@ public class BetConsumer {
         }
     }
 
+    @KafkaListener(topics = "bet-placements",
+                   groupId = "betting-engine-group",
+                   containerFactory = "betPlacedContainerFactory")
+    public void consumeBetPlaced(BetPlacedEvent event) {
+        logger.info("Consumed BET_PLACED: betId={}, user={}, stake={}",
+                event.getBetId(), event.getUsername(), event.getStake());
