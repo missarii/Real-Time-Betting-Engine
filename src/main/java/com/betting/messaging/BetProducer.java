@@ -30,3 +30,7 @@ public class BetProducer {
     }
 
     public void sendOddsUpdated(OddsUpdatedEvent event) {
+        logger.info("Publishing ODDS_UPDATED event to Kafka for odds selection: {}", event.getOddsId());
+        kafkaTemplate.send("odds-updates", event.getOddsId().toString(), event);
+    }
+}
