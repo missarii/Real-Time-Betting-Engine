@@ -62,3 +62,13 @@ public class AdminController {
         logger.info("Creating new sports event: {} vs {}", homeTeam, awayTeam);
 
         // 1. Create Event
+        Event event = Event.builder()
+                .id(UUID.randomUUID())
+                .sport(sport.toUpperCase())
+                .homeTeam(homeTeam)
+                .awayTeam(awayTeam)
+                .homeScore(0)
+                .awayScore(0)
+                .status(Event.EventStatus.SCHEDULED)
+                .startTime(LocalDateTime.now().plusHours(1))
+                .build();
