@@ -41,3 +41,10 @@ public class OddsWebSocketHandler extends TextWebSocketHandler {
 
     /**
      * Broadcasts a message to all active WebSocket connections.
+     */
+    public void broadcast(String messagePayload) {
+        logger.debug("Broadcasting update to {} active WebSocket session(s)", sessions.size());
+        for (WebSocketSession session : sessions) {
+            if (session.isOpen()) {
+                try {
+                    session.sendMessage(new TextMessage(messagePayload));
