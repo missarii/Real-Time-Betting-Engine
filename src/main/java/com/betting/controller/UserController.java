@@ -39,3 +39,9 @@ public class UserController {
 
         String username = principal.getName();
 
+        // wallet is already injected by GlobalModelAdvice — no duplicate fetch needed
+
+        // Recent Transactions (last 5)
+        List<Transaction> transactions = walletService.getTransactionHistory(username);
+        model.addAttribute("transactions",
+                transactions.size() > 5 ? transactions.subList(0, 5) : transactions);
