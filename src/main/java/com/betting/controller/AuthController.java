@@ -41,3 +41,9 @@ public class AuthController {
         try {
             authService.registerUser(request);
             return "redirect:/login?success=true";
+        } catch (IllegalArgumentException e) {
+            model.addAttribute("errorMessage", e.getMessage());
+            return "register";
+        }
+    }
+}
