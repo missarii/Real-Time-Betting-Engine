@@ -51,3 +51,12 @@ public class WalletController {
             return "redirect:/wallet?depositSuccess=true";
         } catch (Exception e) {
             model.addAttribute("errorMessage", e.getMessage());
+            // reload wallet details
+            loadWalletDetails(principal.getName(), model);
+            return "wallet";
+        }
+    }
+
+    @PostMapping("/wallet/withdraw")
+    public String handleWithdraw(Principal principal,
+                                 @RequestParam("amount") BigDecimal amount,
