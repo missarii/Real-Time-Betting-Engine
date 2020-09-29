@@ -39,3 +39,10 @@ public class BettingController {
     public ResponseEntity<?> placeBet(Principal principal,
                                       @Valid @RequestBody BetRequest request) {
         if (principal == null) {
+            return ResponseEntity.status(401).body("You must be logged in to place bets");
+        }
+        try {
+            Bet bet = bettingService.placeBet(principal.getName(), request);
+            // Return a minimal JSON response to avoid lazy-load serialization issues
+            return ResponseEntity.ok().body(
+                    java.util.Map.of(
