@@ -26,3 +26,7 @@ INSERT INTO events (id, sport, home_team, away_team, home_score, away_score, sta
 INSERT INTO events (id, sport, home_team, away_team, home_score, away_score, status, start_time, ended_at) VALUES
 ('55555555-5555-5555-5555-555555555555', 'TENNIS', 'Novak Djokovic', 'Rafael Nadal', 1, 0, 'LIVE', CURRENT_TIMESTAMP - INTERVAL '1 hour', NULL);
 
+-- Event 4: Manchester City vs Liverpool (SCHEDULED, Soccer)
+INSERT INTO events (id, sport, home_team, away_team, home_score, away_score, status, start_time, ended_at) VALUES
+('66666666-6666-6666-6666-666666666666', 'SOCCER', 'Manchester City', 'Liverpool', 0, 0, 'SCHEDULED', CURRENT_TIMESTAMP + INTERVAL '1 day', NULL);
+
