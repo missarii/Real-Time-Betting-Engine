@@ -49,3 +49,12 @@ CREATE TABLE events (
     home_team VARCHAR(100) NOT NULL,
     away_team VARCHAR(100) NOT NULL,
     home_score INT NOT NULL DEFAULT 0,
+    away_score INT NOT NULL DEFAULT 0,
+    status VARCHAR(20) NOT NULL DEFAULT 'SCHEDULED', -- SCHEDULED, LIVE, SUSPENDED, FINISHED
+    start_time TIMESTAMP NOT NULL,
+    ended_at TIMESTAMP
+);
+
+CREATE INDEX idx_events_status ON events(status);
+CREATE INDEX idx_events_sport ON events(sport);
+CREATE INDEX idx_events_start_time ON events(start_time);
