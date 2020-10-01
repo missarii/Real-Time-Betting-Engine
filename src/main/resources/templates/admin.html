@@ -54,3 +54,13 @@
         <div class="grid-2" style="grid-template-columns: 2fr 1fr; gap: 2rem;">
             <!-- LEFT PANEL: FIXTURES LIST -->
             <div style="display: flex; flex-direction: column; gap: 2rem;">
+                
+                <div class="glass-card">
+                    <h2 style="font-size: 1.5rem; font-weight: 700; margin-bottom: 1.5rem;">🎮 Manage Current Matches</h2>
+                    
+                    <div th:if="${#lists.isEmpty(events)}" class="betslip-empty">
+                        No matches currently stored in DB. Build one using the form on the right.
+                    </div>
+
+                    <!-- Event Management Block -->
+                    <div th:each="event : ${events}" class="glass-card" style="margin-bottom: 1.5rem; border-left: 4px solid var(--primary);">
