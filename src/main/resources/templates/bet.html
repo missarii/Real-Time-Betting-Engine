@@ -41,3 +41,10 @@
 
             <div th:if="${#lists.isEmpty(bets)}" class="betslip-empty" style="padding: 4rem 0;">
                 <div style="font-size: 3.5rem; margin-bottom: 1rem;">🎰</div>
+                No bets have been recorded for this account yet.<br>
+                <a th:href="@{/events}" class="btn btn-success" style="margin-top: 1.5rem; display: inline-block;">GO TO SPORTSBOOK</a>
+            </div>
+
+            <table th:if="${!#lists.isEmpty(bets)}">
+                <thead>
+                    <tr>
