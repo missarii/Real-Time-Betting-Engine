@@ -30,3 +30,9 @@
             </div>
 
             <div class="input-group">
+                <label for="email">Email address</label>
+                <input type="email" id="email" th:field="*{email}" placeholder="yourname@domain.com" required>
+                <div th:if="${#fields.hasErrors('email')}" th:errors="*{email}" style="color: var(--danger); font-size: 0.85rem; font-weight: 600; margin-top: 0.25rem;"></div>
+            </div>
+
+            <div class="input-group" style="margin-bottom: 2rem;">
