@@ -54,3 +54,12 @@
                     <div th:each="event : ${liveEvents}" class="glass-card event-card" style="margin-bottom: 1rem; border-left-color: var(--danger);">
                         <div class="event-header">
                             <span class="sport-tag" th:text="${event.sport}">Soccer</span>
+                            <div class="live-badge">
+                                <span class="live-dot"></span> LIVE
+                            </div>
+                        </div>
+                        <div class="match-teams">
+                            <span th:text="${event.homeTeam}">Real Madrid</span>
+                            <span class="score-display" th:text="${event.homeScore + ' - ' + event.awayScore}">2 - 1</span>
+                            <span th:text="${event.awayTeam}">Barcelona</span>
+                        </div>
