@@ -52,3 +52,12 @@
                         <div class="event-header">
                             <span class="sport-tag" th:text="${event.sport}">Soccer</span>
                             
+                            <!-- State Indicator -->
+                            <div th:if="${event.status.name() == 'LIVE'}" class="live-badge">
+                                <span class="live-dot"></span> LIVE
+                            </div>
+                            <div th:if="${event.status.name() == 'SUSPENDED'}" class="badge badge-lost" style="font-size: 0.7rem; border-color: var(--danger); color: var(--danger);">
+                                SUSPENDED
+                            </div>
+                            <div th:if="${event.status.name() == 'SCHEDULED'}" class="badge badge-pending" style="font-size: 0.7rem; animation: none;">
+                                UPCOMING
