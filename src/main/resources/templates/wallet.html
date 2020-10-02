@@ -57,3 +57,12 @@
 
                 <form th:action="@{/wallet/deposit}" method="POST">
                     <div class="input-group">
+                        <label for="depositAmount">Deposit Amount (USD)</label>
+                        <input type="number" id="depositAmount" name="amount" min="10.00" max="10000.00" value="100.00" required>
+                    </div>
+
+                    <!-- Visual payment simulation details -->
+                    <div class="input-group">
+                        <label>Simulated Card Brand</label>
+                        <select>
+                            <option>Visa (Mock Debit *4321)</option>
