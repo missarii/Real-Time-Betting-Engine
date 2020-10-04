@@ -169,3 +169,32 @@ header {
 
 /* --- SPORTSBOOK & MATCH CARDS --- */
 .event-card {
+    border-left: 4px solid var(--primary);
+    margin-bottom: 1rem;
+}
+
+.event-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.sport-tag {
+    background: hsla(222, 32%, 22%, 0.8);
+    border: 1px solid var(--border-color);
+    padding: 0.3rem 0.75rem;
+    border-radius: 6px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    color: var(--primary);
+    text-transform: uppercase;
+}
+
+.live-badge {
+    background: hsla(346, 84%, 55%, 0.15);
+    border: 1px solid var(--danger);
+    color: var(--danger);
+    font-size: 0.75rem;
+    font-weight: 700;
