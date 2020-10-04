@@ -85,3 +85,18 @@ function handleLiveOddsUpdate(update) {
     }
 }
 
+// --- INTERACTIVE BETSLIP DRAWER ---
+function initBetslip() {
+    const oddsButtons = document.querySelectorAll(".odds-btn");
+    
+    oddsButtons.forEach(btn => {
+        btn.addEventListener("click", () => {
+            if (btn.classList.contains("suspended-overlay")) return;
+
+            const oddsId = btn.getAttribute("data-odds-id");
+            const eventId = btn.getAttribute("data-event-id");
+            const matchName = btn.getAttribute("data-match-name");
+            const selection = btn.getAttribute("data-selection");
+            const oddsValue = parseFloat(btn.querySelector(".odds-val").textContent);
+
+            // Populate slip state
