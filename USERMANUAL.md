@@ -122,3 +122,24 @@ BET-X uses **optimistic locking** to protect your wallet balance:
 
 ### 3.1 Creating an Account
 
+1. Open your browser and go to: **http://localhost:8080**
+2. You will be redirected to the **Login Page**
+3. Click the link **"Create an account"** at the bottom
+4. Fill in the registration form:
+
+| Field | Requirements | Example |
+|---|---|---|
+| **Username** | Minimum 3 characters, no spaces | `missari` |
+| **Email** | Valid email format | `missari@example.com` |
+| **Password** | Minimum 6 characters | `123456` |
+
+5. Click **"CREATE ACCOUNT"**
+6. You will see a green success alert and be redirected to the Login page
+
+> ✅ **New accounts automatically get a $1,000.00 USD starting wallet balance!**
+
+### 3.2 Logging In
+
+1. Go to **http://localhost:8080/login**
+2. Enter your **Username** and **Password**
+3. Click **"SIGN IN"**
