@@ -159,3 +159,30 @@ Real-Time-Betting-Engine/
 └── docker-compose.yml
 ```
 
+---
+
+# Kafka Topics
+
+```text
+bet-placements
+odds-updates
+bet-settlements
+```
+
+---
+
+# WebSocket Flow
+
+```text
+Odds Update
+    ↓
+Kafka Producer
+    ↓
+Kafka Topic
+    ↓
+Kafka Consumer
+    ↓
+WebSocket Broadcast
+    ↓
+Connected Clients
+```
