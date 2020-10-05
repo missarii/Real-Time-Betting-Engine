@@ -85,3 +85,16 @@ betting-engine/
 │   │       └── application.yml  # Database, Cache, and Event broker settings
 │   │
 │   └── test/
+│       ├── java/com/betting/    # Standalone JUnit tests (concurrency wallet locks)
+│       └── resources/           # application-test.yml (isolated H2 config)
+│
+└── pom.xml                      # Maven dependencies
+```
+
+---
+
+## 🚦 REST API Specifications
+
+### Authentication & Users
+- `POST /register`: Registers a new user and creates their default $1,000 USD wallet.
+- `POST /login`: Performs session authentication.
