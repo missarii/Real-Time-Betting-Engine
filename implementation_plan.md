@@ -75,3 +75,16 @@ erDiagram
 ---
 
 ### 2. Kafka Event Flow
+Kafka serves as our asynchronous messaging backbone. It decouples high-throughput betting operations and settlements from the main user-facing Web API threads.
+
+```
+[Web API: Bet Placement]
+       │
+       ▼ (Database Transaction: Deduct Wallet + Save PENDING Bet)
+[Publish to Kafka: "bet-placed" Topic]
+       │
+       ├────────────────────────────────────┐
+       ▼                                    ▼
+[Kafka Consumer: Risk Service]    [Kafka Consumer: Metrics/Audit]
+```
+
