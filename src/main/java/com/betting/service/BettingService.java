@@ -65,3 +65,13 @@ public class BettingService {
         // 3. Fetch current live odds from cache
         OddsCacheService.CachedOdds cachedOdds = oddsCacheService.getOdds(request.getOddsId());
         
+        if (!"ACTIVE".equals(cachedOdds.getStatus())) {
+            throw new IllegalStateException("Betting on this market is currently suspended");
+        }
+
+        // Validate odds values are matching (anti-fraud/latency check)
+        if (cachedOdds.getOddsValue().compareTo(request.getOddsValue()) != 0) {
+            throw new IllegalStateException(String.format(
+                    "Odds have changed from %s to %s. Please update your betslip.", 
+                    request.getOddsValue(), cachedOdds.getOddsValue()
+            ));
