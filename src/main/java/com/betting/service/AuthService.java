@@ -51,3 +51,11 @@ public class AuthService {
                 .build();
         User savedUser = userRepository.save(user);
 
+        // 2. Create and Save Wallet (starting balance of 1000.00)
+        Wallet wallet = Wallet.builder()
+                .id(UUID.randomUUID())
+                .user(savedUser)
+                .balance(new BigDecimal("1000.00"))
+                .currency("USD")
+                .build();
+        Wallet savedWallet = walletRepository.save(wallet);
