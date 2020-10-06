@@ -65,3 +65,12 @@ spring:
   thymeleaf:
     cache: false
     prefix: classpath:/templates/
+    suffix: .html
+    mode: HTML
+
+logging:
+  level:
+    root: INFO
+    com.betting: DEBUG
+    org.springframework.security: INFO
+    org.springframework.transaction: INFO
