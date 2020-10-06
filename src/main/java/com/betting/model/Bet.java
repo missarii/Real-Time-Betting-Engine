@@ -62,3 +62,11 @@ public class Bet {
             placedAt = LocalDateTime.now();
         }
     }
+
+    public enum BetStatus {
+        PENDING,
+        WON,
+        LOST,
+        VOIDED
+    }
+}
