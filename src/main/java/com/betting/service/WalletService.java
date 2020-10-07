@@ -71,3 +71,13 @@ public class WalletService {
                 .id(UUID.randomUUID())
                 .wallet(wallet)
                 .type(Transaction.TransactionType.WITHDRAW)
+                .amount(amount.negate()) // store as negative or positive based on preference, standard is positive amount, but negated is good for reporting
+                .description(description != null ? description : "Withdrawal funds")
+                .build();
+        transactionRepository.save(tx);
+    }
+
+    // Locks wallet funds when a bet is placed
+    @Transactional
+    public void lockFundsForBet(Wallet wallet, BigDecimal amount, UUID betId) {
+        if (wallet.getBalance().compareTo(amount) < 0) {
