@@ -60,3 +60,12 @@ public class OddsCacheService {
             logger.debug("Odds cache PUT successful for key: {}", key);
         } catch (Exception e) {
             logger.error("Error writing to Redis cache: {}", e.getMessage());
+        }
+    }
+
+    public void evictOdds(UUID oddsId) {
+        String key = CACHE_PREFIX + oddsId.toString();
+        try {
+            redisTemplate.delete(key);
+            logger.debug("Odds cache EVICT successful for key: {}", key);
+        } catch (Exception e) {
