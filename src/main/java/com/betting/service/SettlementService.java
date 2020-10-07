@@ -60,3 +60,12 @@ public class SettlementService {
         // 2. Load all pending bets on this event
         List<Bet> pendingBets = betRepository.findByEventIdAndStatus(eventId, Bet.BetStatus.PENDING);
         logger.info("Found {} pending bet(s) to process for Event ID: {}", pendingBets.size(), eventId);
+
+        for (Bet bet : pendingBets) {
+            try {
+                processBetSettlement(bet, finalResult);
+            } catch (Exception e) {
+                logger.error("Failed to settle Bet ID: {}. Error: {}", bet.getId(), e.getMessage());
+                // In production, we would alert operations or push to a Dead Letter Queue (DLQ).
+            }
+        }
