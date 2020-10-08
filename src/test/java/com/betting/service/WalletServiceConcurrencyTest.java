@@ -62,3 +62,12 @@ public class WalletServiceConcurrencyTest {
         // Retrieve the baseline wallet
         Wallet wallet = walletRepository.findByUserId(userId).orElseThrow();
         int threadCount = 10;
+        ExecutorService executor = Executors.newFixedThreadPool(threadCount);
+        CountDownLatch latch = new CountDownLatch(1);
+        AtomicInteger successCount = new AtomicInteger(0);
+        AtomicInteger failureCount = new AtomicInteger(0);
+
+        BigDecimal lockAmount = new BigDecimal("100.00");
+
+        for (int i = 0; i < threadCount; i++) {
+            executor.submit(() -> {
