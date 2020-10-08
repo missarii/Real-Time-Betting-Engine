@@ -52,3 +52,11 @@ public class SecurityConfig {
             .logout(logout -> logout
                 .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
                 .logoutSuccessUrl("/login?logout=true")
+                .deleteCookies("BETTING_SESSION")
+                .invalidateHttpSession(true)
+                .permitAll()
+            )
+            .sessionManagement(session -> session
+                .maximumSessions(2)
+                .maxSessionsPreventsLogin(false)
+            );
