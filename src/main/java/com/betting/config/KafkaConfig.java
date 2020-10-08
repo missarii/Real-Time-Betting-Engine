@@ -55,3 +55,11 @@ public class KafkaConfig {
         Map<String, Object> props = baseConsumerProps();
         JsonDeserializer<OddsUpdatedEvent> deser = new JsonDeserializer<>(OddsUpdatedEvent.class, false);
         ConsumerFactory<String, OddsUpdatedEvent> cf =
+                new DefaultKafkaConsumerFactory<>(props, new StringDeserializer(), deser);
+        ConcurrentKafkaListenerContainerFactory<String, OddsUpdatedEvent> factory =
+                new ConcurrentKafkaListenerContainerFactory<>();
+        factory.setConsumerFactory(cf);
+        return factory;
+    }
+
+    @Bean
