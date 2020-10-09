@@ -72,3 +72,14 @@ public class AdminController {
                 .status(Event.EventStatus.SCHEDULED)
                 .startTime(LocalDateTime.now().plusHours(1))
                 .build();
+        Event savedEvent = eventRepository.save(event);
+
+        // 2. Build Odds Selections (1X2 Market)
+        List<Odds> oddsList = new ArrayList<>();
+        oddsList.add(Odds.builder().id(UUID.randomUUID()).event(savedEvent).marketName("1X2").selectionName("HOME_WIN").oddsValue(homeOdds).status(Odds.OddsStatus.ACTIVE).build());
+        oddsList.add(Odds.builder().id(UUID.randomUUID()).event(savedEvent).marketName("1X2").selectionName("DRAW").oddsValue(drawOdds).status(Odds.OddsStatus.ACTIVE).build());
+        oddsList.add(Odds.builder().id(UUID.randomUUID()).event(savedEvent).marketName("1X2").selectionName("AWAY_WIN").oddsValue(awayOdds).status(Odds.OddsStatus.ACTIVE).build());
+        
+        oddsRepository.saveAll(oddsList);
+
+        // 3. Cache new odds in Redis
