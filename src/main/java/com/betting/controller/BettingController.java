@@ -46,3 +46,10 @@ public class BettingController {
             // Return a minimal JSON response to avoid lazy-load serialization issues
             return ResponseEntity.ok().body(
                     java.util.Map.of(
+                            "betId", bet.getId().toString(),
+                            "status", bet.getStatus().name(),
+                            "stake", bet.getStake(),
+                            "potentialPayout", bet.getPotentialPayout()
+                    )
+            );
+        } catch (IllegalArgumentException | IllegalStateException e) {
