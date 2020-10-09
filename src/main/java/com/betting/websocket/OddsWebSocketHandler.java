@@ -48,3 +48,10 @@ public class OddsWebSocketHandler extends TextWebSocketHandler {
             if (session.isOpen()) {
                 try {
                     session.sendMessage(new TextMessage(messagePayload));
+                } catch (IOException e) {
+                    logger.error("Error sending WebSocket message to session {}: {}", session.getId(), e.getMessage());
+                    try {
+                        session.close();
+                    } catch (IOException ignored) {}
+                    sessions.remove(session);
+                }
