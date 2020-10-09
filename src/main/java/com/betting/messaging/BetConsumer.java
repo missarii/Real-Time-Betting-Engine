@@ -43,3 +43,10 @@ public class BetConsumer {
     public void consumeBetPlaced(BetPlacedEvent event) {
         logger.info("Consumed BET_PLACED: betId={}, user={}, stake={}",
                 event.getBetId(), event.getUsername(), event.getStake());
+        // Async risk management / auditing hook
+    }
+
+    @KafkaListener(topics = "bet-settlements",
+                   groupId = "betting-engine-group",
+                   containerFactory = "betSettledContainerFactory")
+    public void consumeBetSettled(BetSettledEvent event) {
