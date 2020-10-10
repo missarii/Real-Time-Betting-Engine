@@ -45,3 +45,10 @@ public class UserController {
         List<Transaction> transactions = walletService.getTransactionHistory(username);
         model.addAttribute("transactions",
                 transactions.size() > 5 ? transactions.subList(0, 5) : transactions);
+
+        // Recent Bets (last 5)
+        List<Bet> bets = bettingService.getBetHistory(username);
+        model.addAttribute("bets",
+                bets.size() > 5 ? bets.subList(0, 5) : bets);
+
+        // Live matches for quick betslip on dashboard
