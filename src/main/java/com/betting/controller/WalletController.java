@@ -60,3 +60,12 @@ public class WalletController {
     @PostMapping("/wallet/withdraw")
     public String handleWithdraw(Principal principal,
                                  @RequestParam("amount") BigDecimal amount,
+                                 Model model) {
+        if (principal == null) {
+            return "redirect:/login";
+        }
+
+        try {
+            walletService.withdraw(principal.getName(), amount, "User web portal withdrawal");
+            return "redirect:/wallet?withdrawSuccess=true";
+        } catch (InsufficientBalanceException e) {
