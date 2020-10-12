@@ -30,3 +30,8 @@ INSERT INTO events (id, sport, home_team, away_team, home_score, away_score, sta
 INSERT INTO events (id, sport, home_team, away_team, home_score, away_score, status, start_time, ended_at) VALUES
 ('66666666-6666-6666-6666-666666666666', 'SOCCER', 'Manchester City', 'Liverpool', 0, 0, 'SCHEDULED', CURRENT_TIMESTAMP + INTERVAL '1 day', NULL);
 
+-- Seed Odds for Event 1 (Real Madrid vs Barcelona)
+INSERT INTO odds (id, event_id, market_name, selection_name, odds_value, status, version) VALUES
+('33333333-3333-3333-3333-333333333301', '33333333-3333-3333-3333-333333333333', '1X2', 'HOME_WIN', 1.65, 'ACTIVE', 0),
+('33333333-3333-3333-3333-333333333302', '33333333-3333-3333-3333-333333333333', '1X2', 'DRAW', 3.40, 'ACTIVE', 0),
+('33333333-3333-3333-3333-333333333303', '33333333-3333-3333-3333-333333333333', '1X2', 'AWAY_WIN', 4.20, 'ACTIVE', 0);
