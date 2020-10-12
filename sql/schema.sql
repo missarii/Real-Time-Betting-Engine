@@ -58,3 +58,11 @@ CREATE TABLE events (
 CREATE INDEX idx_events_status ON events(status);
 CREATE INDEX idx_events_sport ON events(sport);
 CREATE INDEX idx_events_start_time ON events(start_time);
+
+-- Odds Table (with Optimistic Locking version column)
+CREATE TABLE odds (
+    id UUID PRIMARY KEY,
+    event_id UUID NOT NULL REFERENCES events(id) ON DELETE CASCADE,
+    market_name VARCHAR(50) NOT NULL, -- e.g., '1X2', 'OVER_UNDER'
+    selection_name VARCHAR(50) NOT NULL, -- e.g., 'HOME_WIN', 'DRAW', 'AWAY_WIN'
+    odds_value NUMERIC(6,2) NOT NULL CONSTRAINT chk_odds_min CHECK (odds_value > 1.0),
