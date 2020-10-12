@@ -64,3 +64,12 @@
 
                     <!-- Event Management Block -->
                     <div th:each="event : ${events}" class="glass-card" style="margin-bottom: 1.5rem; border-left: 4px solid var(--primary);">
+                        <div class="event-header">
+                            <span class="sport-tag" th:text="${event.sport}">Soccer</span>
+                            
+                            <!-- Badges -->
+                            <span class="badge" th:classappend="${event.status.name() == 'LIVE' ? 'badge-pending' : (event.status.name() == 'FINISHED' ? 'badge-won' : 'badge-lost')}" th:text="${event.status}">STATUS</span>
+                        </div>
+
+                        <div class="match-teams" style="margin-bottom: 1.5rem;">
+                            <span th:text="${event.homeTeam}">Home</span>
