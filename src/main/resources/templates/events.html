@@ -61,3 +61,12 @@
                             </div>
                             <div th:if="${event.status.name() == 'SCHEDULED'}" class="badge badge-pending" style="font-size: 0.7rem; animation: none;">
                                 UPCOMING
+                            </div>
+                        </div>
+
+                        <div class="match-teams">
+                            <span th:text="${event.homeTeam}">Real Madrid</span>
+                            <span th:if="${event.status.name() == 'LIVE'}" class="score-display" th:text="${event.homeScore + ' - ' + event.awayScore}">2 - 1</span>
+                            <span th:if="${event.status.name() != 'LIVE'}" style="color: var(--text-muted); font-size: 1rem; font-weight: 500;">VS</span>
+                            <span th:text="${event.awayTeam}">Barcelona</span>
+                        </div>
