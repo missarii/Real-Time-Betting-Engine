@@ -36,3 +36,8 @@
             </div>
 
             <div class="input-group" style="margin-bottom: 2rem;">
+                <label for="password">Password</label>
+                <input type="password" id="password" th:field="*{password}" placeholder="Minimum 6 characters" required>
+                <div th:if="${#fields.hasErrors('password')}" th:errors="*{password}" style="color: var(--danger); font-size: 0.85rem; font-weight: 600; margin-top: 0.25rem;"></div>
+            </div>
+
