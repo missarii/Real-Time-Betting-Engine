@@ -186,3 +186,30 @@ WebSocket Broadcast
     ↓
 Connected Clients
 ```
+
+---
+
+# Database Entities
+
+## User
+Stores:
+- Username
+- Password
+- Wallet balance
+- Roles
+
+## Bet
+Stores:
+- Bet amount
+- Odds
+- Event details
+- Bet status
+
+## Wallet
+Stores:
+- Balance
+- Transactions
+- User relation
+
+## Event
+Stores:
