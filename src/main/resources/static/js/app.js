@@ -100,3 +100,17 @@ function initBetslip() {
             const oddsValue = parseFloat(btn.querySelector(".odds-val").textContent);
 
             // Populate slip state
+            selectedBet = {
+                oddsId,
+                eventId,
+                matchName,
+                selection,
+                oddsValue,
+                stake: 10.0 // default stake
+            };
+
+            renderBetslip();
+        });
+    });
+}
+
