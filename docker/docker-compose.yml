@@ -53,3 +53,10 @@ services:
       CLUSTER_ID: MkU3OEVBNTcwNTJENDM2Qk
     healthcheck:
       test: ["CMD-SHELL", "kafka-topics.sh --bootstrap-server localhost:9092 --list || exit 1"]
+      interval: 10s
+      timeout: 10s
+      retries: 5
+
+volumes:
+  postgres_data:
+  redis_data:
