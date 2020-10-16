@@ -143,3 +143,23 @@ BET-X uses **optimistic locking** to protect your wallet balance:
 1. Go to **http://localhost:8080/login**
 2. Enter your **Username** and **Password**
 3. Click **"SIGN IN"**
+4. You will be redirected to your **Dashboard**
+
+### 3.3 Pre-Seeded Test Accounts
+
+| Role | Username | Password | Starting Balance |
+|---|---|---|---|
+| 👤 Standard User | `user` | `password` | $1,000.00 |
+| 🛠️ Administrator | `admin` | `password` | $1,000.00 |
+
+---
+
+## 4. Your Dashboard
+
+After logging in, you land on the **Dashboard** (`/dashboard`).
+
+```
+┌──────────────────────────────────────────────────────────┐
+│  🏆 BET-X  Dashboard  Sportsbook  My Bets  Wallet       │
+│                               💵 $1,000.00  [LOGOUT]    │
+├──────────────────────────────────────────────────────────┤
