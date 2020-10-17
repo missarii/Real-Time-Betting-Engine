@@ -88,3 +88,16 @@ Kafka serves as our asynchronous messaging backbone. It decouples high-throughpu
 [Kafka Consumer: Risk Service]    [Kafka Consumer: Metrics/Audit]
 ```
 
+```
+[Admin Service: Settle Match]
+       │
+       ▼ (Database: Match status -> FINISHED)
+[Publish to Kafka: "event-settlement" Topic]
+       │
+       ▼
+[Kafka Consumer: Settlement Service]
+       │
+       ├─► Loop all bets for event -> Calculate win/loss
+       ├─► Update bet status (WON/LOST)
+       ├─► Credit winning wallets (+ Version increment)
+       └─► Publish to Kafka: "bet-settled" Topic -> Alerts user via WebSocket
