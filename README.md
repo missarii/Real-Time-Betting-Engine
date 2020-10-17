@@ -98,3 +98,15 @@ betting-engine/
 ### Authentication & Users
 - `POST /register`: Registers a new user and creates their default $1,000 USD wallet.
 - `POST /login`: Performs session authentication.
+- `GET /logout`: Securely terminates the session and deletes cookie configurations.
+
+### Sportsbook & Bets
+- `POST /api/bets`: Places a live bet ticket.
+  - *Payload*:
+    ```json
+    {
+      "eventId": "33333333-3333-3333-3333-333333333333",
+      "oddsId": "33333333-3333-3333-3333-333333333301",
+      "selectionName": "HOME_WIN",
+      "oddsValue": 1.65,
+      "stake": 100.00
