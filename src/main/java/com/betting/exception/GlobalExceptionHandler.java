@@ -39,3 +39,7 @@ public class GlobalExceptionHandler {
     // 4. Handle other runtime exceptions
     @ExceptionHandler(IllegalArgumentException.class)
     public ResponseEntity<String> handleIllegalArgument(IllegalArgumentException ex) {
+        logger.error("Invalid argument error: {}", ex.getMessage());
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ex.getMessage());
+    }
+}
