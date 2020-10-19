@@ -75,3 +75,13 @@ public class BettingService {
                     "Odds have changed from %s to %s. Please update your betslip.", 
                     request.getOddsValue(), cachedOdds.getOddsValue()
             ));
+        }
+
+        // 4. Load database reference of Odds
+        Odds odds = oddsRepository.findById(request.getOddsId())
+                .orElseThrow(() -> new IllegalArgumentException("Odds database entry not found"));
+
+        // 5. Calculate potential payout
+        BigDecimal potentialPayout = request.getStake().multiply(request.getOddsValue());
+
+        // 6. Instantiate Bet
