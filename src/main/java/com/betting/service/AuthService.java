@@ -59,3 +59,10 @@ public class AuthService {
                 .currency("USD")
                 .build();
         Wallet savedWallet = walletRepository.save(wallet);
+
+        // 3. Log initial transaction
+        Transaction tx = Transaction.builder()
+                .id(UUID.randomUUID())
+                .wallet(savedWallet)
+                .type(Transaction.TransactionType.DEPOSIT)
+                .amount(new BigDecimal("1000.00"))
