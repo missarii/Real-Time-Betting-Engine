@@ -69,3 +69,12 @@ public class SettlementService {
                 // In production, we would alert operations or push to a Dead Letter Queue (DLQ).
             }
         }
+    }
+
+    private void processBetSettlement(Bet bet, String finalResult) {
+        boolean isWin = bet.getSelectionName().equalsIgnoreCase(finalResult);
+        Wallet wallet = walletService.getWalletByUsername(bet.getUser().getUsername());
+
+        BigDecimal payoutAmount;
+        if (isWin) {
+            bet.setStatus(Bet.BetStatus.WON);
