@@ -81,3 +81,13 @@ public class WalletService {
     @Transactional
     public void lockFundsForBet(Wallet wallet, BigDecimal amount, UUID betId) {
         if (wallet.getBalance().compareTo(amount) < 0) {
+            throw new InsufficientBalanceException("Insufficient wallet balance to place bet");
+        }
+
+        wallet.setBalance(wallet.getBalance().subtract(amount));
+        walletRepository.save(wallet);
+
+        Transaction tx = Transaction.builder()
+                .id(UUID.randomUUID())
+                .wallet(wallet)
+                .type(Transaction.TransactionType.BET_PLACED)
