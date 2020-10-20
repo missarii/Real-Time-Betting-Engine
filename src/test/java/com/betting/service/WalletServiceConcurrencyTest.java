@@ -71,3 +71,13 @@ public class WalletServiceConcurrencyTest {
 
         for (int i = 0; i < threadCount; i++) {
             executor.submit(() -> {
+                try {
+                    latch.await(); // wait for start signal
+                    // Call lockFundsForBet. Under concurrency, saving will conflict on version.
+                    walletService.lockFundsForBet(wallet, lockAmount, UUID.randomUUID());
+                    successCount.incrementAndGet();
+                } catch (ObjectOptimisticLockingFailureException oole) {
+                    failureCount.incrementAndGet();
+                } catch (Exception e) {
+                    failureCount.incrementAndGet();
+                }
