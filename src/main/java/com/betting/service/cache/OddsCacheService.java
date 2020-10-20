@@ -69,3 +69,12 @@ public class OddsCacheService {
             redisTemplate.delete(key);
             logger.debug("Odds cache EVICT successful for key: {}", key);
         } catch (Exception e) {
+            logger.error("Error evicting from Redis cache: {}", e.getMessage());
+        }
+    }
+
+    @Getter
+    @Setter
+    public static class CachedOdds implements Serializable {
+        private String id;
+        private String eventId;
