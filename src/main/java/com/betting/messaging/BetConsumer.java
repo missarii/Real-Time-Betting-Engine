@@ -50,3 +50,8 @@ public class BetConsumer {
                    groupId = "betting-engine-group",
                    containerFactory = "betSettledContainerFactory")
     public void consumeBetSettled(BetSettledEvent event) {
+        logger.info("Consumed BET_SETTLED: betId={}, user={}, status={}, payout={}",
+                event.getBetId(), event.getUsername(), event.getStatus(), event.getPayout());
+        // Async notifications / analytics hook
+    }
+}
