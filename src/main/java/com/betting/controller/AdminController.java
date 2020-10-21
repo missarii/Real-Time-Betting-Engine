@@ -83,3 +83,13 @@ public class AdminController {
         oddsRepository.saveAll(oddsList);
 
         // 3. Cache new odds in Redis
+        for (Odds odds : oddsList) {
+            oddsCacheService.putOdds(odds.getId(), new OddsCacheService.CachedOdds(odds));
+        }
+
+        return "redirect:/admin?eventCreated=true";
+    }
+
+    @PostMapping("/events/{id}/score")
+    public String updateScore(@PathVariable("id") UUID eventId,
+                              @RequestParam("homeScore") int homeScore,
