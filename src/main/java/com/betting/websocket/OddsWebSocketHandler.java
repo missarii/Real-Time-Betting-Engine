@@ -55,3 +55,9 @@ public class OddsWebSocketHandler extends TextWebSocketHandler {
                     } catch (IOException ignored) {}
                     sessions.remove(session);
                 }
+            } else {
+                sessions.remove(session);
+            }
+        }
+    }
+}
