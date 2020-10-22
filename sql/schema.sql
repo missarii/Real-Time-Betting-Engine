@@ -66,3 +66,12 @@ CREATE TABLE odds (
     market_name VARCHAR(50) NOT NULL, -- e.g., '1X2', 'OVER_UNDER'
     selection_name VARCHAR(50) NOT NULL, -- e.g., 'HOME_WIN', 'DRAW', 'AWAY_WIN'
     odds_value NUMERIC(6,2) NOT NULL CONSTRAINT chk_odds_min CHECK (odds_value > 1.0),
+    status VARCHAR(20) NOT NULL DEFAULT 'ACTIVE', -- ACTIVE, SUSPENDED
+    version INT NOT NULL DEFAULT 0,
+    CONSTRAINT uq_event_market_selection UNIQUE (event_id, market_name, selection_name)
+);
+
+CREATE INDEX idx_odds_event ON odds(event_id);
+
+-- Bets Table
+CREATE TABLE bets (
