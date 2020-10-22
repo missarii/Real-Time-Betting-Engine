@@ -52,3 +52,9 @@ public class UserController {
                 bets.size() > 5 ? bets.subList(0, 5) : bets);
 
         // Live matches for quick betslip on dashboard
+        List<Event> liveEvents = eventRepository.findByStatus(Event.EventStatus.LIVE);
+        model.addAttribute("liveEvents", liveEvents);
+
+        return "dashboard";
+    }
+}
