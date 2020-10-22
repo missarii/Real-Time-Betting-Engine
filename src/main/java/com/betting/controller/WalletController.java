@@ -69,3 +69,12 @@ public class WalletController {
             walletService.withdraw(principal.getName(), amount, "User web portal withdrawal");
             return "redirect:/wallet?withdrawSuccess=true";
         } catch (InsufficientBalanceException e) {
+            model.addAttribute("errorMessage", e.getMessage());
+            loadWalletDetails(principal.getName(), model);
+            return "wallet";
+        } catch (Exception e) {
+            model.addAttribute("errorMessage", e.getMessage());
+            loadWalletDetails(principal.getName(), model);
+            return "wallet";
+        }
+    }
