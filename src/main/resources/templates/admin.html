@@ -73,3 +73,13 @@
 
                         <div class="match-teams" style="margin-bottom: 1.5rem;">
                             <span th:text="${event.homeTeam}">Home</span>
+                            <span class="score-display" th:text="${event.homeScore + ' - ' + event.awayScore}">0 - 0</span>
+                            <span th:text="${event.awayTeam}">Away</span>
+                        </div>
+
+                        <!-- 1. Form to Update score & status -->
+                        <form th:action="@{/admin/events/{id}/score(id=${event.id})}" method="POST" style="display: flex; gap: 1rem; align-items: flex-end; padding-bottom: 1.25rem; border-bottom: 1px dashed var(--border-color); margin-bottom: 1.25rem;">
+                            <div style="flex-grow: 1;">
+                                <label style="font-size: 0.75rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase;">Home Score</label>
+                                <input type="number" name="homeScore" th:value="${event.homeScore}" style="background: var(--bg-dark); border: 1px solid var(--border-color); padding: 0.5rem; border-radius: 6px; color: #fff; width: 100%;">
+                            </div>
