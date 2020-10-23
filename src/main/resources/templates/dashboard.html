@@ -73,3 +73,12 @@
                                  th:data-event-id="${event.id}"
                                  th:data-match-name="${event.homeTeam + ' vs ' + event.awayTeam}"
                                  th:data-selection="${odd.selectionName}">
+                                <span class="odds-label" th:text="${odd.selectionName == 'HOME_WIN' ? '1' : (odd.selectionName == 'DRAW' ? 'X' : '2')}">1</span>
+                                <span class="odds-val" th:text="${#numbers.formatDecimal(odd.oddsValue, 1, 2)}">1.65</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- RECENT TICKETS -->
+                <div class="glass-card">
