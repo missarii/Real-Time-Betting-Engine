@@ -41,3 +41,9 @@
                 <div th:if="${#fields.hasErrors('password')}" th:errors="*{password}" style="color: var(--danger); font-size: 0.85rem; font-weight: 600; margin-top: 0.25rem;"></div>
             </div>
 
+            <button type="submit" class="btn" style="width: 100%; padding: 1rem;">CREATE ACCOUNT</button>
+        </form>
+
+        <div style="text-align: center; margin-top: 2rem; color: var(--text-muted); font-size: 0.95rem;">
+            Already have an account? <a th:href="@{/login}" style="color: var(--primary); font-weight: 600; text-decoration: underline;">Sign In</a>
+        </div>
