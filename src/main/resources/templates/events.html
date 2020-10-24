@@ -70,3 +70,12 @@
                             <span th:if="${event.status.name() != 'LIVE'}" style="color: var(--text-muted); font-size: 1rem; font-weight: 500;">VS</span>
                             <span th:text="${event.awayTeam}">Barcelona</span>
                         </div>
+
+                        <p style="color: var(--text-muted); font-size: 0.85rem; margin-top: -0.25rem;">
+                            📅 Starts: <span th:text="${#temporals.format(event.startTime, 'yyyy-MM-dd HH:mm')}">Time</span>
+                        </p>
+
+                        <!-- Betting odds -->
+                        <div class="odds-container">
+                            <div th:each="odd : ${event.odds}" 
+                                 class="odds-btn" 
