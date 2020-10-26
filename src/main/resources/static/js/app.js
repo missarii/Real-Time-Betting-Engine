@@ -114,3 +114,18 @@ function initBetslip() {
     });
 }
 
+function renderBetslip() {
+    const emptyEl = document.getElementById("slip-empty");
+    const contentEl = document.getElementById("slip-content");
+
+    if (!selectedBet) {
+        emptyEl.style.display = "block";
+        contentEl.style.display = "none";
+        return;
+    }
+
+    emptyEl.style.display = "none";
+    contentEl.style.display = "block";
+
+    // Set Text Values
+    document.getElementById("slip-match-name").textContent = selectedBet.matchName;
