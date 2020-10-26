@@ -163,3 +163,24 @@ After logging in, you land on the **Dashboard** (`/dashboard`).
 │  🏆 BET-X  Dashboard  Sportsbook  My Bets  Wallet       │
 │                               💵 $1,000.00  [LOGOUT]    │
 ├──────────────────────────────────────────────────────────┤
+│                                          │               │
+│  Welcome back, missari!                  │  🧾 Betslip  │
+│                                          │               │
+│  🔥 Live Matches In Play                 │  (Click any  │
+│  ┌────────────────────────────────────┐  │   odds to    │
+│  │ ⚽ LIVE  Real Madrid vs Barcelona  │  │   populate)  │
+│  │ 2 - 1                             │  │              │
+│  │ [1: 1.65]  [X: 3.20]  [2: 4.50]  │  │              │
+│  └────────────────────────────────────┘  │              │
+│                                          │              │
+│  🎫 Recent Bet Slips                     │              │
+│  (Table of your last 5 bets)             │              │
+└──────────────────────────────────────────────────────────┘
+```
+
+### Dashboard Sections
+
+| Section | Description |
+|---|---|
+| **💵 Balance Pill** | Shows your current wallet balance (top right) |
+| **🔥 Live Matches** | Active matches you can bet on right now |
