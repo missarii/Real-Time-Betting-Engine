@@ -213,3 +213,30 @@ Stores:
 
 ## Event
 Stores:
+- Match information
+- Betting event details
+
+## Odds
+Stores:
+- Live odds
+- Market updates
+
+---
+
+# Redis Usage
+
+Redis can be used for:
+
+- Live odds caching
+- Session storage
+- Fast lookup operations
+- Real-time temporary data
+
+Example:
+
+```java
+@RedisHash
+public class LiveOdds {
+}
+```
+
