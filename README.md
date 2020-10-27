@@ -110,3 +110,16 @@ betting-engine/
       "selectionName": "HOME_WIN",
       "oddsValue": 1.65,
       "stake": 100.00
+    }
+    ```
+- `GET /bets`: Fetches chronological bet slips.
+
+### Wallet
+- `GET /wallet`: Renders statement lists.
+- `POST /wallet/deposit`: Deposits funds.
+- `POST /wallet/withdraw`: Withdraws payouts.
+
+### Control Panel (Role: ADMIN)
+- `POST /admin/events`: Seeds a new sports fixture and its starting decimal odds.
+- `POST /admin/events/{id}/score`: Updates a live scoreline and status state (e.g. SUSPENDED, LIVE).
+- `POST /admin/events/{id}/odds`: Fluctuates decimal prices (updates cache + sends Kafka event).
