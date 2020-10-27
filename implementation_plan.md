@@ -101,3 +101,15 @@ Kafka serves as our asynchronous messaging backbone. It decouples high-throughpu
        ├─► Update bet status (WON/LOST)
        ├─► Credit winning wallets (+ Version increment)
        └─► Publish to Kafka: "bet-settled" Topic -> Alerts user via WebSocket
+```
+
+- **Topics**:
+  - `odds-updates`: Emitted whenever odds change. Listened to by WebSocket service to push updates to client browsers.
+  - `bet-placements`: Emitted when a bet is validated and locked in the database. Used for auditing, risk assessment, and tracking.
+  - `bet-settlements`: Emitted when an event completes to trigger asynchronous bulk settlement calculations and wallet crediting.
+
+---
+
+### 3. Caching Architecture (Redis)
+- **Odds Cache**: Read-heavy operations (e.g., fetching active matches and odds) will read from Redis first. Cache is updated on any odds change (`cache-aside` + `write-through` on odds-updates).
+- **Wallet Buffer**: Current balance is cached in Redis for fast page-render checks. DB acts as transactional source-of-truth.
