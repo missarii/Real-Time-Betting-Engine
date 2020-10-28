@@ -78,3 +78,12 @@ public class OddsCacheService {
     public static class CachedOdds implements Serializable {
         private String id;
         private String eventId;
+        private String marketName;
+        private String selectionName;
+        private BigDecimal oddsValue;
+        private String status;
+
+        public CachedOdds() {}
+
+        public CachedOdds(Odds odds) {
+            this.id = odds.getId().toString();
