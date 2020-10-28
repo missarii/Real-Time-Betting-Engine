@@ -78,3 +78,12 @@ public class SettlementService {
         BigDecimal payoutAmount;
         if (isWin) {
             bet.setStatus(Bet.BetStatus.WON);
+            payoutAmount = bet.getPotentialPayout();
+            // Credit winning amount to user's wallet
+            walletService.creditWin(wallet, payoutAmount, bet.getId());
+            logger.info("Bet ID: {} WON. Credited payout: {} to user: {}", bet.getId(), payoutAmount, bet.getUser().getUsername());
+        } else {
+            bet.setStatus(Bet.BetStatus.LOST);
+            payoutAmount = BigDecimal.ZERO;
+            logger.info("Bet ID: {} LOST. Stake: {} lost by user: {}", bet.getId(), bet.getStake(), bet.getUser().getUsername());
+        }
