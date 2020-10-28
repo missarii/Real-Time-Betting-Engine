@@ -91,3 +91,14 @@ public class WalletService {
                 .id(UUID.randomUUID())
                 .wallet(wallet)
                 .type(Transaction.TransactionType.BET_PLACED)
+                .amount(amount.negate())
+                .referenceId(betId)
+                .description("Bet placement lock funds")
+                .build();
+        transactionRepository.save(tx);
+    }
+
+    // Credits winning payouts when bet is settled as WON
+    @Transactional
+    public void creditWin(Wallet wallet, BigDecimal amount, UUID betId) {
+        wallet.setBalance(wallet.getBalance().add(amount));
