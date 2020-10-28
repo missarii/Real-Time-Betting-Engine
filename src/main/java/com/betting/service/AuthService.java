@@ -66,3 +66,10 @@ public class AuthService {
                 .wallet(savedWallet)
                 .type(Transaction.TransactionType.DEPOSIT)
                 .amount(new BigDecimal("1000.00"))
+                .description("Initial registration welcome bonus")
+                .build();
+        transactionRepository.save(tx);
+
+        return savedUser;
+    }
+}
