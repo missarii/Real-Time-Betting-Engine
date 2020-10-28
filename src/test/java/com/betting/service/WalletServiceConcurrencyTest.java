@@ -81,3 +81,12 @@ public class WalletServiceConcurrencyTest {
                 } catch (Exception e) {
                     failureCount.incrementAndGet();
                 }
+            });
+        }
+
+        latch.countDown(); // trigger all threads to start executing
+        executor.shutdown();
+        executor.awaitTermination(5, TimeUnit.SECONDS);
+
+        // Verify balance safety:
+        Wallet finalWallet = walletRepository.findByUserId(userId).orElseThrow();
