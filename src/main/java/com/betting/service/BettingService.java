@@ -85,3 +85,12 @@ public class BettingService {
         BigDecimal potentialPayout = request.getStake().multiply(request.getOddsValue());
 
         // 6. Instantiate Bet
+        Bet bet = Bet.builder()
+                .id(UUID.randomUUID())
+                .user(user)
+                .event(event)
+                .odds(odds)
+                .selectionName(request.getSelectionName())
+                .oddsValue(request.getOddsValue())
+                .stake(request.getStake())
+                .potentialPayout(potentialPayout)
