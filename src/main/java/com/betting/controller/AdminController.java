@@ -93,3 +93,14 @@ public class AdminController {
     @PostMapping("/events/{id}/score")
     public String updateScore(@PathVariable("id") UUID eventId,
                               @RequestParam("homeScore") int homeScore,
+                              @RequestParam("awayScore") int awayScore,
+                              @RequestParam("status") String status) {
+        
+        logger.info("Updating status and score for event: {}", eventId);
+        Event event = eventRepository.findById(eventId)
+                .orElseThrow(() -> new IllegalArgumentException("Event not found"));
+
+        event.setHomeScore(homeScore);
+        event.setAwayScore(awayScore);
+        event.setStatus(Event.EventStatus.valueOf(status.toUpperCase()));
+        eventRepository.save(event);
