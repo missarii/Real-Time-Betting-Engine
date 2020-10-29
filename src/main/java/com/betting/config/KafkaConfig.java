@@ -71,3 +71,11 @@ public class KafkaConfig {
         ConcurrentKafkaListenerContainerFactory<String, BetPlacedEvent> factory =
                 new ConcurrentKafkaListenerContainerFactory<>();
         factory.setConsumerFactory(cf);
+        return factory;
+    }
+
+    @Bean
+    public ConcurrentKafkaListenerContainerFactory<String, BetSettledEvent> betSettledContainerFactory() {
+        Map<String, Object> props = baseConsumerProps();
+        JsonDeserializer<BetSettledEvent> deser = new JsonDeserializer<>(BetSettledEvent.class, false);
+        ConsumerFactory<String, BetSettledEvent> cf =
