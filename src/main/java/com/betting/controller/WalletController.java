@@ -78,3 +78,11 @@ public class WalletController {
             return "wallet";
         }
     }
+
+    private void loadWalletDetails(String username, Model model) {
+        Wallet wallet = walletService.getWalletByUsername(username);
+        List<Transaction> transactions = walletService.getTransactionHistory(username);
+        model.addAttribute("wallet", wallet);
+        model.addAttribute("transactions", transactions);
+    }
+}
