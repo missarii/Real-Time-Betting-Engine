@@ -82,3 +82,12 @@
 
                 <!-- RECENT TICKETS -->
                 <div class="glass-card">
+                    <h2 style="font-size: 1.5rem; font-weight: 700; margin-bottom: 1.5rem;">🎫 Recent Bet Slips</h2>
+                    
+                    <div th:if="${#lists.isEmpty(bets)}" class="betslip-empty" style="padding: 2rem 0;">
+                        You haven't placed any bets yet. Choose an outcome above to build your first slip!
+                    </div>
+
+                    <table th:if="${!#lists.isEmpty(bets)}">
+                        <thead>
+                            <tr>
