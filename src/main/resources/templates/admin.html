@@ -83,3 +83,12 @@
                                 <label style="font-size: 0.75rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase;">Home Score</label>
                                 <input type="number" name="homeScore" th:value="${event.homeScore}" style="background: var(--bg-dark); border: 1px solid var(--border-color); padding: 0.5rem; border-radius: 6px; color: #fff; width: 100%;">
                             </div>
+                            <div style="flex-grow: 1;">
+                                <label style="font-size: 0.75rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase;">Away Score</label>
+                                <input type="number" name="awayScore" th:value="${event.awayScore}" style="background: var(--bg-dark); border: 1px solid var(--border-color); padding: 0.5rem; border-radius: 6px; color: #fff; width: 100%;">
+                            </div>
+                            <div style="flex-grow: 1.5;">
+                                <label style="font-size: 0.75rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase;">Match Status</label>
+                                <select name="status" style="background: var(--bg-dark); border: 1px solid var(--border-color); padding: 0.5rem; border-radius: 6px; color: #fff; width: 100%;">
+                                    <option th:selected="${event.status.name() == 'SCHEDULED'}">SCHEDULED</option>
+                                    <option th:selected="${event.status.name() == 'LIVE'}">LIVE</option>
