@@ -39,3 +39,8 @@ INSERT INTO odds (id, event_id, market_name, selection_name, odds_value, status,
 -- Seed Odds for Event 2 (LA Lakers vs Boston Celtics)
 INSERT INTO odds (id, event_id, market_name, selection_name, odds_value, status, version) VALUES
 ('44444444-4444-4444-4444-444444444401', '44444444-4444-4444-4444-444444444444', '1X2', 'HOME_WIN', 1.95, 'ACTIVE', 0),
+('44444444-4444-4444-4444-444444444402', '44444444-4444-4444-4444-444444444444', '1X2', 'DRAW', 15.0, 'ACTIVE', 0), -- Draw is very rare in basketball, high odds
+('44444444-4444-4444-4444-444444444403', '44444444-4444-4444-4444-444444444444', '1X2', 'AWAY_WIN', 1.85, 'ACTIVE', 0);
+
+-- Seed Odds for Event 3 (Novak Djokovic vs Rafael Nadal)
+INSERT INTO odds (id, event_id, market_name, selection_name, odds_value, status, version) VALUES
