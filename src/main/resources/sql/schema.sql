@@ -75,3 +75,11 @@ CREATE INDEX idx_odds_event ON odds(event_id);
 
 -- Bets Table
 CREATE TABLE bets (
+    id UUID PRIMARY KEY,
+    user_id UUID NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+    event_id UUID NOT NULL REFERENCES events(id) ON DELETE CASCADE,
+    odds_id UUID NOT NULL REFERENCES odds(id) ON DELETE CASCADE,
+    selection_name VARCHAR(50) NOT NULL,
+    odds_value NUMERIC(6,2) NOT NULL,
+    stake NUMERIC(15,2) NOT NULL CONSTRAINT chk_bet_stake CHECK (stake > 0),
+    potential_payout NUMERIC(15,2) NOT NULL CONSTRAINT chk_bet_payout CHECK (potential_payout > 0),
