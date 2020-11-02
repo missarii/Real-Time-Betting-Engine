@@ -86,3 +86,13 @@
                 </form>
             </div>
 
+            <!-- WITHDRAW CARD -->
+            <div class="glass-card" style="border-top: 4px solid var(--danger);">
+                <h2 style="font-size: 1.5rem; font-weight: 700; margin-bottom: 1rem; color: var(--danger); display: flex; align-items: center; gap: 0.5rem;">
+                    📤 Withdraw Payouts
+                </h2>
+                <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 1.5rem;">Withdraw winning payouts securely back to your verified withdrawal methods.</p>
+
+                <form th:action="@{/wallet/withdraw}" method="POST">
+                    <div class="input-group">
+                        <label for="withdrawAmount">Withdraw Amount (USD)</label>
