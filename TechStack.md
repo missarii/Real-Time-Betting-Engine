@@ -240,3 +240,29 @@ public class LiveOdds {
 }
 ```
 
+---
+
+# Running the Project
+
+## Start PostgreSQL
+
+```bash
+sudo systemctl start postgresql
+```
+
+## Start Redis
+
+```bash
+sudo systemctl start redis
+```
+
+## Start Kafka
+
+```bash
+bin/zookeeper-server-start.sh config/zookeeper.properties
+
+bin/kafka-server-start.sh config/server.properties
+```
+
+## Run Spring Boot Application
+
