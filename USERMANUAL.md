@@ -184,3 +184,24 @@ After logging in, you land on the **Dashboard** (`/dashboard`).
 |---|---|
 | **💵 Balance Pill** | Shows your current wallet balance (top right) |
 | **🔥 Live Matches** | Active matches you can bet on right now |
+| **🧾 Active Betslip** | Interactive drawer to build and submit your bet |
+| **🎫 Recent Bet Slips** | Your last 5 bet tickets with their status |
+
+---
+
+## 5. Placing a Bet (Sportsbook)
+
+### Step 1: Go to Sportsbook
+
+Click **"Sportsbook"** in the top navigation bar. You will see all available matches grouped by status (LIVE, UPCOMING, SUSPENDED).
+
+### Step 2: Choose a Match
+
+You will see match cards like this:
+
+```
+┌──────────────────────────────────────────┐
+│ ⚽ SOCCER          ● LIVE               │
+│                                          │
+│  Manchester City   2 - 1   Real Madrid  │
+│  📅 Starts: 2021-05-29 20:00             │
