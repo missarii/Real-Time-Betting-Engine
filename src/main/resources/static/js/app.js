@@ -129,3 +129,17 @@ function renderBetslip() {
 
     // Set Text Values
     document.getElementById("slip-match-name").textContent = selectedBet.matchName;
+    document.getElementById("slip-selection-name").textContent = selectedBet.selection.replace("_", " ");
+    document.getElementById("slip-odds-value").textContent = selectedBet.oddsValue.toFixed(2);
+    
+    const stakeInput = document.getElementById("slip-stake");
+    stakeInput.value = selectedBet.stake.toFixed(2);
+
+    // Attach listeners
+    stakeInput.oninput = () => {
+        selectedBet.stake = parseFloat(stakeInput.value) || 0;
+        updatePayoutCalculation();
+    };
+
+    updatePayoutCalculation();
+
