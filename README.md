@@ -123,3 +123,15 @@ betting-engine/
 - `POST /admin/events`: Seeds a new sports fixture and its starting decimal odds.
 - `POST /admin/events/{id}/score`: Updates a live scoreline and status state (e.g. SUSPENDED, LIVE).
 - `POST /admin/events/{id}/odds`: Fluctuates decimal prices (updates cache + sends Kafka event).
+- `POST /admin/events/{id}/settle`: Triggers settlement payouts to all winning tickets in play.
+
+---
+
+## 🚀 How to Run the Project Locally
+
+### 1. Prerequisites
+Make sure you have the following installed:
+- **Java 17+ SDK**
+- **Maven**
+- **Docker & Docker Compose**
+
