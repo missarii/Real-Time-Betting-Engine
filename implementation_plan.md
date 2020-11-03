@@ -113,3 +113,16 @@ Kafka serves as our asynchronous messaging backbone. It decouples high-throughpu
 ### 3. Caching Architecture (Redis)
 - **Odds Cache**: Read-heavy operations (e.g., fetching active matches and odds) will read from Redis first. Cache is updated on any odds change (`cache-aside` + `write-through` on odds-updates).
 - **Wallet Buffer**: Current balance is cached in Redis for fast page-render checks. DB acts as transactional source-of-truth.
+- **Session Store**: User sessions are persisted in Redis to support horizontal scalability.
+
+---
+
+### 4. WebSocket Real-Time Updates
+- **Endpoint**: `/ws/odds`
+- **Behavior**: Client connects on dashboard/events page. When an `odds-updates` event occurs, the WebSocket Handler broadcasts a JSON message containing the event ID, market name, selection, and new odds.
+- **UI Animation**: When an update is received, the corresponding HTML elements blink:
+  - **Green** for odds increase.
+  - **Red** for odds decrease.
+  - **Gray/Lock Icon** if odds are suspended.
+
+---
