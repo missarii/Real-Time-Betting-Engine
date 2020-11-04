@@ -90,3 +90,11 @@ public class WalletServiceConcurrencyTest {
 
         // Verify balance safety:
         Wallet finalWallet = walletRepository.findByUserId(userId).orElseThrow();
+        BigDecimal expectedBalance = new BigDecimal("1000.00")
+                .subtract(lockAmount.multiply(new BigDecimal(successCount.get())));
+        
+        assertEquals(expectedBalance.doubleValue(), finalWallet.getBalance().doubleValue(), 0.01);
+        assertTrue(successCount.get() < threadCount, "Optimistic locking should have prevented some transactions");
+        assertTrue(failureCount.get() > 0, "There should be failed concurrent updates");
+    }
+}
