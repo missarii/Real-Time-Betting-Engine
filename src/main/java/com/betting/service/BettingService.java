@@ -94,3 +94,13 @@ public class BettingService {
                 .oddsValue(request.getOddsValue())
                 .stake(request.getStake())
                 .potentialPayout(potentialPayout)
+                .status(Bet.BetStatus.PENDING)
+                .placedAt(LocalDateTime.now())
+                .build();
+
+        // 7. Lock wallet funds (debits balance, saves, records transaction)
+        Wallet wallet = walletService.getWalletByUsername(username);
+        walletService.lockFundsForBet(wallet, request.getStake(), bet.getId());
+
+        // 8. Save Bet
+        Bet savedBet = betRepository.save(bet);
