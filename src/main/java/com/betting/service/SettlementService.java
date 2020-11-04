@@ -87,3 +87,12 @@ public class SettlementService {
             payoutAmount = BigDecimal.ZERO;
             logger.info("Bet ID: {} LOST. Stake: {} lost by user: {}", bet.getId(), bet.getStake(), bet.getUser().getUsername());
         }
+
+        bet.setSettledAt(LocalDateTime.now());
+        betRepository.save(bet);
+
+        // 3. Publish BetSettledEvent to Kafka
+        BetSettledEvent settledEvent = BetSettledEvent.builder()
+                .betId(bet.getId())
+                .userId(bet.getUser().getId())
+                .username(bet.getUser().getUsername())
