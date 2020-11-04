@@ -102,3 +102,13 @@ public class WalletService {
     @Transactional
     public void creditWin(Wallet wallet, BigDecimal amount, UUID betId) {
         wallet.setBalance(wallet.getBalance().add(amount));
+        walletRepository.save(wallet);
+
+        Transaction tx = Transaction.builder()
+                .id(UUID.randomUUID())
+                .wallet(wallet)
+                .type(Transaction.TransactionType.BET_SETTLED)
+                .amount(amount)
+                .referenceId(betId)
+                .description("Bet won payout credit")
+                .build();
