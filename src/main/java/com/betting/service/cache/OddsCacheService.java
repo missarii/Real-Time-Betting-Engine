@@ -87,3 +87,11 @@ public class OddsCacheService {
 
         public CachedOdds(Odds odds) {
             this.id = odds.getId().toString();
+            this.eventId = odds.getEvent().getId().toString();
+            this.marketName = odds.getMarketName();
+            this.selectionName = odds.getSelectionName();
+            this.oddsValue = odds.getOddsValue();
+            this.status = odds.getStatus().name();
+        }
+    }
+}
