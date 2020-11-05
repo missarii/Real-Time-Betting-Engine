@@ -104,3 +104,14 @@ public class AdminController {
         event.setAwayScore(awayScore);
         event.setStatus(Event.EventStatus.valueOf(status.toUpperCase()));
         eventRepository.save(event);
+
+        return "redirect:/admin?scoreUpdated=true";
+    }
+
+    @PostMapping("/events/{id}/odds")
+    public String updateOdds(@PathVariable("id") UUID eventId,
+                             @RequestParam("oddsId") UUID oddsId,
+                             @RequestParam("oddsValue") BigDecimal oddsValue,
+                             @RequestParam("status") String status) {
+        
+        logger.info("Updating live odds selection {} to {}", oddsId, oddsValue);
