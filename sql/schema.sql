@@ -83,3 +83,11 @@ CREATE TABLE bets (
     odds_value NUMERIC(6,2) NOT NULL,
     stake NUMERIC(15,2) NOT NULL CONSTRAINT chk_bet_stake CHECK (stake > 0),
     potential_payout NUMERIC(15,2) NOT NULL CONSTRAINT chk_bet_payout CHECK (potential_payout > 0),
+    status VARCHAR(20) NOT NULL DEFAULT 'PENDING', -- PENDING, WON, LOST, VOIDED
+    placed_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    settled_at TIMESTAMP
+);
+
+CREATE INDEX idx_bets_user ON bets(user_id);
+CREATE INDEX idx_bets_event ON bets(event_id);
+CREATE INDEX idx_bets_status ON bets(status);
