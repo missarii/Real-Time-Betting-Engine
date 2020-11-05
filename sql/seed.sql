@@ -44,3 +44,7 @@ INSERT INTO odds (id, event_id, market_name, selection_name, odds_value, status,
 
 -- Seed Odds for Event 3 (Novak Djokovic vs Rafael Nadal)
 INSERT INTO odds (id, event_id, market_name, selection_name, odds_value, status, version) VALUES
+('55555555-5555-5555-5555-555555555501', '55555555-5555-5555-5555-555555555555', '1X2', 'HOME_WIN', 1.40, 'ACTIVE', 0),
+('55555555-5555-5555-5555-555555555503', '55555555-5555-5555-5555-555555555555', '1X2', 'AWAY_WIN', 2.80, 'ACTIVE', 0); -- Tennis has no Draw
+
+-- Seed Odds for Event 4 (Manchester City vs Liverpool)
