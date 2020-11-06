@@ -96,3 +96,12 @@
                 <form th:action="@{/wallet/withdraw}" method="POST">
                     <div class="input-group">
                         <label for="withdrawAmount">Withdraw Amount (USD)</label>
+                        <input type="number" id="withdrawAmount" name="amount" min="10.00" step="1" value="50.00" required>
+                    </div>
+
+                    <div class="input-group">
+                        <label>Payout Destination</label>
+                        <select>
+                            <option>Direct Bank Wire (*1102)</option>
+                            <option>Mock Cards Direct payout</option>
+                        </select>
