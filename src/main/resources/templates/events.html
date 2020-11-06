@@ -88,3 +88,12 @@
                                 <span class="odds-label" th:text="${odd.selectionName == 'HOME_WIN' ? '1' : (odd.selectionName == 'DRAW' ? 'X' : '2')}">1</span>
                                 <span class="odds-val" th:text="${#numbers.formatDecimal(odd.oddsValue, 1, 2)}">1.65</span>
                             </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- RIGHT PANEL: BETSLIP -->
+            <div class="betslip-wrapper">
+                <div class="glass-card" style="border-top: 4px solid var(--success);">
