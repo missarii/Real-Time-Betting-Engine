@@ -92,3 +92,13 @@
                                 <select name="status" style="background: var(--bg-dark); border: 1px solid var(--border-color); padding: 0.5rem; border-radius: 6px; color: #fff; width: 100%;">
                                     <option th:selected="${event.status.name() == 'SCHEDULED'}">SCHEDULED</option>
                                     <option th:selected="${event.status.name() == 'LIVE'}">LIVE</option>
+                                    <option th:selected="${event.status.name() == 'SUSPENDED'}">SUSPENDED</option>
+                                    <option th:selected="${event.status.name() == 'FINISHED'}">FINISHED</option>
+                                </select>
+                            </div>
+                            <button type="submit" class="btn" style="padding: 0.55rem 1rem; font-size: 0.85rem;">UPDATE STATE</button>
+                        </form>
+
+                        <!-- 2. Form to Settle Event (only if NOT already finished/settled) -->
+                        <div th:if="${event.status.name() != 'FINISHED'}" style="padding-bottom: 1.25rem; border-bottom: 1px dashed var(--border-color); margin-bottom: 1.25rem;">
+                            <form th:action="@{/admin/events/{id}/settle(id=${event.id})}" method="POST" style="display: flex; gap: 1rem; align-items: flex-end;">
