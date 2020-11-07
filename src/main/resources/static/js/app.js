@@ -143,3 +143,18 @@ function renderBetslip() {
 
     updatePayoutCalculation();
 
+    const placeBetBtn = document.getElementById("btn-place-bet");
+    placeBetBtn.onclick = submitBetSlip;
+}
+
+function updatePayoutCalculation() {
+    if (!selectedBet) return;
+    const payout = selectedBet.stake * selectedBet.oddsValue;
+    document.getElementById("slip-payout").textContent = payout.toFixed(2);
+}
+
+// --- SUBMIT BETSLIP AJAX ---
+function submitBetSlip() {
+    if (!selectedBet || selectedBet.stake <= 0) {
+        showNotification("Please enter a valid stake amount", "error");
+        return;
