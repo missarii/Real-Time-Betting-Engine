@@ -266,3 +266,30 @@ bin/kafka-server-start.sh config/server.properties
 
 ## Run Spring Boot Application
 
+```bash
+mvn spring-boot:run
+```
+
+---
+
+# Default Server
+
+```text
+http://localhost:8080
+```
+
+---
+
+# Important Production Concepts Used
+
+- Event-Driven Architecture
+- Distributed Messaging
+- Real-Time Communication
+- Async Processing
+- Concurrent Consumers
+- Connection Pooling
+- Secure API Design
+- High Throughput Backend Systems
+
+---
+
