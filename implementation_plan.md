@@ -126,3 +126,16 @@ Kafka serves as our asynchronous messaging backbone. It decouples high-throughpu
   - **Gray/Lock Icon** if odds are suspended.
 
 ---
+
+## 🚦 REST API Endpoints
+
+### Authentication & Users
+- `POST /api/auth/register` (Register user)
+- `POST /api/auth/login` (Login, returns JWT or sets session cookie)
+- `POST /api/auth/logout` (Log out user)
+
+### Sports Events
+- `GET /api/events` (Fetch active and live events)
+- `GET /api/events/{id}` (Fetch event details)
+
+### Betting
