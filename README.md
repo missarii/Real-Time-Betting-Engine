@@ -135,3 +135,16 @@ Make sure you have the following installed:
 - **Maven**
 - **Docker & Docker Compose**
 
+### 2. Launch Infrastructure Services
+Spin up PostgreSQL, Redis, and Kafka in the background:
+```bash
+# From the project root
+docker compose -f docker/docker-compose.yml up -d
+```
+Verify the health checks are passing:
+```bash
+docker ps
+```
+
+### 3. Run Self-Contained Unit & Integration Tests
+Execute the test suites. This runs in-memory on H2, mocking out Kafka/Redis automatically to guarantee fast local execution:
