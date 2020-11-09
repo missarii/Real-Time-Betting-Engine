@@ -104,3 +104,12 @@ public class BettingService {
 
         // 8. Save Bet
         Bet savedBet = betRepository.save(bet);
+
+        // 9. Publish event to Kafka
+        BetPlacedEvent placedEvent = BetPlacedEvent.builder()
+                .betId(savedBet.getId())
+                .userId(user.getId())
+                .username(user.getUsername())
+                .eventId(event.getId())
+                .oddsId(odds.getId())
+                .selectionName(savedBet.getSelectionName())
