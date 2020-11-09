@@ -205,3 +205,23 @@ You will see match cards like this:
 │                                          │
 │  Manchester City   2 - 1   Real Madrid  │
 │  📅 Starts: 2021-05-29 20:00             │
+│                                          │
+│  [ 1: 1.80 ]   [ X: 3.40 ]  [ 2: 4.20 ] │
+│  (Home Win)      (Draw)      (Away Win)  │
+└──────────────────────────────────────────┘
+```
+
+### Step 3: Click an Odds Button
+
+Click the odds button for your chosen outcome:
+- **1** = Home Team wins
+- **X** = Match ends in a Draw
+- **2** = Away Team wins
+
+The number shown (e.g., `1.80`) is the **decimal odds multiplier**.
+
+### Step 4: Enter Your Stake
+
+After clicking an odds button, the **Active Betslip** drawer on the right updates:
+
+```
