@@ -96,3 +96,11 @@ public class SettlementService {
                 .betId(bet.getId())
                 .userId(bet.getUser().getId())
                 .username(bet.getUser().getUsername())
+                .eventId(bet.getEvent().getId())
+                .status(bet.getStatus().name())
+                .payout(payoutAmount)
+                .settledAt(bet.getSettledAt())
+                .build();
+        betProducer.sendBetSettled(settledEvent);
+    }
+}
