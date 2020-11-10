@@ -115,3 +115,13 @@ public class AdminController {
                              @RequestParam("status") String status) {
         
         logger.info("Updating live odds selection {} to {}", oddsId, oddsValue);
+
+        Odds odds = oddsRepository.findById(oddsId)
+                .orElseThrow(() -> new IllegalArgumentException("Odds selection not found"));
+
+        odds.setOddsValue(oddsValue);
+        odds.setStatus(Odds.OddsStatus.valueOf(status.toUpperCase()));
+        Odds savedOdds = oddsRepository.save(odds);
+
+        // Update Redis Cache
+        OddsCacheService.CachedOdds cachedRepresentation = new OddsCacheService.CachedOdds(savedOdds);
