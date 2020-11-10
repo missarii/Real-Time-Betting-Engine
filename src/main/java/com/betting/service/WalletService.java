@@ -112,3 +112,14 @@ public class WalletService {
                 .referenceId(betId)
                 .description("Bet won payout credit")
                 .build();
+        transactionRepository.save(tx);
+    }
+
+    // Refunds staked amount if a bet is VOIDED
+    @Transactional
+    public void refundBet(Wallet wallet, BigDecimal amount, UUID betId) {
+        wallet.setBalance(wallet.getBalance().add(amount));
+        walletRepository.save(wallet);
+
+        Transaction tx = Transaction.builder()
+                .id(UUID.randomUUID())
