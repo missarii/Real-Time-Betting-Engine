@@ -48,3 +48,7 @@ INSERT INTO odds (id, event_id, market_name, selection_name, odds_value, status,
 ('55555555-5555-5555-5555-555555555503', '55555555-5555-5555-5555-555555555555', '1X2', 'AWAY_WIN', 2.80, 'ACTIVE', 0); -- Tennis has no Draw
 
 -- Seed Odds for Event 4 (Manchester City vs Liverpool)
+INSERT INTO odds (id, event_id, market_name, selection_name, odds_value, status, version) VALUES
+('66666666-6666-6666-6666-666666666601', '66666666-6666-6666-6666-666666666666', '1X2', 'HOME_WIN', 2.10, 'ACTIVE', 0),
+('66666666-6666-6666-6666-666666666602', '66666666-6666-6666-6666-666666666666', '1X2', 'DRAW', 3.50, 'ACTIVE', 0),
+('66666666-6666-6666-6666-666666666603', '66666666-6666-6666-6666-666666666666', '1X2', 'AWAY_WIN', 3.10, 'ACTIVE', 0);
