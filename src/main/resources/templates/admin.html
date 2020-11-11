@@ -102,3 +102,12 @@
                         <!-- 2. Form to Settle Event (only if NOT already finished/settled) -->
                         <div th:if="${event.status.name() != 'FINISHED'}" style="padding-bottom: 1.25rem; border-bottom: 1px dashed var(--border-color); margin-bottom: 1.25rem;">
                             <form th:action="@{/admin/events/{id}/settle(id=${event.id})}" method="POST" style="display: flex; gap: 1rem; align-items: flex-end;">
+                                <div style="flex-grow: 1;">
+                                    <label style="font-size: 0.75rem; font-weight: 700; color: var(--warning); text-transform: uppercase;">🏆 Settle Match Outcome</label>
+                                    <select name="winningResult" style="background: var(--bg-dark); border: 1px solid var(--warning); padding: 0.5rem; border-radius: 6px; color: #fff; width: 100%;">
+                                        <option value="HOME_WIN" th:text="${event.homeTeam + ' (Home Win)'}">Home Win</option>
+                                        <option value="DRAW">Draw Match</option>
+                                        <option value="AWAY_WIN" th:text="${event.awayTeam + ' (Away Win)'}">Away Win</option>
+                                    </select>
+                                </div>
+                                <button type="submit" class="btn btn-success" style="padding: 0.55rem 1.5rem; font-size: 0.85rem;">SETTLE FIXTURE & PAYOUTS</button>
