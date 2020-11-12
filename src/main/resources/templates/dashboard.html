@@ -101,3 +101,12 @@
                             </tr>
                         </thead>
                         <tbody>
+                            <tr th:each="bet : ${bets}">
+                                <td th:text="${#temporals.format(bet.placedAt, 'yyyy-MM-dd HH:mm')}">Time</td>
+                                <td th:text="${bet.event.homeTeam + ' vs ' + bet.event.awayTeam}" style="font-weight: 600;">Match</td>
+                                <td th:text="${bet.selectionName == 'HOME_WIN' ? bet.event.homeTeam + ' (Win)' : (bet.selectionName == 'AWAY_WIN' ? bet.event.awayTeam + ' (Win)' : 'Draw')}" style="color: var(--primary);">Selection</td>
+                                <td th:text="${#numbers.formatDecimal(bet.oddsValue, 1, 2)}" style="font-weight: 700;">Odds</td>
+                                <td th:text="${'$' + #numbers.formatDecimal(bet.stake, 1, 2)}">Stake</td>
+                                <td th:text="${'$' + #numbers.formatDecimal(bet.potentialPayout, 1, 2)}" style="color: var(--success); font-weight: 600;">Payout</td>
+                                <td>
+                                    <span class="badge" th:classappend="${'badge-' + #strings.toLowerCase(bet.status.name())}" th:text="${bet.status}">PENDING</span>
