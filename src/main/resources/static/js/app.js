@@ -158,3 +158,17 @@ function submitBetSlip() {
     if (!selectedBet || selectedBet.stake <= 0) {
         showNotification("Please enter a valid stake amount", "error");
         return;
+    }
+
+    const placeBetBtn = document.getElementById("btn-place-bet");
+    placeBetBtn.disabled = true;
+    placeBetBtn.textContent = "PLACING BET...";
+
+    const payload = {
+        eventId: selectedBet.eventId,
+        oddsId: selectedBet.oddsId,
+        selectionName: selectedBet.selection,
+        oddsValue: selectedBet.oddsValue,
+        stake: selectedBet.stake
+    };
+
