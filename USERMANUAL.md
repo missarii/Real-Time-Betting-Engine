@@ -225,3 +225,24 @@ The number shown (e.g., `1.80`) is the **decimal odds multiplier**.
 After clicking an odds button, the **Active Betslip** drawer on the right updates:
 
 ```
+┌─────────────────────────────────┐
+│ 🧾 Active Betslip         SINGLE│
+│                                  │
+│ Man City vs Real Madrid          │
+│ HOME WIN                   1.80  │
+│                                  │
+│ STAKE: [ 100.00 ] USD            │
+│                                  │
+│ POTENTIAL PAYOUT: $180.00        │
+│                                  │
+│       [ PLACE BET ]              │
+└─────────────────────────────────┘
+```
+
+- Change the **STAKE** amount to how much you want to bet
+- The **POTENTIAL PAYOUT** updates automatically (Stake × Odds)
+- Minimum stake is **$0.10**
+
+### Step 5: Confirm Your Bet
+
+Click the green **"PLACE BET"** button.
