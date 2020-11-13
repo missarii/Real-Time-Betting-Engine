@@ -139,3 +139,16 @@ Kafka serves as our asynchronous messaging backbone. It decouples high-throughpu
 - `GET /api/events/{id}` (Fetch event details)
 
 ### Betting
+- `POST /api/bets` (Place a bet. Body: `eventId`, `oddsId`, `selectionName`, `oddsValue`, `stake`)
+- `GET /api/bets` (Fetch current user's bet history)
+
+### Wallet
+- `GET /api/wallet` (Fetch wallet balance and transaction history)
+- `POST /api/wallet/deposit` (Deposit funds. Body: `amount`)
+- `POST /api/wallet/withdraw` (Withdraw funds. Body: `amount`)
+
+### Admin Panel (Role: ADMIN)
+- `POST /api/admin/events` (Create sports event)
+- `PUT /api/admin/events/{id}/odds` (Update odds value or status)
+- `PUT /api/admin/events/{id}/score` (Update scores and match status)
+- `POST /api/admin/events/{id}/settle` (Settle event and trigger bet settlements)
