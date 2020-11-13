@@ -148,3 +148,15 @@ docker ps
 
 ### 3. Run Self-Contained Unit & Integration Tests
 Execute the test suites. This runs in-memory on H2, mocking out Kafka/Redis automatically to guarantee fast local execution:
+```bash
+mvn test
+```
+*(You will see the concurrency test output logging successful optimistic locking prevention.)*
+
+### 4. Build & Launch the Application
+Compile the code and start the Spring Boot web application:
+```bash
+mvn spring-boot:run
+```
+The application will start on **`http://localhost:8080`**.
+
