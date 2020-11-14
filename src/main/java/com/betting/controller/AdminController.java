@@ -125,3 +125,14 @@ public class AdminController {
 
         // Update Redis Cache
         OddsCacheService.CachedOdds cachedRepresentation = new OddsCacheService.CachedOdds(savedOdds);
+        oddsCacheService.putOdds(oddsId, cachedRepresentation);
+
+        // Publish update event to Kafka to trigger WebSocket broadcasts
+        OddsUpdatedEvent kafkaEvent = OddsUpdatedEvent.builder()
+                .oddsId(savedOdds.getId())
+                .eventId(eventId)
+                .marketName(savedOdds.getMarketName())
+                .selectionName(savedOdds.getSelectionName())
+                .oddsValue(savedOdds.getOddsValue())
+                .status(savedOdds.getStatus().name())
+                .build();
