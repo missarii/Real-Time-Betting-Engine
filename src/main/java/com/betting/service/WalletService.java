@@ -123,3 +123,12 @@ public class WalletService {
 
         Transaction tx = Transaction.builder()
                 .id(UUID.randomUUID())
+                .wallet(wallet)
+                .type(Transaction.TransactionType.BET_REFUNDED)
+                .amount(amount)
+                .referenceId(betId)
+                .description("Bet voided refund")
+                .build();
+        transactionRepository.save(tx);
+    }
+}
