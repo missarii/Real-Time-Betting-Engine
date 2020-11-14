@@ -113,3 +113,12 @@ public class BettingService {
                 .eventId(event.getId())
                 .oddsId(odds.getId())
                 .selectionName(savedBet.getSelectionName())
+                .oddsValue(savedBet.getOddsValue())
+                .stake(savedBet.getStake())
+                .placedAt(savedBet.getPlacedAt())
+                .build();
+        betProducer.sendBetPlaced(placedEvent);
+
+        return savedBet;
+    }
+}
