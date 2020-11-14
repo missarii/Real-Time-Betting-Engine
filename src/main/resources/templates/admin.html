@@ -111,3 +111,12 @@
                                     </select>
                                 </div>
                                 <button type="submit" class="btn btn-success" style="padding: 0.55rem 1.5rem; font-size: 0.85rem;">SETTLE FIXTURE & PAYOUTS</button>
+                            </form>
+                        </div>
+
+                        <!-- 3. Fluctuating Individual Odds -->
+                        <div>
+                            <label style="font-size: 0.75rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase; margin-bottom: 0.5rem; display: block;">⚡ Fluctuate Odds Values & Broadcast</label>
+                            
+                            <div th:each="odd : ${event.odds}" style="display: flex; justify-content: space-between; align-items: center; background: hsla(222, 32%, 18%, 0.4); border: 1px solid var(--border-color); padding: 0.5rem 1rem; border-radius: 8px; margin-bottom: 0.5rem;">
+                                <span style="font-weight: 700; font-size: 0.9rem;" th:text="${odd.selectionName + ' (' + odd.marketName + ')'}">Selection</span>
