@@ -110,3 +110,12 @@
                                 <td th:text="${'$' + #numbers.formatDecimal(bet.potentialPayout, 1, 2)}" style="color: var(--success); font-weight: 600;">Payout</td>
                                 <td>
                                     <span class="badge" th:classappend="${'badge-' + #strings.toLowerCase(bet.status.name())}" th:text="${bet.status}">PENDING</span>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+
+            <!-- RIGHT PANEL (BETSLIP IN REAL-TIME) -->
