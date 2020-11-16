@@ -172,3 +172,18 @@ function submitBetSlip() {
         stake: selectedBet.stake
     };
 
+    fetch("/api/bets", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(payload)
+    })
+    .then(async response => {
+        const text = await response.text();
+        if (response.ok) {
+            showNotification("Bet placed successfully! Good luck!", "success");
+            selectedBet = null;
+            renderBetslip();
+            // Refresh page after 1.5 seconds to reflect wallet balance & ticket updates
+            setTimeout(() => window.location.reload(), 1500);
