@@ -115,3 +115,13 @@
                     <button type="submit" class="btn btn-danger" style="width: 100%; padding: 1rem;">PROCEED WITHDRAWAL</button>
                 </form>
             </div>
+        </div>
+
+        <!-- TRANSACTIONS HISTORY STATEMENT -->
+        <div class="glass-card">
+            <h2 style="font-size: 1.5rem; font-weight: 700; margin-bottom: 1.5rem;">📊 Transaction History Ledger</h2>
+
+            <div th:if="${#lists.isEmpty(transactions)}" class="betslip-empty" style="padding: 3rem 0;">
+                No transactions recorded. Fill up your balance to start.
+            </div>
+
