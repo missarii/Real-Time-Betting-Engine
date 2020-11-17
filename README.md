@@ -160,3 +160,16 @@ mvn spring-boot:run
 ```
 The application will start on **`http://localhost:8080`**.
 
+### 5. Access the Demo Accounts
+
+You can log in immediately using the pre-seeded credentials:
+
+#### 👤 Normal User Account
+- **Username**: `user`
+- **Password**: `password`
+- **Starting Balance**: `$1,000.00 USD`
+
+#### 🛠️ Administrator Account
+- **Username**: `admin`
+- **Password**: `password`
+- **Privileges**: Create fixtures, manipulate live scores/odds, trigger settlements.
