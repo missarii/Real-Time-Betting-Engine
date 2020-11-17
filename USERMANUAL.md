@@ -246,3 +246,24 @@ After clicking an odds button, the **Active Betslip** drawer on the right update
 ### Step 5: Confirm Your Bet
 
 Click the green **"PLACE BET"** button.
+
+- ✅ **Success**: A green notification appears, your balance decreases by the stake amount, the page refreshes
+- ❌ **Error**: A red notification explains why the bet was rejected (e.g., insufficient balance, odds changed)
+
+### Understanding Decimal Odds
+
+```
+Stake × Odds = Potential Payout
+
+Example: $100 stake at odds 1.80
+→ $100 × 1.80 = $180 total return
+→ $80 net profit + $100 stake returned = $180
+```
+
+---
+
+## 6. My Bets — Tracking Your Tickets
+
+Click **"My Bets"** in the navigation to see your complete betting history.
+
+### Bet Status Explained
