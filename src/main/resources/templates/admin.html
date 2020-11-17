@@ -120,3 +120,13 @@
                             
                             <div th:each="odd : ${event.odds}" style="display: flex; justify-content: space-between; align-items: center; background: hsla(222, 32%, 18%, 0.4); border: 1px solid var(--border-color); padding: 0.5rem 1rem; border-radius: 8px; margin-bottom: 0.5rem;">
                                 <span style="font-weight: 700; font-size: 0.9rem;" th:text="${odd.selectionName + ' (' + odd.marketName + ')'}">Selection</span>
+                                
+                                <form th:action="@{/admin/events/{id}/odds(id=${event.id})}" method="POST" style="display: flex; gap: 0.5rem; align-items: center;">
+                                    <input type="hidden" name="oddsId" th:value="${odd.id}">
+                                    
+                                    <span style="font-size: 0.85rem; color: var(--text-muted);">Price:</span>
+                                    <input type="number" name="oddsValue" th:value="${odd.oddsValue}" step="0.05" min="1.01" style="background: var(--bg-dark); border: 1px solid var(--border-color); padding: 0.35rem; border-radius: 6px; color: #fff; width: 80px; text-align: center; font-weight: 700;">
+                                    
+                                    <select name="status" style="background: var(--bg-dark); border: 1px solid var(--border-color); padding: 0.35rem; border-radius: 6px; color: #fff; width: 110px;">
+                                        <option value="ACTIVE" th:selected="${odd.status.name() == 'ACTIVE'}">ACTIVE</option>
+                                        <option value="SUSPENDED" th:selected="${odd.status.name() == 'SUSPENDED'}">SUSPENDED</option>
