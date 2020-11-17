@@ -152,3 +152,16 @@ Kafka serves as our asynchronous messaging backbone. It decouples high-throughpu
 - `PUT /api/admin/events/{id}/odds` (Update odds value or status)
 - `PUT /api/admin/events/{id}/score` (Update scores and match status)
 - `POST /api/admin/events/{id}/settle` (Settle event and trigger bet settlements)
+
+---
+
+## 🌐 Thymeleaf UI Mockup & Pages
+All pages will share a layout utilizing a dark-mode theme, sleek cards, glowing status tags, and smooth UI transition effects.
+
+1. **`login.html` / `register.html`**: Sleek modern form with glassmorphism layout, animated validation errors.
+2. **`dashboard.html` / `index.html`**: General overview of live events, quick bets, and account balance.
+3. **`events.html`**: Main sportsbook interface. Includes WebSocket listeners. Odds boxes display flashing animations when prices fluctuate.
+4. **`wallet.html`**: Interactive deposit/withdrawal form, visual transaction history with positive (green) and negative (red) indicators.
+5. **`admin.html`**: Control room with quick action buttons to update scores, toggle odds suspension, and settle events.
+
+---
