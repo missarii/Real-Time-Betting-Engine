@@ -136,3 +136,13 @@ public class AdminController {
                 .oddsValue(savedOdds.getOddsValue())
                 .status(savedOdds.getStatus().name())
                 .build();
+        betProducer.sendOddsUpdated(kafkaEvent);
+
+        return "redirect:/admin?oddsUpdated=true";
+    }
+
+    @PostMapping("/events/{id}/settle")
+    public String settleEvent(@PathVariable("id") UUID eventId,
+                              @RequestParam("winningResult") String winningResult) {
+        
+        logger.info("Triggering settlement for event {} with winning result {}", eventId, winningResult);
