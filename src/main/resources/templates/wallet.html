@@ -125,3 +125,13 @@
                 No transactions recorded. Fill up your balance to start.
             </div>
 
+            <table th:if="${!#lists.isEmpty(transactions)}">
+                <thead>
+                    <tr>
+                        <th>Transaction ID</th>
+                        <th>Execution Time</th>
+                        <th>Transaction Type</th>
+                        <th>Reference Info</th>
+                        <th>Description Details</th>
+                        <th>Amount Value</th>
+                    </tr>
