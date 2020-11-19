@@ -368,3 +368,32 @@ header {
     background: hsla(222, 32%, 18%, 0.8);
     border: 1px solid var(--border-color);
     border-radius: 8px;
+    padding: 1rem;
+    margin-bottom: 1rem;
+}
+
+.slip-match {
+    font-weight: 700;
+    font-size: 0.95rem;
+    margin-bottom: 0.25rem;
+}
+
+.slip-selection {
+    color: var(--primary);
+    font-weight: 600;
+    font-size: 0.9rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.slip-stake-input {
+    margin-top: 1rem;
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+}
+
+.slip-stake-input input {
+    background: var(--bg-dark);
+    border: 1px solid var(--border-color);
