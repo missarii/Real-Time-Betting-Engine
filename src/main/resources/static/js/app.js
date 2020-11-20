@@ -187,3 +187,17 @@ function submitBetSlip() {
             renderBetslip();
             // Refresh page after 1.5 seconds to reflect wallet balance & ticket updates
             setTimeout(() => window.location.reload(), 1500);
+        } else {
+            showNotification(text || "Failed to place bet. Try again.", "error");
+            placeBetBtn.disabled = false;
+            placeBetBtn.textContent = "PLACE BET";
+        }
+    })
+    .catch(err => {
+        console.error("Error submitting bet:", err);
+        showNotification("Connection error. Please try again.", "error");
+        placeBetBtn.disabled = false;
+        placeBetBtn.textContent = "PLACE BET";
+    });
+}
+
