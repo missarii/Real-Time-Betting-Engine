@@ -267,3 +267,24 @@ Example: $100 stake at odds 1.80
 Click **"My Bets"** in the navigation to see your complete betting history.
 
 ### Bet Status Explained
+
+| Status Badge | Meaning |
+|---|---|
+| 🟡 **PENDING** (pulsing) | Match is still in progress. Waiting for settlement. |
+| 🟢 **WON** | Your selection won! Payout has been credited to your wallet. |
+| ⚫ **LOST** | Your selection lost. The stake has been forfeited. |
+| 🔵 **VOIDED** | Bet was cancelled (e.g., match abandoned). Stake refunded. |
+
+### Bet Ticket Details
+
+Each row in the table shows:
+
+| Column | Description |
+|---|---|
+| **Ticket ID** | First 8 characters of your unique bet reference |
+| **Placed Time** | Exact timestamp when you placed the bet |
+| **Sport** | The sport category |
+| **Match Event** | The two teams/players |
+| **My Selection** | What you bet on (Home Win, Draw, Away Win) |
+| **Odds Value** | The decimal odds locked in at time of placement |
+| **Stake Amount** | How much you bet |
