@@ -165,3 +165,16 @@ All pages will share a layout utilizing a dark-mode theme, sleek cards, glowing 
 5. **`admin.html`**: Control room with quick action buttons to update scores, toggle odds suspension, and settle events.
 
 ---
+
+## 🛠️ Step-by-Step Build Order (Day-by-Day Plan)
+
+```mermaid
+gantt
+    title Construction Sequence (COMPLETED)
+    dateFormat  YYYY-MM-DD
+    section Phase 1: Environment & Setup
+    Project Setup & Docker Compose      :done, 2021-05-29, 1d
+    Database Schema & JPA Entities       :done, 2021-05-30, 1d
+    section Phase 2: Core Logics
+    Auth & Security (JWT / Session)     :done, 2021-05-31, 1d
+    Wallet System & Transaction Safety   :done, 2021-06-01, 1d
