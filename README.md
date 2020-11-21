@@ -173,3 +173,15 @@ You can log in immediately using the pre-seeded credentials:
 - **Username**: `admin`
 - **Password**: `password`
 - **Privileges**: Create fixtures, manipulate live scores/odds, trigger settlements.
+
+---
+
+## 💻 Step-by-Step Live Demo Guide
+1. **Open two browser windows side-by-side**:
+   - Window A: Log in as `admin`. Go to the **Admin Room** (`/admin`).
+   - Window B: Log in as `user`. Go to the **Sportsbook** (`/events`).
+2. **Observe Real-Time Updates**:
+   - In Window A, find a match selection (e.g. Real Madrid vs Barcelona, HOME_WIN price `1.65`) and update it to `1.80`.
+   - Watch the HOME_WIN button in Window B immediately **flash green** and update to `1.80` in real time without refreshing the page!
+   - In Window A, toggle the selection to **SUSPENDED**.
+   - Watch the selection in Window B immediately lock up with a **padlock icon** (preventing user clicks).
