@@ -146,3 +146,13 @@ public class AdminController {
                               @RequestParam("winningResult") String winningResult) {
         
         logger.info("Triggering settlement for event {} with winning result {}", eventId, winningResult);
+        
+        try {
+            settlementService.settleEvent(eventId, winningResult);
+            return "redirect:/admin?settlementSuccess=true";
+        } catch (Exception e) {
+            logger.error("Settlement failed: {}", e.getMessage());
+            return "redirect:/admin?error=" + e.getMessage();
+        }
+    }
+}
