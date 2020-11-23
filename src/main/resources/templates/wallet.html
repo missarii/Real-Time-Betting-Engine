@@ -135,3 +135,12 @@
                         <th>Description Details</th>
                         <th>Amount Value</th>
                     </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="tx : ${transactions}">
+                        <td th:text="${#strings.substring(tx.id.toString(), 0, 8) + '...'}" style="font-family: monospace; font-weight: 700; color: var(--text-muted);">ID</td>
+                        <td th:text="${#temporals.format(tx.createdAt, 'yyyy-MM-dd HH:mm:ss')}">Time</td>
+                        <td>
+                            <span class="badge" th:classappend="${tx.type.name() == 'DEPOSIT' || tx.type.name() == 'BET_SETTLED' || tx.type.name() == 'BET_REFUNDED' ? 'badge-won' : 'badge-lost'}" th:text="${tx.type}">TYPE</span>
+                        </td>
+                        <td th:text="${tx.referenceId != null ? #strings.substring(tx.referenceId.toString(), 0, 8) + '...' : '-'}" style="font-family: monospace;">Ref</td>
