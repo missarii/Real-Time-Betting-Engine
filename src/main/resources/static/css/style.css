@@ -397,3 +397,32 @@ header {
 .slip-stake-input input {
     background: var(--bg-dark);
     border: 1px solid var(--border-color);
+    padding: 0.5rem;
+    border-radius: 6px;
+    color: #fff;
+    font-weight: 700;
+    width: 80px;
+    text-align: center;
+}
+
+.payout-info {
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border-color);
+    display: flex;
+    justify-content: space-between;
+    font-size: 1rem;
+    font-weight: 700;
+}
+
+.payout-val {
+    color: var(--success);
+}
+
+/* --- BADGES & TICKETS --- */
+.badge {
+    padding: 0.35rem 0.75rem;
+    border-radius: 6px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
