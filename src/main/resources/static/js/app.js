@@ -201,3 +201,18 @@ function submitBetSlip() {
     });
 }
 
+// --- USER FEEDBACK NOTIFICATIONS ---
+function showNotification(msg, type) {
+    const notifyEl = document.getElementById("notification-toast");
+    if (!notifyEl) {
+        // Create element dynamically if it doesn't exist
+        const toast = document.createElement("div");
+        toast.id = "notification-toast";
+        toast.style.position = "fixed";
+        toast.style.bottom = "20px";
+        toast.style.right = "20px";
+        toast.style.zIndex = "1000";
+        toast.style.padding = "1rem 1.5rem";
+        toast.style.borderRadius = "8px";
+        toast.style.fontWeight = "600";
+        toast.style.color = "#fff";
