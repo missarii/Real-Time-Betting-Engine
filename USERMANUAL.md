@@ -288,3 +288,23 @@ Each row in the table shows:
 | **My Selection** | What you bet on (Home Win, Draw, Away Win) |
 | **Odds Value** | The decimal odds locked in at time of placement |
 | **Stake Amount** | How much you bet |
+| **Potential Payout** | What you'll receive if you win |
+| **Status** | Current state of the bet |
+| **Settled Time** | When the match result was officially applied |
+
+---
+
+## 7. Wallet — Deposits & Withdrawals
+
+Click **"Wallet"** in the navigation to manage your funds.
+
+### 7.1 Making a Deposit
+
+1. On the Wallet page, find the **📥 Simulate Deposit** card (green border)
+2. Enter your desired amount in the **"Deposit Amount (USD)"** field (minimum $10)
+3. The card number and payment details are simulated (no real payment)
+4. Click **"SECURE DEPOSIT"**
+5. Your balance updates immediately and a `DEPOSIT` entry appears in the transaction ledger
+
+### 7.2 Making a Withdrawal
+
