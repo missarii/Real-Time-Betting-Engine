@@ -178,3 +178,15 @@ gantt
     section Phase 2: Core Logics
     Auth & Security (JWT / Session)     :done, 2021-05-31, 1d
     Wallet System & Transaction Safety   :done, 2021-06-01, 1d
+    Betting System & Validation         :done, 2021-06-02, 1d
+    section Phase 3: Infrastructure
+    Redis Integration & Cache           :done, 2021-06-03, 1d
+    Kafka Integration & Events          :done, 2021-06-04, 1d
+    WebSockets & Real-Time Odds         :done, 2021-06-05, 1d
+    section Phase 4: UI & Settlement
+    Thymeleaf Templates & Frontend JS    :done, 2021-06-06, 2d
+    Settlement Engine & Admin Controller:done, 2021-06-08, 1d
+    section Phase 5: Verification
+    End-to-End Testing & Polish         :done, 2021-06-09, 1d
+```
+
