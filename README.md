@@ -185,3 +185,16 @@ You can log in immediately using the pre-seeded credentials:
    - Watch the HOME_WIN button in Window B immediately **flash green** and update to `1.80` in real time without refreshing the page!
    - In Window A, toggle the selection to **SUSPENDED**.
    - Watch the selection in Window B immediately lock up with a **padlock icon** (preventing user clicks).
+3. **Trace Transaction Statement Flow**:
+   - In Window B, place a $100 bet on Real Madrid. Observe the wallet immediately deducts $100 (balance is now $900).
+   - In Window A, update the score of the match to `2 - 1` and click **Settle Fixture & Payouts** with outcome `HOME_WIN`.
+   - In Window B, go to **Wallet** or **My Bets**. Observe your bet is now marked **WON** and your balance has increased by $180 ($900 + $180 = $1080).
+   - Check the **Transaction History Ledger** to see the structured ledger items detailing deposits, locks, and wins.
+
+---
+
+## 🛠️ Current Working Components (Confirmed Running)
+All of the following components have been fully integrated and verified via active, live system logging during the monolith boot-up sequence:
+- **Spring Boot 3.2.5** (Core framework & configuration runtime)
+- **PostgreSQL 15** (Primary persistent store for transactional state)
+- **Hibernate & JPA** (Entity mapping with optimistic transactional safety locks)
