@@ -144,3 +144,13 @@
                             <span class="badge" th:classappend="${tx.type.name() == 'DEPOSIT' || tx.type.name() == 'BET_SETTLED' || tx.type.name() == 'BET_REFUNDED' ? 'badge-won' : 'badge-lost'}" th:text="${tx.type}">TYPE</span>
                         </td>
                         <td th:text="${tx.referenceId != null ? #strings.substring(tx.referenceId.toString(), 0, 8) + '...' : '-'}" style="font-family: monospace;">Ref</td>
+                        <td th:text="${tx.description}" style="font-weight: 500;">Description</td>
+                        <td th:text="${(tx.amount.compareTo(T(java.math.BigDecimal).ZERO) > 0 ? '+' : '') + '$' + #numbers.formatDecimal(tx.amount, 1, 2)}"
+                            th:style="${tx.amount.compareTo(T(java.math.BigDecimal).ZERO) > 0 ? 'color: var(--success); font-weight: 700;' : 'color: var(--danger); font-weight: 700;'}">
+                            Amount
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </main>
