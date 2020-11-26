@@ -149,3 +149,12 @@
                     </h2>
                     <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 1.5rem;">Populate a new match and its 1X2 market prices instantaneously to the database and Redis cache.</p>
 
+                    <form th:action="@{/admin/events}" method="POST">
+                        <div class="input-group">
+                            <label for="sport">Sport Type</label>
+                            <select id="sport" name="sport">
+                                <option value="SOCCER">Soccer</option>
+                                <option value="BASKETBALL">Basketball</option>
+                                <option value="TENNIS">Tennis</option>
+                                <option value="ESPORTS">Esports</option>
+                            </select>
