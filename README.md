@@ -198,3 +198,15 @@ All of the following components have been fully integrated and verified via acti
 - **Spring Boot 3.2.5** (Core framework & configuration runtime)
 - **PostgreSQL 15** (Primary persistent store for transactional state)
 - **Hibernate & JPA** (Entity mapping with optimistic transactional safety locks)
+- **Spring Security** (Unified session authentication filters)
+- **Apache Kafka** (De-coupled event streaming broker engine)
+- **Kafka Consumers** (Highly scalable, multi-threaded event processors)
+- **Spring WebSockets** (Low-latency odds broadcast streams on `/ws/odds`)
+- **Tomcat Servlet Container** (Embedded, high-throughput web server)
+- **HikariCP** (Optimized, low-latency database connection pooling)
+- **Jackson JSON** (Type-safe DTO marshaling & network messaging)
+
+---
+
+## 🚀 Future Improvements & Production Scale
+To scale this monolith into a global, distributed multi-region infrastructure, the following architectural upgrades are scheduled:
