@@ -216,3 +216,17 @@ function showNotification(msg, type) {
         toast.style.borderRadius = "8px";
         toast.style.fontWeight = "600";
         toast.style.color = "#fff";
+        toast.style.boxShadow = "0 8px 30px rgba(0,0,0,0.5)";
+        toast.style.transform = "translateY(100px)";
+        toast.style.transition = "transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275)";
+        document.body.appendChild(toast);
+    }
+
+    const toast = document.getElementById("notification-toast");
+    toast.textContent = msg;
+
+    if (type === "success") {
+        toast.style.background = "linear-gradient(135deg, hsl(142, 70%, 45%), hsl(142, 70%, 35%))";
+        toast.style.border = "1px solid hsl(142, 70%, 45%)";
+    } else if (type === "error") {
+        toast.style.background = "linear-gradient(135deg, hsl(346, 84%, 55%), hsl(346, 84%, 45%))";
