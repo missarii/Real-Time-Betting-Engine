@@ -190,3 +190,16 @@ gantt
     End-to-End Testing & Polish         :done, 2021-06-09, 1d
 ```
 
+---
+
+## 🏁 Final System Stabilization Details
+
+### 1. Global View Navigation Injection
+Implemented `GlobalModelAdvice` (a `@ControllerAdvice` bean) that intercepts all Thymeleaf view mappings and automatically injects the active user's `wallet` state. This prevents navigation bar template evaluation crashes on `/events` and `/bets` pages, avoiding code duplication across controllers.
+
+### 2. Type-Safe Asynchronous Kafka Deserialization
+Added custom typed `ConcurrentKafkaListenerContainerFactory` instances for `OddsUpdatedEvent`, `BetPlacedEvent`, and `BetSettledEvent`. This bypasses reliance on Kafka header type variables, ensuring complete immunity against Jackson `ClassCastException` and `deserialization` failures in background service threads.
+
+### 3. Real-Time WebSocket & Security Filter Access
+Successfully configured Spring Security filters to permit WebSocket connections (`/ws/**`), enabling seamless low-latency odds feeds and flashing highlight visuals to update client browsers without page refreshes.
+
