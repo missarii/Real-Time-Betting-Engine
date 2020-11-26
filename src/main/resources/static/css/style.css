@@ -426,3 +426,31 @@ header {
     font-size: 0.75rem;
     font-weight: 700;
     text-transform: uppercase;
+    display: inline-block;
+}
+
+.badge-pending {
+    background: hsla(45, 93%, 47%, 0.15);
+    border: 1px solid var(--warning);
+    color: var(--warning);
+    animation: alertPulse 2s infinite;
+}
+
+.badge-won {
+    background: hsla(142, 70%, 45%, 0.15);
+    border: 1px solid var(--success);
+    color: var(--success);
+}
+
+.badge-lost {
+    background: hsla(222, 32%, 22%, 0.4);
+    border: 1px solid var(--text-muted);
+    color: var(--text-muted);
+}
+
+.badge-voided {
+    background: hsla(210, 100%, 59%, 0.15);
+    border: 1px solid var(--primary);
+    color: var(--primary);
+}
+
