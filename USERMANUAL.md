@@ -308,3 +308,24 @@ Click **"Wallet"** in the navigation to manage your funds.
 
 ### 7.2 Making a Withdrawal
 
+1. Find the **📤 Withdraw Payouts** card (red border)
+2. Enter the amount you want to withdraw
+3. Click **"PROCEED WITHDRAWAL"**
+4. Your balance decreases and a `WITHDRAWAL` entry appears in the transaction ledger
+
+> ⚠️ **Important**: You cannot withdraw more than your current balance. Attempting to do so will show an error.
+
+### 7.3 Transaction History Ledger
+
+The bottom table shows every financial event in your account:
+
+| Transaction Type | What It Means |
+|---|---|
+| `DEPOSIT` | Funds added to your wallet |
+| `WITHDRAWAL` | Funds removed from your wallet |
+| `BET_PLACED` | Stake deducted when you placed a bet |
+| `BET_SETTLED` | Payout credited after winning a bet |
+| `BET_REFUNDED` | Stake returned for a voided bet |
+
+**Amount color coding:**
+- 🟢 **Green / Positive (+)**: Money coming INTO your wallet
