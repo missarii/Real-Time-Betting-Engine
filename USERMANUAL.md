@@ -329,3 +329,24 @@ The bottom table shows every financial event in your account:
 
 **Amount color coding:**
 - 🟢 **Green / Positive (+)**: Money coming INTO your wallet
+- 🔴 **Red / Negative (-)**: Money going OUT of your wallet
+
+---
+
+## 8. Real-Time Odds Updates (Live Flashing)
+
+BET-X features live odds that update without needing to refresh the page.
+
+### What the Flashing Colors Mean
+
+When an admin changes match odds, the affected odds button flashes:
+
+| Flash Color | Meaning | What to Do |
+|---|---|---|
+| 🟢 **Green Flash** | Price INCREASED (better value) | You get more if you win |
+| 🔴 **Red Flash** | Price DECREASED (worse value) | You get less if you win |
+| 🔒 **Padlock Icon** | Market SUSPENDED | Cannot place bets on this selection |
+
+### Odds Changed While on Betslip
+
+If you already have a selection in your betslip and the odds change:
