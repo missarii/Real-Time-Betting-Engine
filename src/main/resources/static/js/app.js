@@ -230,3 +230,17 @@ function showNotification(msg, type) {
         toast.style.border = "1px solid hsl(142, 70%, 45%)";
     } else if (type === "error") {
         toast.style.background = "linear-gradient(135deg, hsl(346, 84%, 55%), hsl(346, 84%, 45%))";
+        toast.style.border = "1px solid hsl(346, 84%, 55%)";
+    } else {
+        toast.style.background = "linear-gradient(135deg, hsl(210, 100%, 59%), hsl(210, 100%, 45%))";
+        toast.style.border = "1px solid hsl(210, 100%, 59%)";
+    }
+
+    // Slide up
+    toast.style.transform = "translateY(0)";
+
+    // Slide down after 4 seconds
+    setTimeout(() => {
+        toast.style.transform = "translateY(150px)";
+    }, 4000);
+}
