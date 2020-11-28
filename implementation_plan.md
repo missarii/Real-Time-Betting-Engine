@@ -203,3 +203,15 @@ Added custom typed `ConcurrentKafkaListenerContainerFactory` instances for `Odds
 ### 3. Real-Time WebSocket & Security Filter Access
 Successfully configured Spring Security filters to permit WebSocket connections (`/ws/**`), enabling seamless low-latency odds feeds and flashing highlight visuals to update client browsers without page refreshes.
 
+---
+
+## Verification Plan
+
+### Automated Tests
+- JUnit tests for `WalletService` concurrency (testing optimistic locking under race conditions).
+- Integration tests using Testcontainers or locally running PostgreSQL for `BettingService`.
+
+### Manual Verification
+- Launch the application via Docker Compose.
+- Connect multiple browser tabs, make odds changes from the admin page, and observe WebSocket updates (green/red flash) on the user sportsbook page.
+- Test double-spending in the wallet by executing concurrent requests.
