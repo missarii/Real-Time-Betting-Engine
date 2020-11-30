@@ -482,3 +482,32 @@ tr:hover td {
     background: hsla(222, 32%, 22%, 0.2);
 }
 
+/* --- FLASH EFFECTS (REALTIME ODDS UPDATE) --- */
+@keyframes flashGreen {
+    0% { background-color: transparent; }
+    30% { background-color: hsla(142, 70%, 45%, 0.5); box-shadow: 0 0 15px hsla(142, 70%, 45%, 0.4); }
+    100% { background-color: transparent; }
+}
+
+@keyframes flashRed {
+    0% { background-color: transparent; }
+    30% { background-color: hsla(346, 84%, 55%, 0.5); box-shadow: 0 0 15px hsla(346, 84%, 55%, 0.4); }
+    100% { background-color: transparent; }
+}
+
+.flash-up {
+    animation: flashGreen 1.5s ease-out;
+}
+
+.flash-down {
+    animation: flashRed 1.5s ease-out;
+}
+
+.suspended-overlay {
+    position: relative;
+    pointer-events: none;
+    opacity: 0.5;
+}
+
+.suspended-overlay::after {
+    content: "🔒 LOCKED";
