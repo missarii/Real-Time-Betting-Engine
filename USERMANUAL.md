@@ -350,3 +350,23 @@ When an admin changes match odds, the affected odds button flashes:
 ### Odds Changed While on Betslip
 
 If you already have a selection in your betslip and the odds change:
+- The odds value in your betslip updates automatically
+- The potential payout recalculates in real-time
+- A blue notification appears: *"Slip updated: Odds changed to X.XX"*
+
+> 💡 **Tip**: If odds change between when you selected and when you click "PLACE BET", the system detects the mismatch and rejects the bet with an explanation. This protects you from unexpected pricing.
+
+---
+
+## 9. Admin Control Panel
+
+> 🛠️ **This section is only visible if you are logged in with an ADMIN account.**
+
+Access the admin panel by clicking the **"Admin Room"** link (dashed amber border) in the navigation.
+
+### 9.1 Creating a New Match Fixture
+
+Fill in the **"➕ Seed New Fixture"** form on the right side:
+
+| Field | Description | Example |
+|---|---|---|
