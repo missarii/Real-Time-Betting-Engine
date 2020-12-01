@@ -223,3 +223,14 @@ To scale this monolith into a global, distributed multi-region infrastructure, t
 
 ## 🌎 Industry Use Cases
 The asynchronous, transactional, and event-driven architecture shown in this project forms the foundational blueprint for:
+- **Sports Betting & iGaming Platforms** (Real-time live feeds, bet locking, bulk settlements)
+- **Stock Trading & Financial Systems** (High-throughput ledger processing, optimistic wallet protection)
+- **Payment Gateways** (Idempotent transactions, transactional isolation)
+- **Real-Time Analytics & Dashboard Systems** (WebSocket events, Kafka message streams)
+
+---
+
+## 👤 Author
+**Missari Ahil**
+- **Portfolio:** [missari.pages.dev](https://missari.pages.dev/)
+
