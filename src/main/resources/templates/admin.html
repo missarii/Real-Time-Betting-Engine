@@ -167,3 +167,13 @@
 
                         <div class="input-group">
                             <label for="awayTeam">Away Team / Player</label>
+                            <input type="text" id="awayTeam" name="awayTeam" placeholder="e.g. Arsenal" required>
+                        </div>
+
+                        <div style="border-top: 1px solid var(--border-color); padding-top: 1.25rem; margin-top: 1.5rem;">
+                            <label style="font-size: 0.8rem; font-weight: 700; color: var(--primary); text-transform: uppercase; margin-bottom: 1rem; display: block;">📊 Base Decimal Odds (1X2 Market)</label>
+                            
+                            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.5rem;">
+                                <div class="input-group">
+                                    <label>Home Win</label>
+                                    <input type="number" name="homeOdds" step="0.05" min="1.01" value="2.00" required style="text-align: center;">
