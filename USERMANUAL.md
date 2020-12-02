@@ -370,3 +370,24 @@ Fill in the **"➕ Seed New Fixture"** form on the right side:
 
 | Field | Description | Example |
 |---|---|---|
+| **Sport Type** | Category of sport | `SOCCER` |
+| **Home Team** | Name of the home team | `Chelsea` |
+| **Away Team** | Name of the away team | `Arsenal` |
+| **Home Win** | Opening decimal odds for a home win | `2.10` |
+| **Draw** | Opening decimal odds for a draw | `3.40` |
+| **Away Win** | Opening decimal odds for away win | `3.00` |
+
+Click **"SEED FIXTURE"** to instantly create the match and seed odds into both the database and Redis cache.
+
+### 9.2 Updating a Live Score & Status
+
+For each match in the list, there is a score update form:
+
+1. Change the **Home Score** number
+2. Change the **Away Score** number
+3. Change the **Match Status** dropdown:
+   - `SCHEDULED` — Match hasn't started yet
+   - `LIVE` — Match is currently in progress
+   - `SUSPENDED` — Betting temporarily halted (e.g., incident on field)
+   - `FINISHED` — Match is over (triggers settlement)
+4. Click **"UPDATE STATE"**
