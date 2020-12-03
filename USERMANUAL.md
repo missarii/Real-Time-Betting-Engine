@@ -391,3 +391,24 @@ For each match in the list, there is a score update form:
    - `SUSPENDED` — Betting temporarily halted (e.g., incident on field)
    - `FINISHED` — Match is over (triggers settlement)
 4. Click **"UPDATE STATE"**
+
+### 9.3 Fluctuating Live Odds (Real-Time)
+
+For each odds selection in a match:
+
+1. Change the **Price** number in the small input box
+2. Change the **Status** dropdown to `ACTIVE` or `SUSPENDED`
+3. Click **"FLUCTUATE"**
+
+This immediately:
+- Updates the price in the database
+- Refreshes the Redis cache
+- Publishes a Kafka event
+- Causes browsers to **flash the new price in real-time**!
+
+### 9.4 Settling a Match (Distributing Payouts)
+
+When a match is finished:
+
+1. Find the match in the list
+2. In the **"🏆 Settle Match Outcome"** dropdown, select the winning result:
