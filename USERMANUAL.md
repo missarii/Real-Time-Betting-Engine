@@ -412,3 +412,23 @@ When a match is finished:
 
 1. Find the match in the list
 2. In the **"🏆 Settle Match Outcome"** dropdown, select the winning result:
+   - `[HomeTeam] (Home Win)` 
+   - `Draw Match`
+   - `[AwayTeam] (Away Win)`
+3. Click **"SETTLE FIXTURE & PAYOUTS"**
+
+The system will immediately:
+- Scan all PENDING bets for this match
+- Credit winning payouts to each winner's wallet
+- Mark losing bets as LOST
+- Publish settlement events to Kafka
+
+---
+
+## 10. Understanding Bet Settlement & Payouts
+
+### Payout Calculation
+
+```
+Winning Payout = Stake × Locked Odds
+
