@@ -474,3 +474,23 @@ Balance:          $900.00  (stake is gone)  ❌
 | **Payout** | Total money returned to you if you win (Stake × Odds) |
 | **Net Profit** | Your winnings minus your original stake |
 | **PENDING** | Your bet is waiting for the match result |
+| **WON** | Your selection was correct; payout credited |
+| **LOST** | Your selection was wrong; stake forfeited |
+| **VOIDED** | Bet cancelled; stake fully refunded |
+| **Market** | A specific betting option (e.g., "1X2 - Match Result") |
+| **Selection** | The specific outcome you bet on (Home Win, Draw, Away Win) |
+| **1X2 Market** | Standard football market: 1 = Home Win, X = Draw, 2 = Away Win |
+| **Settlement** | The process of distributing payouts after a match finishes |
+| **Cache** | Redis-based memory store for ultra-fast odds reads |
+| **WebSocket** | Technology that pushes real-time odds updates to your browser |
+| **Kafka** | Message broker that decouples bet events for audit and processing |
+| **Optimistic Locking** | Database safety mechanism preventing duplicate balance changes |
+| **SUSPENDED** | Market temporarily closed; no bets can be placed |
+| **Decimal Odds** | Odds format where 2.00 means double your stake on a win |
+
+---
+
+## 🆘 Common Questions (FAQ)
+
+**Q: I placed a bet but my balance didn't change?**  
+A: Refresh the page. The balance is always accurate — the deduction happens the moment you click PLACE BET.
