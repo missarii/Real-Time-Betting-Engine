@@ -494,3 +494,23 @@ Balance:          $900.00  (stake is gone)  ❌
 
 **Q: I placed a bet but my balance didn't change?**  
 A: Refresh the page. The balance is always accurate — the deduction happens the moment you click PLACE BET.
+
+**Q: My bet says PENDING but the match finished hours ago?**  
+A: The admin needs to click "SETTLE FIXTURE & PAYOUTS" in the Admin Panel for the match. Ask your admin to settle it.
+
+**Q: The odds button shows a padlock icon?**  
+A: The market is SUSPENDED. You cannot place bets on that selection until the admin reactivates it.
+
+**Q: The "PLACE BET" button shows an error: "Odds have changed"?**  
+A: The price changed between when you selected it and when you clicked PLACE BET. Click the odds button again to get the latest price and try again.
+
+**Q: I can't see the "Admin Room" link?**  
+A: Only accounts with the ADMIN role can see and access the Admin Panel. Standard user accounts cannot access it.
+
+**Q: How do I see my full transaction history?**  
+A: Click **Wallet** in the navigation. The bottom section shows every deposit, withdrawal, bet placement, and payout in chronological order.
+
+---
+
+*BET-X — Powered by Spring Boot, Redis, Apache Kafka, and WebSockets.*  
+*A production-grade iGaming monolith demonstrating enterprise concurrency patterns.*
