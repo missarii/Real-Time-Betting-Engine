@@ -432,3 +432,24 @@ The system will immediately:
 ```
 Winning Payout = Stake × Locked Odds
 
+Example:
+  Stake:          $100.00
+  Odds at bet:    1.80 (Home Win)
+  Final result:   Home Win ✅
+
+  Payout:         $100 × 1.80 = $180.00
+  Net Profit:     $180 - $100 = $80.00
+
+This $180.00 is credited to your wallet automatically.
+```
+
+### What Happens to Your Stake When You Bet?
+
+```
+Balance BEFORE: $1,000.00
+Place $100 bet
+Balance AFTER:    $900.00  ← Stake immediately deducted
+
+[Match in progress — bet is PENDING...]
+
+If you WIN:
