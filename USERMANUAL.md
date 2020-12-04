@@ -453,3 +453,24 @@ Balance AFTER:    $900.00  ← Stake immediately deducted
 [Match in progress — bet is PENDING...]
 
 If you WIN:
+Balance:          $900.00 + $180.00 = $1,080.00  ✅
+
+If you LOSE:
+Balance:          $900.00  (stake is gone)  ❌
+```
+
+### The Odds Changed — Will My Bet Be Affected?
+
+**No.** Odds are **locked in** at the exact moment you click "PLACE BET". Even if the price changes after your bet is placed, your payout is calculated using the odds that were displayed when you confirmed the bet.
+
+---
+
+## 11. Glossary of Terms
+
+| Term | Definition |
+|---|---|
+| **Odds** | A number (e.g., 1.80) representing the potential return for every $1 staked |
+| **Stake** | The amount of money you put on a bet |
+| **Payout** | Total money returned to you if you win (Stake × Odds) |
+| **Net Profit** | Your winnings minus your original stake |
+| **PENDING** | Your bet is waiting for the match result |
