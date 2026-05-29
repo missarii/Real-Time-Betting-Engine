@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Wallet - Bet-X</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+
+    <!-- NAV BAR -->
+    <header>
+        <div class="nav-container">
+            <a th:href="@{/dashboard}" class="logo">🏆 <span>BET-X</span></a>
+            <div class="nav-links">
+                <a th:href="@{/dashboard}" class="nav-item">Dashboard</a>
+                <a th:href="@{/events}" class="nav-item">Sportsbook</a>
+                <a th:href="@{/bets}" class="nav-item">My Bets</a>
+                <a th:href="@{/wallet}" class="nav-item active">Wallet</a>
+                <a sec:authorize="hasRole('ADMIN')" th:href="@{/admin}" class="nav-item" style="color: var(--warning); border: 1px dashed var(--warning); border-radius: 6px;">Admin Room</a>
+            </div>
+            <div class="nav-user">
+                <div class="balance-pill">
+                    💵 $<span th:text="${#numbers.formatDecimal(wallet.balance, 1, 'COMMA', 2, 'POINT')}">1,000.00</span>
+                </div>
+                <span style="font-weight: 600; color: #fff;" th:text="${#authentication.name}">Username</span>
+                <a th:href="@{/logout}" class="btn-logout">LOGOUT</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- MAIN BODY -->
+    <main class="main-container">
+        <div style="margin-bottom: 2rem;">
+            <h1 style="font-size: 2.25rem; font-weight: 800;">My Wallet & Finances</h1>
+            <p style="color: var(--text-muted);">Manage deposits, withdrawals, and trace transaction records.</p>
+        </div>
+
+        <!-- Notification alerts -->
+        <div th:if="${param.depositSuccess}" class="alert alert-success">
+            💳 Deposit of funds processed successfully! Your balance has been updated.
+        </div>
+        <div th:if="${param.withdrawSuccess}" class="alert alert-success">
+            💸 Withdrawal of funds successfully dispatched to your payment method!
+        </div>
+        <div th:if="${errorMessage}" class="alert alert-error" th:text="${errorMessage}">
+            Finances action failed.
+        </div>
+
+        <div class="grid-2" style="grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 2.5rem;">
+            <!-- DEPOSIT CARD -->
+            <div class="glass-card" style="border-top: 4px solid var(--success);">
+                <h2 style="font-size: 1.5rem; font-weight: 700; margin-bottom: 1rem; color: var(--success); display: flex; align-items: center; gap: 0.5rem;">
+                    📥 Simulate Deposit
+                </h2>
+                <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 1.5rem;">Fund your account instantly using a mock simulated payment card gateway.</p>
+
+                <form th:action="@{/wallet/deposit}" method="POST">
+                    <div class="input-group">
+                        <label for="depositAmount">Deposit Amount (USD)</label>
+                        <input type="number" id="depositAmount" name="amount" min="10.00" max="10000.00" value="100.00" required>
+                    </div>
+
+                    <!-- Visual payment simulation details -->
+                    <div class="input-group">
+                        <label>Simulated Card Brand</label>
+                        <select>
+                            <option>Visa (Mock Debit *4321)</option>
+                            <option>MasterCard (Mock Debit *9876)</option>
+                            <option>iGaming Instant Token</option>
+                        </select>
+                    </div>
+
+                    <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 1rem; margin-bottom: 1.5rem;">
+                        <div class="input-group" style="margin-bottom: 0;">
+                            <label>Mock Card Number</label>
+                            <input type="text" placeholder="4000 1234 5678 9010" disabled style="opacity: 0.5;">
+                        </div>
+                        <div class="input-group" style="margin-bottom: 0;">
+                            <label>CVV</label>
+                            <input type="text" placeholder="***" disabled style="opacity: 0.5;">
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn btn-success" style="width: 100%; padding: 1rem;">SECURE DEPOSIT</button>
+                </form>
+            </div>
+
+            <!-- WITHDRAW CARD -->
+            <div class="glass-card" style="border-top: 4px solid var(--danger);">
+                <h2 style="font-size: 1.5rem; font-weight: 700; margin-bottom: 1rem; color: var(--danger); display: flex; align-items: center; gap: 0.5rem;">
+                    📤 Withdraw Payouts
+                </h2>
+                <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 1.5rem;">Withdraw winning payouts securely back to your verified withdrawal methods.</p>
+
+                <form th:action="@{/wallet/withdraw}" method="POST">
+                    <div class="input-group">
+                        <label for="withdrawAmount">Withdraw Amount (USD)</label>
+                        <input type="number" id="withdrawAmount" name="amount" min="10.00" step="1" value="50.00" required>
+                    </div>
+
+                    <div class="input-group">
+                        <label>Payout Destination</label>
+                        <select>
+                            <option>Direct Bank Wire (*1102)</option>
+                            <option>Mock Cards Direct payout</option>
+                        </select>
+                    </div>
+
+                    <div class="input-group" style="margin-bottom: 2rem;">
+                        <label>Verification Pin</label>
+                        <input type="password" placeholder="••••" required>
+                    </div>
+
+                    <button type="submit" class="btn btn-danger" style="width: 100%; padding: 1rem;">PROCEED WITHDRAWAL</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- TRANSACTIONS HISTORY STATEMENT -->
+        <div class="glass-card">
+            <h2 style="font-size: 1.5rem; font-weight: 700; margin-bottom: 1.5rem;">📊 Transaction History Ledger</h2>
+
+            <div th:if="${#lists.isEmpty(transactions)}" class="betslip-empty" style="padding: 3rem 0;">
+                No transactions recorded. Fill up your balance to start.
+            </div>
+
+            <table th:if="${!#lists.isEmpty(transactions)}">
+                <thead>
+                    <tr>
+                        <th>Transaction ID</th>
+                        <th>Execution Time</th>
+                        <th>Transaction Type</th>
+                        <th>Reference Info</th>
+                        <th>Description Details</th>
+                        <th>Amount Value</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="tx : ${transactions}">
+                        <td th:text="${#strings.substring(tx.id.toString(), 0, 8) + '...'}" style="font-family: monospace; font-weight: 700; color: var(--text-muted);">ID</td>
+                        <td th:text="${#temporals.format(tx.createdAt, 'yyyy-MM-dd HH:mm:ss')}">Time</td>
+                        <td>
+                            <span class="badge" th:classappend="${tx.type.name() == 'DEPOSIT' || tx.type.name() == 'BET_SETTLED' || tx.type.name() == 'BET_REFUNDED' ? 'badge-won' : 'badge-lost'}" th:text="${tx.type}">TYPE</span>
+                        </td>
+                        <td th:text="${tx.referenceId != null ? #strings.substring(tx.referenceId.toString(), 0, 8) + '...' : '-'}" style="font-family: monospace;">Ref</td>
+                        <td th:text="${tx.description}" style="font-weight: 500;">Description</td>
+                        <td th:text="${(tx.amount.compareTo(T(java.math.BigDecimal).ZERO) > 0 ? '+' : '') + '$' + #numbers.formatDecimal(tx.amount, 1, 2)}"
+                            th:style="${tx.amount.compareTo(T(java.math.BigDecimal).ZERO) > 0 ? 'color: var(--success); font-weight: 700;' : 'color: var(--danger); font-weight: 700;'}">
+                            Amount
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>&copy; 2026 BET-X Sportsbook Corporation. Licensed & Certified Monolithic iGaming Demonstrator.</p>
+    </footer>
+
+    <script th:src="@{/js/app.js}"></script>
+</body>
+</html>

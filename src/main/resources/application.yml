@@ -1,0 +1,76 @@
+server:
+  port: 8080
+  servlet:
+    session:
+      timeout: 30m
+      cookie:
+        name: BETTING_SESSION
+
+spring:
+  application:
+    name: betting-engine
+
+  # Database Configuration
+  datasource:
+    url: jdbc:postgresql://localhost:5432/betting_db
+    username: betting_user
+    password: betting_password
+    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    hibernate:
+      ddl-auto: update # Hibernate can update/verify; sql init handles seed/initial structures
+    show-sql: false
+    properties:
+      hibernate:
+        format_sql: true
+        jdbc:
+          batch_size: 20
+        order_inserts: true
+        order_updates: true
+
+  # Database Seeding Configuration
+  # 'never' prevents re-seeding on every restart (avoids duplicate-key constraint errors)
+  # Hibernate ddl-auto: update handles schema creation on first run
+  sql:
+    init:
+      mode: never
+
+  # Redis Configuration
+  data:
+    redis:
+      host: localhost
+      port: 6379
+      timeout: 2000ms
+
+  # Kafka Configuration
+  kafka:
+    bootstrap-servers: localhost:9092
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+      properties:
+        spring.json.add.type.headers: false
+    consumer:
+      group-id: betting-engine-group
+      auto-offset-reset: earliest
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+      properties:
+        spring.json.trusted.packages: "com.betting.dto"
+        spring.json.use.type.headers: false
+
+  # Thymeleaf & MVC Configuration
+  thymeleaf:
+    cache: false
+    prefix: classpath:/templates/
+    suffix: .html
+    mode: HTML
+
+logging:
+  level:
+    root: INFO
+    com.betting: DEBUG
+    org.springframework.security: INFO
+    org.springframework.transaction: INFO

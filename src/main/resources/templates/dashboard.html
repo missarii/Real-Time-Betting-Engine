@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Bet-X Sportsbook</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+
+    <!-- NAV BAR -->
+    <header>
+        <div class="nav-container">
+            <a th:href="@{/dashboard}" class="logo">🏆 <span>BET-X</span></a>
+            <div class="nav-links">
+                <a th:href="@{/dashboard}" class="nav-item active">Dashboard</a>
+                <a th:href="@{/events}" class="nav-item">Sportsbook</a>
+                <a th:href="@{/bets}" class="nav-item">My Bets</a>
+                <a th:href="@{/wallet}" class="nav-item">Wallet</a>
+                <a sec:authorize="hasRole('ADMIN')" th:href="@{/admin}" class="nav-item" style="color: var(--warning); border: 1px dashed var(--warning); border-radius: 6px;">Admin Room</a>
+            </div>
+            <div class="nav-user">
+                <div class="balance-pill">
+                    💵 $<span th:text="${#numbers.formatDecimal(wallet.balance, 1, 'COMMA', 2, 'POINT')}">1,000.00</span>
+                </div>
+                <span style="font-weight: 600; color: #fff;" th:text="${#authentication.name}">Username</span>
+                <a th:href="@{/logout}" class="btn-logout">LOGOUT</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- MAIN BODY -->
+    <main class="main-container">
+        <div style="margin-bottom: 2rem;">
+            <h1 style="font-size: 2.25rem; font-weight: 800;">Welcome back, <span th:text="${#authentication.name}" style="color: var(--primary);">User</span>!</h1>
+            <p style="color: var(--text-muted);">Real-Time live odds feeds are armed. Place bets securely.</p>
+        </div>
+
+        <div class="grid-2">
+            <!-- LEFT PANEL -->
+            <div style="display: flex; flex-direction: column; gap: 2rem;">
+                
+                <!-- LIVE MATCHES IN ACTION -->
+                <div class="glass-card">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
+                        <h2 style="font-size: 1.5rem; font-weight: 700;">🔥 Live Matches In Play</h2>
+                        <a th:href="@{/events}" style="color: var(--primary); font-size: 0.95rem; font-weight: 600; text-decoration: underline;">View Full Sportsbook</a>
+                    </div>
+
+                    <div th:if="${#lists.isEmpty(liveEvents)}" class="betslip-empty" style="padding: 2rem 0;">
+                        No live matches in play right now. Check back when games kick off!
+                    </div>
+
+                    <div th:each="event : ${liveEvents}" class="glass-card event-card" style="margin-bottom: 1rem; border-left-color: var(--danger);">
+                        <div class="event-header">
+                            <span class="sport-tag" th:text="${event.sport}">Soccer</span>
+                            <div class="live-badge">
+                                <span class="live-dot"></span> LIVE
+                            </div>
+                        </div>
+                        <div class="match-teams">
+                            <span th:text="${event.homeTeam}">Real Madrid</span>
+                            <span class="score-display" th:text="${event.homeScore + ' - ' + event.awayScore}">2 - 1</span>
+                            <span th:text="${event.awayTeam}">Barcelona</span>
+                        </div>
+                        
+                        <!-- Display active odds -->
+                        <div class="odds-container">
+                            <div th:each="odd : ${event.odds}" 
+                                 class="odds-btn" 
+                                 th:classappend="${odd.status.name() == 'SUSPENDED' ? 'suspended-overlay' : ''}"
+                                 th:data-odds-id="${odd.id}"
+                                 th:data-event-id="${event.id}"
+                                 th:data-match-name="${event.homeTeam + ' vs ' + event.awayTeam}"
+                                 th:data-selection="${odd.selectionName}">
+                                <span class="odds-label" th:text="${odd.selectionName == 'HOME_WIN' ? '1' : (odd.selectionName == 'DRAW' ? 'X' : '2')}">1</span>
+                                <span class="odds-val" th:text="${#numbers.formatDecimal(odd.oddsValue, 1, 2)}">1.65</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- RECENT TICKETS -->
+                <div class="glass-card">
+                    <h2 style="font-size: 1.5rem; font-weight: 700; margin-bottom: 1.5rem;">🎫 Recent Bet Slips</h2>
+                    
+                    <div th:if="${#lists.isEmpty(bets)}" class="betslip-empty" style="padding: 2rem 0;">
+                        You haven't placed any bets yet. Choose an outcome above to build your first slip!
+                    </div>
+
+                    <table th:if="${!#lists.isEmpty(bets)}">
+                        <thead>
+                            <tr>
+                                <th>Placed Time</th>
+                                <th>Match</th>
+                                <th>Selection</th>
+                                <th>Odds</th>
+                                <th>Stake</th>
+                                <th>Payout</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="bet : ${bets}">
+                                <td th:text="${#temporals.format(bet.placedAt, 'yyyy-MM-dd HH:mm')}">Time</td>
+                                <td th:text="${bet.event.homeTeam + ' vs ' + bet.event.awayTeam}" style="font-weight: 600;">Match</td>
+                                <td th:text="${bet.selectionName == 'HOME_WIN' ? bet.event.homeTeam + ' (Win)' : (bet.selectionName == 'AWAY_WIN' ? bet.event.awayTeam + ' (Win)' : 'Draw')}" style="color: var(--primary);">Selection</td>
+                                <td th:text="${#numbers.formatDecimal(bet.oddsValue, 1, 2)}" style="font-weight: 700;">Odds</td>
+                                <td th:text="${'$' + #numbers.formatDecimal(bet.stake, 1, 2)}">Stake</td>
+                                <td th:text="${'$' + #numbers.formatDecimal(bet.potentialPayout, 1, 2)}" style="color: var(--success); font-weight: 600;">Payout</td>
+                                <td>
+                                    <span class="badge" th:classappend="${'badge-' + #strings.toLowerCase(bet.status.name())}" th:text="${bet.status}">PENDING</span>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+
+            <!-- RIGHT PANEL (BETSLIP IN REAL-TIME) -->
+            <div class="betslip-wrapper">
+                <div class="glass-card" style="border-top: 4px solid var(--success);">
+                    <div class="betslip-header">
+                        <h2 style="font-size: 1.35rem; font-weight: 700; display: flex; align-items: center; gap: 0.5rem;">🧾 Active Betslip</h2>
+                        <span style="font-size: 0.8rem; background: var(--success-glow); color: var(--success); padding: 0.25rem 0.5rem; border-radius: 4px; font-weight: 700;">SINGLE</span>
+                    </div>
+
+                    <div id="slip-empty" class="betslip-empty">
+                        <div style="font-size: 3rem; margin-bottom: 1rem;">🎯</div>
+                        Click on any odds market value to populate your betslip.
+                    </div>
+
+                    <div id="slip-content" style="display: none;">
+                        <div class="slip-item">
+                            <div id="slip-match-name" class="slip-match">Real Madrid vs Barcelona</div>
+                            <div class="slip-selection">
+                                <span id="slip-selection-name">HOME WIN</span>
+                                <span style="font-weight: 700; font-family: monospace;" id="slip-odds-value">1.65</span>
+                            </div>
+                            <div class="slip-stake-input">
+                                <span style="font-size: 0.95rem; color: var(--text-muted); font-weight: 600;">STAKE:</span>
+                                <input type="number" id="slip-stake" min="0.10" step="1" value="10.00">
+                                <span style="font-size: 0.95rem; color: var(--text-muted); font-weight: 600;">USD</span>
+                            </div>
+                        </div>
+
+                        <div class="payout-info">
+                            <span>POTENTIAL PAYOUT:</span>
+                            <span class="payout-val">$<span id="slip-payout">16.50</span></span>
+                        </div>
+
+                        <button id="btn-place-bet" class="btn btn-success" style="width: 100%; margin-top: 1.5rem; padding: 1rem;">PLACE BET</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>&copy; 2026 BET-X Sportsbook Corporation. Licensed & Certified Monolithic iGaming Demonstrator.</p>
+    </footer>
+
+    <script th:src="@{/js/app.js}"></script>
+</body>
+</html>

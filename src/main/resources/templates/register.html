@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register - Real-Time Sportsbook</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body style="justify-content: center; align-items: center; padding: 2rem;">
+
+    <div class="glass-card" style="width: 100%; max-width: 480px;">
+        <div style="text-align: center; margin-bottom: 2rem;">
+            <h1 class="logo" style="justify-content: center; font-size: 2.25rem; margin-bottom: 0.5rem;">
+                🏆 <span>BET-X</span>
+            </h1>
+            <p style="color: var(--text-muted); font-weight: 500;">Join the Premium Concurrency Sportsbook</p>
+        </div>
+
+        <!-- Custom validation failure alert -->
+        <div th:if="${errorMessage}" class="alert alert-error" th:text="${errorMessage}">
+            Registration error.
+        </div>
+
+        <form th:action="@{/register}" th:object="${user}" method="POST" style="display: flex; flex-direction: column;">
+            
+            <div class="input-group">
+                <label for="username">Username</label>
+                <input type="text" id="username" th:field="*{username}" placeholder="Minimum 3 characters" required>
+                <div th:if="${#fields.hasErrors('username')}" th:errors="*{username}" style="color: var(--danger); font-size: 0.85rem; font-weight: 600; margin-top: 0.25rem;"></div>
+            </div>
+
+            <div class="input-group">
+                <label for="email">Email address</label>
+                <input type="email" id="email" th:field="*{email}" placeholder="yourname@domain.com" required>
+                <div th:if="${#fields.hasErrors('email')}" th:errors="*{email}" style="color: var(--danger); font-size: 0.85rem; font-weight: 600; margin-top: 0.25rem;"></div>
+            </div>
+
+            <div class="input-group" style="margin-bottom: 2rem;">
+                <label for="password">Password</label>
+                <input type="password" id="password" th:field="*{password}" placeholder="Minimum 6 characters" required>
+                <div th:if="${#fields.hasErrors('password')}" th:errors="*{password}" style="color: var(--danger); font-size: 0.85rem; font-weight: 600; margin-top: 0.25rem;"></div>
+            </div>
+
+            <button type="submit" class="btn" style="width: 100%; padding: 1rem;">CREATE ACCOUNT</button>
+        </form>
+
+        <div style="text-align: center; margin-top: 2rem; color: var(--text-muted); font-size: 0.95rem;">
+            Already have an account? <a th:href="@{/login}" style="color: var(--primary); font-weight: 600; text-decoration: underline;">Sign In</a>
+        </div>
+    </div>
+
+</body>
+</html>

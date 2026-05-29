@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel - Bet-X Control Room</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+
+    <!-- NAV BAR -->
+    <header>
+        <div class="nav-container">
+            <a th:href="@{/dashboard}" class="logo">🏆 <span>BET-X CONTROL PANEL</span></a>
+            <div class="nav-links">
+                <a th:href="@{/dashboard}" class="nav-item">Dashboard</a>
+                <a th:href="@{/events}" class="nav-item">Sportsbook</a>
+                <a th:href="@{/bets}" class="nav-item">My Bets</a>
+                <a th:href="@{/wallet}" class="nav-item">Wallet</a>
+                <a sec:authorize="hasRole('ADMIN')" th:href="@{/admin}" class="nav-item active" style="color: var(--warning); border: 1px dashed var(--warning); border-radius: 6px;">Admin Room</a>
+            </div>
+            <div class="nav-user">
+                <span style="font-weight: 600; color: var(--warning); font-size: 0.95rem; border: 1px solid var(--warning); padding: 0.25rem 0.6rem; border-radius: 4px;">🛠️ ADMIN POWER</span>
+                <span style="font-weight: 600; color: #fff; margin-left: 0.5rem;" th:text="${#authentication.name}">Username</span>
+                <a th:href="@{/logout}" class="btn-logout">LOGOUT</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- MAIN BODY -->
+    <main class="main-container">
+        <div style="margin-bottom: 2rem;">
+            <h1 style="font-size: 2.25rem; font-weight: 800; color: var(--warning);">Sportsbook Control Panel</h1>
+            <p style="color: var(--text-muted);">Adjust live match variables, fluctuate odds prices in real-time, or distribute payouts instantly.</p>
+        </div>
+
+        <!-- Success Toast alerts -->
+        <div th:if="${param.eventCreated}" class="alert alert-success">
+            ⚽ New sports match and 1X2 odds markets seeded and saved to DB & Redis cache successfully!
+        </div>
+        <div th:if="${param.scoreUpdated}" class="alert alert-success">
+            📈 Scoreline status changed and broadcasted successfully!
+        </div>
+        <div th:if="${param.oddsUpdated}" class="alert alert-success">
+            ⚡ Odds fluctuated! DB modified, Redis updated, and Kafka broadcasts successfully triggered WebSocket flashes!
+        </div>
+        <div th:if="${param.settlementSuccess}" class="alert alert-success">
+            💰 Payouts distributed successfully! Wallet balances updated, and tickets marked WON/LOST.
+        </div>
+        <div th:if="${param.error}" class="alert alert-error" th:text="${'Action failed: ' + param.error}">
+            Admin action failed.
+        </div>
+
+        <div class="grid-2" style="grid-template-columns: 2fr 1fr; gap: 2rem;">
+            <!-- LEFT PANEL: FIXTURES LIST -->
+            <div style="display: flex; flex-direction: column; gap: 2rem;">
+                
+                <div class="glass-card">
+                    <h2 style="font-size: 1.5rem; font-weight: 700; margin-bottom: 1.5rem;">🎮 Manage Current Matches</h2>
+                    
+                    <div th:if="${#lists.isEmpty(events)}" class="betslip-empty">
+                        No matches currently stored in DB. Build one using the form on the right.
+                    </div>
+
+                    <!-- Event Management Block -->
+                    <div th:each="event : ${events}" class="glass-card" style="margin-bottom: 1.5rem; border-left: 4px solid var(--primary);">
+                        <div class="event-header">
+                            <span class="sport-tag" th:text="${event.sport}">Soccer</span>
+                            
+                            <!-- Badges -->
+                            <span class="badge" th:classappend="${event.status.name() == 'LIVE' ? 'badge-pending' : (event.status.name() == 'FINISHED' ? 'badge-won' : 'badge-lost')}" th:text="${event.status}">STATUS</span>
+                        </div>
+
+                        <div class="match-teams" style="margin-bottom: 1.5rem;">
+                            <span th:text="${event.homeTeam}">Home</span>
+                            <span class="score-display" th:text="${event.homeScore + ' - ' + event.awayScore}">0 - 0</span>
+                            <span th:text="${event.awayTeam}">Away</span>
+                        </div>
+
+                        <!-- 1. Form to Update score & status -->
+                        <form th:action="@{/admin/events/{id}/score(id=${event.id})}" method="POST" style="display: flex; gap: 1rem; align-items: flex-end; padding-bottom: 1.25rem; border-bottom: 1px dashed var(--border-color); margin-bottom: 1.25rem;">
+                            <div style="flex-grow: 1;">
+                                <label style="font-size: 0.75rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase;">Home Score</label>
+                                <input type="number" name="homeScore" th:value="${event.homeScore}" style="background: var(--bg-dark); border: 1px solid var(--border-color); padding: 0.5rem; border-radius: 6px; color: #fff; width: 100%;">
+                            </div>
+                            <div style="flex-grow: 1;">
+                                <label style="font-size: 0.75rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase;">Away Score</label>
+                                <input type="number" name="awayScore" th:value="${event.awayScore}" style="background: var(--bg-dark); border: 1px solid var(--border-color); padding: 0.5rem; border-radius: 6px; color: #fff; width: 100%;">
+                            </div>
+                            <div style="flex-grow: 1.5;">
+                                <label style="font-size: 0.75rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase;">Match Status</label>
+                                <select name="status" style="background: var(--bg-dark); border: 1px solid var(--border-color); padding: 0.5rem; border-radius: 6px; color: #fff; width: 100%;">
+                                    <option th:selected="${event.status.name() == 'SCHEDULED'}">SCHEDULED</option>
+                                    <option th:selected="${event.status.name() == 'LIVE'}">LIVE</option>
+                                    <option th:selected="${event.status.name() == 'SUSPENDED'}">SUSPENDED</option>
+                                    <option th:selected="${event.status.name() == 'FINISHED'}">FINISHED</option>
+                                </select>
+                            </div>
+                            <button type="submit" class="btn" style="padding: 0.55rem 1rem; font-size: 0.85rem;">UPDATE STATE</button>
+                        </form>
+
+                        <!-- 2. Form to Settle Event (only if NOT already finished/settled) -->
+                        <div th:if="${event.status.name() != 'FINISHED'}" style="padding-bottom: 1.25rem; border-bottom: 1px dashed var(--border-color); margin-bottom: 1.25rem;">
+                            <form th:action="@{/admin/events/{id}/settle(id=${event.id})}" method="POST" style="display: flex; gap: 1rem; align-items: flex-end;">
+                                <div style="flex-grow: 1;">
+                                    <label style="font-size: 0.75rem; font-weight: 700; color: var(--warning); text-transform: uppercase;">🏆 Settle Match Outcome</label>
+                                    <select name="winningResult" style="background: var(--bg-dark); border: 1px solid var(--warning); padding: 0.5rem; border-radius: 6px; color: #fff; width: 100%;">
+                                        <option value="HOME_WIN" th:text="${event.homeTeam + ' (Home Win)'}">Home Win</option>
+                                        <option value="DRAW">Draw Match</option>
+                                        <option value="AWAY_WIN" th:text="${event.awayTeam + ' (Away Win)'}">Away Win</option>
+                                    </select>
+                                </div>
+                                <button type="submit" class="btn btn-success" style="padding: 0.55rem 1.5rem; font-size: 0.85rem;">SETTLE FIXTURE & PAYOUTS</button>
+                            </form>
+                        </div>
+
+                        <!-- 3. Fluctuating Individual Odds -->
+                        <div>
+                            <label style="font-size: 0.75rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase; margin-bottom: 0.5rem; display: block;">⚡ Fluctuate Odds Values & Broadcast</label>
+                            
+                            <div th:each="odd : ${event.odds}" style="display: flex; justify-content: space-between; align-items: center; background: hsla(222, 32%, 18%, 0.4); border: 1px solid var(--border-color); padding: 0.5rem 1rem; border-radius: 8px; margin-bottom: 0.5rem;">
+                                <span style="font-weight: 700; font-size: 0.9rem;" th:text="${odd.selectionName + ' (' + odd.marketName + ')'}">Selection</span>
+                                
+                                <form th:action="@{/admin/events/{id}/odds(id=${event.id})}" method="POST" style="display: flex; gap: 0.5rem; align-items: center;">
+                                    <input type="hidden" name="oddsId" th:value="${odd.id}">
+                                    
+                                    <span style="font-size: 0.85rem; color: var(--text-muted);">Price:</span>
+                                    <input type="number" name="oddsValue" th:value="${odd.oddsValue}" step="0.05" min="1.01" style="background: var(--bg-dark); border: 1px solid var(--border-color); padding: 0.35rem; border-radius: 6px; color: #fff; width: 80px; text-align: center; font-weight: 700;">
+                                    
+                                    <select name="status" style="background: var(--bg-dark); border: 1px solid var(--border-color); padding: 0.35rem; border-radius: 6px; color: #fff; width: 110px;">
+                                        <option value="ACTIVE" th:selected="${odd.status.name() == 'ACTIVE'}">ACTIVE</option>
+                                        <option value="SUSPENDED" th:selected="${odd.status.name() == 'SUSPENDED'}">SUSPENDED</option>
+                                    </select>
+                                    
+                                    <button type="submit" class="btn" style="padding: 0.35rem 0.75rem; font-size: 0.75rem; background: var(--primary);">FLUCTUATE</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- RIGHT PANEL: SEED FIXTURE FORM -->
+            <div>
+                <div class="glass-card" style="border-top: 4px solid var(--warning);">
+                    <h2 style="font-size: 1.5rem; font-weight: 700; margin-bottom: 1.5rem; color: var(--warning); display: flex; align-items: center; gap: 0.5rem;">
+                        ➕ Seed New Fixture
+                    </h2>
+                    <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 1.5rem;">Populate a new match and its 1X2 market prices instantaneously to the database and Redis cache.</p>
+
+                    <form th:action="@{/admin/events}" method="POST">
+                        <div class="input-group">
+                            <label for="sport">Sport Type</label>
+                            <select id="sport" name="sport">
+                                <option value="SOCCER">Soccer</option>
+                                <option value="BASKETBALL">Basketball</option>
+                                <option value="TENNIS">Tennis</option>
+                                <option value="ESPORTS">Esports</option>
+                            </select>
+                        </div>
+
+                        <div class="input-group">
+                            <label for="homeTeam">Home Team / Player</label>
+                            <input type="text" id="homeTeam" name="homeTeam" placeholder="e.g. Chelsea" required>
+                        </div>
+
+                        <div class="input-group">
+                            <label for="awayTeam">Away Team / Player</label>
+                            <input type="text" id="awayTeam" name="awayTeam" placeholder="e.g. Arsenal" required>
+                        </div>
+
+                        <div style="border-top: 1px solid var(--border-color); padding-top: 1.25rem; margin-top: 1.5rem;">
+                            <label style="font-size: 0.8rem; font-weight: 700; color: var(--primary); text-transform: uppercase; margin-bottom: 1rem; display: block;">📊 Base Decimal Odds (1X2 Market)</label>
+                            
+                            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.5rem;">
+                                <div class="input-group">
+                                    <label>Home Win</label>
+                                    <input type="number" name="homeOdds" step="0.05" min="1.01" value="2.00" required style="text-align: center;">
+                                </div>
+                                <div class="input-group">
+                                    <label>Draw</label>
+                                    <input type="number" name="drawOdds" step="0.05" min="1.01" value="3.20" required style="text-align: center;">
+                                </div>
+                                <div class="input-group">
+                                    <label>Away Win</label>
+                                    <input type="number" name="awayOdds" step="0.05" min="1.01" value="2.80" required style="text-align: center;">
+                                </div>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="btn" style="width: 100%; margin-top: 1.5rem; padding: 1rem; background: var(--warning); box-shadow: 0 4px 15px var(--warning-glow);">SEED FIXTURE</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>&copy; 2026 BET-X Sportsbook Corporation. Licensed & Certified Monolithic iGaming Demonstrator.</p>
+    </footer>
+
+    <script th:src="@{/js/app.js}"></script>
+</body>
+</html>

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Bets - Bet-X</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+
+    <!-- NAV BAR -->
+    <header>
+        <div class="nav-container">
+            <a th:href="@{/dashboard}" class="logo">🏆 <span>BET-X</span></a>
+            <div class="nav-links">
+                <a th:href="@{/dashboard}" class="nav-item">Dashboard</a>
+                <a th:href="@{/events}" class="nav-item">Sportsbook</a>
+                <a th:href="@{/bets}" class="nav-item active">My Bets</a>
+                <a th:href="@{/wallet}" class="nav-item">Wallet</a>
+                <a sec:authorize="hasRole('ADMIN')" th:href="@{/admin}" class="nav-item" style="color: var(--warning); border: 1px dashed var(--warning); border-radius: 6px;">Admin Room</a>
+            </div>
+            <div class="nav-user">
+                <div class="balance-pill">
+                    💵 $<span th:text="${#numbers.formatDecimal(wallet.balance, 1, 'COMMA', 2, 'POINT')}">1,000.00</span>
+                </div>
+                <span style="font-weight: 600; color: #fff;" th:text="${#authentication.name}">Username</span>
+                <a th:href="@{/logout}" class="btn-logout">LOGOUT</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- MAIN BODY -->
+    <main class="main-container">
+        <div style="margin-bottom: 2rem;">
+            <h1 style="font-size: 2.25rem; font-weight: 800;">My Betting Statement</h1>
+            <p style="color: var(--text-muted);">Review your active bet slips and settled payout transactions history.</p>
+        </div>
+
+        <div class="glass-card">
+            <h2 style="font-size: 1.5rem; font-weight: 700; margin-bottom: 1.5rem;">🎫 My Bet Tickets</h2>
+
+            <div th:if="${#lists.isEmpty(bets)}" class="betslip-empty" style="padding: 4rem 0;">
+                <div style="font-size: 3.5rem; margin-bottom: 1rem;">🎰</div>
+                No bets have been recorded for this account yet.<br>
+                <a th:href="@{/events}" class="btn btn-success" style="margin-top: 1.5rem; display: inline-block;">GO TO SPORTSBOOK</a>
+            </div>
+
+            <table th:if="${!#lists.isEmpty(bets)}">
+                <thead>
+                    <tr>
+                        <th>Ticket ID</th>
+                        <th>Placed Time</th>
+                        <th>Sport</th>
+                        <th>Match Event</th>
+                        <th>My Selection</th>
+                        <th>Odds Value</th>
+                        <th>Stake Amount</th>
+                        <th>Potential Payout</th>
+                        <th>Status</th>
+                        <th>Settled Time</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="bet : ${bets}">
+                        <td th:text="${#strings.substring(bet.id.toString(), 0, 8) + '...'}" style="font-family: monospace; font-weight: 700; color: var(--text-muted);">ID</td>
+                        <td th:text="${#temporals.format(bet.placedAt, 'yyyy-MM-dd HH:mm:ss')}">Time</td>
+                        <td>
+                            <span class="sport-tag" th:text="${bet.event.sport}">Soccer</span>
+                        </td>
+                        <td th:text="${bet.event.homeTeam + ' vs ' + bet.event.awayTeam}" style="font-weight: 600;">Match</td>
+                        <td th:text="${bet.selectionName == 'HOME_WIN' ? bet.event.homeTeam + ' (Win)' : (bet.selectionName == 'AWAY_WIN' ? bet.event.awayTeam + ' (Win)' : 'Draw')}" style="color: var(--primary);">Selection</td>
+                        <td th:text="${#numbers.formatDecimal(bet.oddsValue, 1, 2)}" style="font-weight: 700;">Odds</td>
+                        <td th:text="${'$' + #numbers.formatDecimal(bet.stake, 1, 2)}">Stake</td>
+                        <td th:text="${'$' + #numbers.formatDecimal(bet.potentialPayout, 1, 2)}" style="color: var(--success); font-weight: 600;">Payout</td>
+                        <td>
+                            <span class="badge" th:classappend="${'badge-' + #strings.toLowerCase(bet.status.name())}" th:text="${bet.status}">PENDING</span>
+                        </td>
+                        <td th:text="${bet.settledAt != null ? #temporals.format(bet.settledAt, 'yyyy-MM-dd HH:mm:ss') : '-'}">Settled Time</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>&copy; 2026 BET-X Sportsbook Corporation. Licensed & Certified Monolithic iGaming Demonstrator.</p>
+    </footer>
+
+    <script th:src="@{/js/app.js}"></script>
+</body>
+</html>

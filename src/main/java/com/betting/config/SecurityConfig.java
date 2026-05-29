@@ -1,0 +1,76 @@
+package com.betting.config;
+
+import com.betting.service.CustomUserDetailsService;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
+
+@Configuration
+@EnableWebSecurity
+public class SecurityConfig {
+
+    private final CustomUserDetailsService userDetailsService;
+
+    public SecurityConfig(CustomUserDetailsService userDetailsService) {
+        this.userDetailsService = userDetailsService;
+    }
+
+    @Bean
+    public PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
+
+    @Bean
+    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+        http
+            // Disable CSRF for simplicity in REST API calls and web socket establishment
+            .csrf(csrf -> csrf.disable())
+            .authorizeHttpRequests(auth -> auth
+                // Allow public access to static assets, auth pages, and WebSocket endpoint
+                .requestMatchers("/login", "/register", "/css/**", "/js/**", "/favicon.ico").permitAll()
+                .requestMatchers("/ws/**").permitAll()
+                .requestMatchers("/api/auth/**").permitAll()
+                // Protect admin paths
+                .requestMatchers("/admin/**", "/api/admin/**").hasRole("ADMIN")
+                // Protect user endpoints
+                .anyRequest().authenticated()
+            )
+            .formLogin(form -> form
+                .loginPage("/login")
+                .loginProcessingUrl("/login")
+                .defaultSuccessUrl("/dashboard", true)
+                .failureUrl("/login?error=true")
+                .permitAll()
+            )
+            .logout(logout -> logout
+                .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+                .logoutSuccessUrl("/login?logout=true")
+                .deleteCookies("BETTING_SESSION")
+                .invalidateHttpSession(true)
+                .permitAll()
+            )
+            .sessionManagement(session -> session
+                .maximumSessions(2)
+                .maxSessionsPreventsLogin(false)
+            );
+
+        return http.build();
+    }
+
+    @Bean
+    public AuthenticationManager authenticationManager(HttpSecurity http) throws Exception {
+        AuthenticationManagerBuilder authenticationManagerBuilder = 
+            http.getSharedObject(AuthenticationManagerBuilder.class);
+        authenticationManagerBuilder
+            .userDetailsService(userDetailsService)
+            .passwordEncoder(passwordEncoder());
+        return authenticationManagerBuilder.build();
+    }
+}

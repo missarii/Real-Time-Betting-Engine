@@ -1,0 +1,569 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap');
+
+/* --- CUSTOM VARIABLES --- */
+:root {
+    --bg-dark: hsl(222, 47%, 9%);
+    --bg-card: hsla(223, 47%, 14%, 0.7);
+    --bg-card-hover: hsla(223, 47%, 18%, 0.85);
+    --border-color: hsla(222, 32%, 22%, 0.5);
+    
+    --primary: hsl(210, 100%, 59%); /* Electric Blue */
+    --primary-glow: hsla(210, 100%, 59%, 0.3);
+    
+    --success: hsl(142, 70%, 45%); /* Neon Green */
+    --success-glow: hsla(142, 70%, 45%, 0.25);
+    
+    --danger: hsl(346, 84%, 55%); /* Neon Rose */
+    --danger-glow: hsla(346, 84%, 55%, 0.25);
+    
+    --warning: hsl(45, 93%, 47%); /* Vibrant Amber */
+    --warning-glow: hsla(45, 93%, 47%, 0.25);
+
+    --text-main: hsl(210, 40%, 98%);
+    --text-muted: hsl(215, 20%, 65%);
+    --text-dark: hsl(222, 47%, 5%);
+    
+    --glass-blur: blur(16px);
+}
+
+/* --- RESET & BASIC STYLES --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Outfit', sans-serif;
+    transition: background-color 0.25s ease, border-color 0.25s ease, transform 0.20s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+body {
+    background-color: var(--bg-dark);
+    background-image: 
+        radial-gradient(at 10% 20%, hsla(210, 100%, 59%, 0.08) 0px, transparent 50%),
+        radial-gradient(at 90% 80%, hsla(346, 84%, 55%, 0.06) 0px, transparent 50%);
+    background-attachment: fixed;
+    color: var(--text-main);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+/* --- LAYOUT COMPONENTS --- */
+header {
+    background: hsla(223, 47%, 12%, 0.6);
+    backdrop-filter: var(--glass-blur);
+    border-bottom: 1px solid var(--border-color);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.nav-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 1.25rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 1.75rem;
+    font-weight: 800;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    letter-spacing: -0.5px;
+}
+
+.logo span {
+    background: linear-gradient(135deg, var(--primary), var(--success));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.nav-links {
+    display: flex;
+    gap: 1.5rem;
+    align-items: center;
+}
+
+.nav-item {
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--text-muted);
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+}
+
+.nav-item:hover, .nav-item.active {
+    color: #fff;
+    background: hsla(222, 32%, 22%, 0.4);
+}
+
+.nav-user {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding-left: 1.5rem;
+    border-left: 1px solid var(--border-color);
+}
+
+.balance-pill {
+    background: linear-gradient(135deg, hsla(210, 100%, 59%, 0.15), hsla(142, 70%, 45%, 0.15));
+    border: 1px solid hsla(210, 100%, 59%, 0.3);
+    padding: 0.5rem 1rem;
+    border-radius: 9999px;
+    font-weight: 600;
+    color: var(--success);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.btn-logout {
+    color: var(--danger);
+    font-weight: 600;
+    font-size: 0.95rem;
+}
+
+.main-container {
+    max-width: 1400px;
+    width: 100%;
+    margin: 2.5rem auto;
+    padding: 0 2rem;
+    flex-grow: 1;
+}
+
+/* --- CARDS & GLASSMORPHISM --- */
+.glass-card {
+    background: var(--bg-card);
+    backdrop-filter: var(--glass-blur);
+    border: 1px solid var(--border-color);
+    border-radius: 16px;
+    padding: 2rem;
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+}
+
+.glass-card:hover {
+    background: var(--bg-card-hover);
+    border-color: hsla(222, 32%, 35%, 0.4);
+}
+
+.grid-2 {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 2rem;
+}
+
+.grid-3 {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+}
+
+/* --- SPORTSBOOK & MATCH CARDS --- */
+.event-card {
+    border-left: 4px solid var(--primary);
+    margin-bottom: 1rem;
+}
+
+.event-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.sport-tag {
+    background: hsla(222, 32%, 22%, 0.8);
+    border: 1px solid var(--border-color);
+    padding: 0.3rem 0.75rem;
+    border-radius: 6px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    color: var(--primary);
+    text-transform: uppercase;
+}
+
+.live-badge {
+    background: hsla(346, 84%, 55%, 0.15);
+    border: 1px solid var(--danger);
+    color: var(--danger);
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 0.25rem 0.6rem;
+    border-radius: 9999px;
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+    animation: pulseGlow 2s infinite;
+}
+
+.live-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background-color: var(--danger);
+}
+
+.match-teams {
+    font-size: 1.35rem;
+    font-weight: 700;
+    margin-bottom: 0.75rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.score-display {
+    background: var(--bg-dark);
+    padding: 0.25rem 0.75rem;
+    border-radius: 8px;
+    font-family: monospace;
+    font-weight: 700;
+    letter-spacing: 1px;
+    color: var(--success);
+}
+
+/* --- ODDS GRID & BUTTONS --- */
+.odds-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    margin-top: 1.25rem;
+}
+
+.odds-btn {
+    background: hsla(222, 32%, 18%, 0.8);
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    padding: 0.75rem 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.25rem;
+    cursor: pointer;
+}
+
+.odds-btn:hover {
+    background: var(--primary);
+    border-color: var(--primary);
+    box-shadow: 0 0 15px var(--primary-glow);
+    transform: translateY(-2px);
+}
+
+.odds-btn:hover span {
+    color: #fff !important;
+}
+
+.odds-label {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.odds-val {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--primary);
+}
+
+/* --- FORM CONTROLS & BUTTONS --- */
+.input-group {
+    margin-bottom: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.input-group label {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.input-group input, .input-group select {
+    background: hsla(222, 47%, 7%, 0.8);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 0.85rem 1rem;
+    color: #fff;
+    font-size: 1rem;
+    width: 100%;
+}
+
+.input-group input:focus, .input-group select:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 10px var(--primary-glow);
+}
+
+.btn {
+    background: linear-gradient(135deg, var(--primary), hsl(210, 100%, 45%));
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    padding: 0.85rem 1.5rem;
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    text-align: center;
+    box-shadow: 0 4px 15px var(--primary-glow);
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px var(--primary-glow);
+}
+
+.btn-success {
+    background: linear-gradient(135deg, var(--success), hsl(142, 70% , 35%));
+    box-shadow: 0 4px 15px var(--success-glow);
+}
+.btn-success:hover {
+    box-shadow: 0 6px 20px var(--success-glow);
+}
+
+.btn-danger {
+    background: linear-gradient(135deg, var(--danger), hsl(346, 84%, 45%));
+    box-shadow: 0 4px 15px var(--danger-glow);
+}
+.btn-danger:hover {
+    box-shadow: 0 6px 20px var(--danger-glow);
+}
+
+/* --- BETSLIP DRAWER --- */
+.betslip-wrapper {
+    position: sticky;
+    top: calc(75px + 2.5rem);
+}
+
+.betslip-header {
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 1rem;
+    margin-bottom: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.betslip-empty {
+    color: var(--text-muted);
+    text-align: center;
+    padding: 3rem 0;
+    font-size: 1rem;
+}
+
+.slip-item {
+    background: hsla(222, 32%, 18%, 0.8);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 1rem;
+    margin-bottom: 1rem;
+}
+
+.slip-match {
+    font-weight: 700;
+    font-size: 0.95rem;
+    margin-bottom: 0.25rem;
+}
+
+.slip-selection {
+    color: var(--primary);
+    font-weight: 600;
+    font-size: 0.9rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.slip-stake-input {
+    margin-top: 1rem;
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+}
+
+.slip-stake-input input {
+    background: var(--bg-dark);
+    border: 1px solid var(--border-color);
+    padding: 0.5rem;
+    border-radius: 6px;
+    color: #fff;
+    font-weight: 700;
+    width: 80px;
+    text-align: center;
+}
+
+.payout-info {
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border-color);
+    display: flex;
+    justify-content: space-between;
+    font-size: 1rem;
+    font-weight: 700;
+}
+
+.payout-val {
+    color: var(--success);
+}
+
+/* --- BADGES & TICKETS --- */
+.badge {
+    padding: 0.35rem 0.75rem;
+    border-radius: 6px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    display: inline-block;
+}
+
+.badge-pending {
+    background: hsla(45, 93%, 47%, 0.15);
+    border: 1px solid var(--warning);
+    color: var(--warning);
+    animation: alertPulse 2s infinite;
+}
+
+.badge-won {
+    background: hsla(142, 70%, 45%, 0.15);
+    border: 1px solid var(--success);
+    color: var(--success);
+}
+
+.badge-lost {
+    background: hsla(222, 32%, 22%, 0.4);
+    border: 1px solid var(--text-muted);
+    color: var(--text-muted);
+}
+
+.badge-voided {
+    background: hsla(210, 100%, 59%, 0.15);
+    border: 1px solid var(--primary);
+    color: var(--primary);
+}
+
+/* --- TABLES & LOGS --- */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+}
+
+th {
+    text-align: left;
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    padding: 1rem;
+    border-bottom: 2px solid var(--border-color);
+}
+
+td {
+    padding: 1rem;
+    border-bottom: 1px solid var(--border-color);
+    font-size: 0.95rem;
+}
+
+tr:hover td {
+    background: hsla(222, 32%, 22%, 0.2);
+}
+
+/* --- FLASH EFFECTS (REALTIME ODDS UPDATE) --- */
+@keyframes flashGreen {
+    0% { background-color: transparent; }
+    30% { background-color: hsla(142, 70%, 45%, 0.5); box-shadow: 0 0 15px hsla(142, 70%, 45%, 0.4); }
+    100% { background-color: transparent; }
+}
+
+@keyframes flashRed {
+    0% { background-color: transparent; }
+    30% { background-color: hsla(346, 84%, 55%, 0.5); box-shadow: 0 0 15px hsla(346, 84%, 55%, 0.4); }
+    100% { background-color: transparent; }
+}
+
+.flash-up {
+    animation: flashGreen 1.5s ease-out;
+}
+
+.flash-down {
+    animation: flashRed 1.5s ease-out;
+}
+
+.suspended-overlay {
+    position: relative;
+    pointer-events: none;
+    opacity: 0.5;
+}
+
+.suspended-overlay::after {
+    content: "🔒 LOCKED";
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0, 0, 0, 0.4);
+    color: var(--text-muted);
+    font-size: 0.75rem;
+    font-weight: 800;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+}
+
+/* --- ALERTS & NOTIFICATIONS --- */
+.alert {
+    padding: 1rem;
+    border-radius: 8px;
+    margin-bottom: 1.5rem;
+    font-weight: 600;
+    font-size: 0.95rem;
+}
+
+.alert-success {
+    background: hsla(142, 70%, 45%, 0.15);
+    border: 1px solid var(--success);
+    color: var(--success);
+}
+
+.alert-error {
+    background: hsla(346, 84%, 55%, 0.15);
+    border: 1px solid var(--danger);
+    color: var(--danger);
+}
+
+/* --- KEYFRAME ANIMATIONS --- */
+@keyframes pulseGlow {
+    0% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.4); }
+    70% { box-shadow: 0 0 0 8px rgba(239, 68, 68, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0); }
+}
+
+@keyframes alertPulse {
+    0% { opacity: 1; }
+    50% { opacity: 0.7; }
+    100% { opacity: 1; }
+}
+
+/* --- FOOTER --- */
+footer {
+    background: hsla(223, 47%, 8%, 0.9);
+    border-top: 1px solid var(--border-color);
+    padding: 2rem 0;
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    margin-top: auto;
+}
