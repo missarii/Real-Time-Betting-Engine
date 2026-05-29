@@ -190,3 +190,47 @@ You can log in immediately using the pre-seeded credentials:
    - In Window A, update the score of the match to `2 - 1` and click **Settle Fixture & Payouts** with outcome `HOME_WIN`.
    - In Window B, go to **Wallet** or **My Bets**. Observe your bet is now marked **WON** and your balance has increased by $180 ($900 + $180 = $1080).
    - Check the **Transaction History Ledger** to see the structured ledger items detailing deposits, locks, and wins.
+
+---
+
+## 🛠️ Current Working Components (Confirmed Running)
+All of the following components have been fully integrated and verified via active, live system logging during the monolith boot-up sequence:
+- **Spring Boot 3.2.5** (Core framework & configuration runtime)
+- **PostgreSQL 15** (Primary persistent store for transactional state)
+- **Hibernate & JPA** (Entity mapping with optimistic transactional safety locks)
+- **Spring Security** (Unified session authentication filters)
+- **Apache Kafka** (De-coupled event streaming broker engine)
+- **Kafka Consumers** (Highly scalable, multi-threaded event processors)
+- **Spring WebSockets** (Low-latency odds broadcast streams on `/ws/odds`)
+- **Tomcat Servlet Container** (Embedded, high-throughput web server)
+- **HikariCP** (Optimized, low-latency database connection pooling)
+- **Jackson JSON** (Type-safe DTO marshaling & network messaging)
+
+---
+
+## 🚀 Future Improvements & Production Scale
+To scale this monolith into a global, distributed multi-region infrastructure, the following architectural upgrades are scheduled:
+- **JWT Stateless Authentication**: Moving session state from cookie stores to cryptographically signed JWT tokens for stateless service scaling.
+- **Full Docker & Kubernetes Deployment**: Containerizing all boot instances and utilizing K8s Helm charts for auto-scaling and replication.
+- **Distributed Kafka & Redis Clusters**: Implementing partitioned message replication and Redis Sentinel master-replica caches.
+- **Production Load Balancing**: Deploying Nginx or AWS ALB to distribute HTTP traffic and handle WebSocket connection stickiness.
+- **Observability Stack (Prometheus & Grafana)**: Hooking Spring Boot Actuator metrics into Prometheus scrapers for live system health dashboards.
+- **CI/CD Automation Pipelines**: Adding GitHub Actions to compile, test, containerize, and deploy automatically on main branch merges.
+- **ClickHouse Big Data Analytics**: Integrating a columnar database for complex real-time betting logs, player risk behavior modeling, and dashboard charts.
+- **IP & Endpoint Rate Limiting**: Integrating Spring Cloud Gateway or Bucket4j token bucket algorithms to defend against API scraping and DDoS attacks.
+
+---
+
+## 🌎 Industry Use Cases
+The asynchronous, transactional, and event-driven architecture shown in this project forms the foundational blueprint for:
+- **Sports Betting & iGaming Platforms** (Real-time live feeds, bet locking, bulk settlements)
+- **Stock Trading & Financial Systems** (High-throughput ledger processing, optimistic wallet protection)
+- **Payment Gateways** (Idempotent transactions, transactional isolation)
+- **Real-Time Analytics & Dashboard Systems** (WebSocket events, Kafka message streams)
+
+---
+
+## 👤 Author
+**Missari Ahil**
+- **Portfolio:** [missari.pages.dev](https://missari.pages.dev/)
+
